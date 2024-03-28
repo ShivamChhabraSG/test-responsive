@@ -1,0 +1,55 @@
+<!-- <div>
+  <router-outlet></router-outlet>
+
+</div> -->
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-circus" [fullScreen]="true">
+
+    <p style="color: white"> Loading... </p>
+
+</ngx-spinner>
+<div>
+  <div *ngIf="router.url === '/home'">
+  <router-outlet></router-outlet>
+  </div>
+    <!-- Testing New data -->
+    <div *ngIf="router.url != '/home'">
+    <mat-toolbar>
+      <mat-toolbar-row>
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon aria-label="SideNav">menu</mat-icon>
+        </button>
+      
+        <app-dashboard-header></app-dashboard-header>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-sidenav-container>
+      <mat-sidenav #sidenav [opened]="true" mode="side">
+        <mat-nav-list style="overflow: hidden; width: 200px;">
+          <app-sidenav-bar></app-sidenav-bar>
+        </mat-nav-list>
+      </mat-sidenav>
+      <mat-sidenav-content style="background: #FFFFFF; overflow-x: hidden;">
+        <div style="height: 88vh;">
+          <router-outlet>
+          </router-outlet>
+        </div>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+  
+    <!-- <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-scale-pulse" [fullScreen]="true">
+      <p style="color: rgb(0, 0, 0)"> Loading... </p>
+  </ngx-spinner> -->
+    <!-- <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-circus" [fullScreen]="true">
+   
+      <p style="color: white"> Loading... </p>
+   
+    </ngx-spinner> -->
+  
+    <!-- <div class="row">
+      <div class="col-12 footer" >
+        <app-nrlm-footer></app-nrlm-footer>
+      </div>
+    </div> -->
+  </div>
+  <app-error-dialog></app-error-dialog>

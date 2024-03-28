@@ -1,0 +1,67 @@
+<div class="roles-View">
+  <div class="entityL">
+    <hr />
+    <div class="container-fluid gridRow">
+      <div class="row">
+        <div class="row">
+          <div class="align-items-center secondGrid">
+            <div class="row">
+              <div class="col-lg-1 col-sm-2 col-xs-1 colStyle">
+                <img
+                  (click)="generatePDF(gridOptions)"
+                  src="../../assets/image/pdf icon.svg"
+                  title="Download PDF"
+                />
+              </div>
+              <div class="col-lg-1 col-sm-2 col-xs-1 colStyle">
+                <img
+                  (click)="onBtnExport()"
+                  src="../../assets/image/excel icon.svg"
+                  title="Downlaod Excel"
+                />
+                <!-- <button (click)="onBtnExport()">Download CSV export file</button> -->
+              </div>
+              <div class="col-lg-6 col-sm-8 col-xs-2 colStyle text-center">
+                <label class="entityLabel">Roles</label>
+              </div>
+              <div class="col-lg-4 col-sm-8 colStyle">
+                <div class="searchBox d-flex searchBarstyle">
+                  <mat-icon class="searchIcon">search</mat-icon>
+                  <input
+                    class="searchInput searchbarInput"
+                    type="text"
+                    name=""
+                    (keyup)="onFilterTextBoxChanged(gridOptions, $event)"
+                    placeholder="Search "
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="gridStyleMain">
+            <div class="col-12">
+              <ag-grid-angular class="ag-theme-alpine gridUnit"
+                style="font-size: 12px; height: 455px; position: relative; right: 4px;"
+                [rowData]="rolesData" (gridReady)="onGridReady($event)"
+                [defaultColDef]="defaultColDef" [suppressExcelExport]="true"
+                [gridOptions]="gridOptions" [columnDefs]="columnDefs"
+                [pagination]="true" [paginationAutoPageSize]="false" [paginationPageSize]="pageSize">
+              </ag-grid-angular>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 footer">
+      <app-nrlm-footer></app-nrlm-footer>
+    </div>
+  </div>
+</div>
+
+
+<app-error-dialog></app-error-dialog>

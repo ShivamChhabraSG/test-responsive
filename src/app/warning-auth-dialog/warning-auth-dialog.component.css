@@ -1,0 +1,110 @@
+.dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+   
+}
+
+ h1{
+  color: rgb(10, 200, 121);
+  font-family: 'Roboto';
+  margin-left: 130px;
+}
+.dialog-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border-top: 5px solid rgb(10, 200, 121);
+}
+
+.dialog-content-reject {
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  border-top: 5px solid red;
+}
+
+.dialog-content-reject h1{
+  color: red;
+  font-family: 'Roboto';
+  margin-left: 130px;
+}
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cancel-button, .delete-button, .closed-button,.password-reset-button {
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
+  .cancel-button {
+    margin-left: 50px;
+    background-color: #ccc;
+  }
+  
+  .delete-button {
+    margin-left: 150px;
+    background-color: rgb(10, 200, 121);;
+    color: #fff;
+  }
+
+  .password-reset-button {
+    margin-left: 165px;
+    background-color: rgb(10, 200, 121);;
+    color: #fff;
+  }
+
+  .closed-button{
+    margin-left: 150px;
+    background-color: red;
+    color: #fff;
+  }
+
+  .close-button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: rgb(96, 94, 94);
+    top: 10px;
+    right: 10px;
+    line-height: 1;
+  }
+
+  .warningMsg{
+    font-family: 'Roboto';
+  }
+
+  .successMsg{
+    font-family: 'Roboto';
+    text-align: center;
+  }
+
+  .dialog-content-password {
+    background: #fff;
+    padding: 20px;
+    width: 420px;
+    height: 230px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border-top: 5px solid rgb(10, 200, 121);
+}
+  
+
+
+

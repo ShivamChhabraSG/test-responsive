@@ -1,0 +1,62 @@
+ :host ::ng-deep.mat-mdc-dialog-container .mdc-dialog__surface{
+    display: block;
+    width: 548px; 
+     height: 216px;
+    /* width: 417px;
+    height: 421px; */
+    padding: 7px;
+    position: relative;
+    bottom: 155%;
+    left: -652px;
+    overflow-y: hidden;
+}
+.ratePopup {
+    position: absolute;
+    width: 653px;
+    height: 51px;
+    left: calc(50% - 700px/2);
+    top: 0px;
+    background: #ef3232;
+}
+.rateheading{
+    text-align: center;
+    margin-top: 13px;
+    font-size: 35px;
+    margin-left: 63px;
+}
+.ratecloseIcon{
+    margin-left: 582px;
+    position: absolute;
+    top: 16px;
+    overflow: unset;
+  }
+  .ratewarningRow{
+    margin-top: 53px;
+}
+.ratewarningMsg{
+    position: absolute;
+    height: 54px;
+    left: 75px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    color: #8B8B8B;
+}
+.ratehr {
+    margin-top: 43px;
+    width: 89%;
+    border: 1.5px solid;
+    margin-left: 27px;
+}
+.ratewarngBtnDiv{
+    margin-left: 14rem;
+    margin-top: 12px;
+}
+.warningBtn{
+    color: #00A2FF;
+    font-size: 20px;
+    cursor: pointer;
+}

@@ -1,0 +1,550 @@
+<div class="nrlmDataScreen">
+    <div class="claimsD">
+        <hr>
+        <div class="container-fluid gridRow">
+            <div class="row">
+                <div class="row mt-2 align-items-center d-flex gridStyle"
+                style="background-color: rgba(43, 190, 95, 0.1);">
+                    <!-- select Bank -->
+                    <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
+                        <div class="col-lg-3 col-md-3 col-sm-4">
+                            <label class="unitLabel">Bank</label>
+                        </div>
+                        <div class="col-lg-9 col-md-9 col-sm-9 responsiveStyle">
+                            <ng-select [clearable]="false" [(ngModel)]="recordStatus" id="unitName" name="unitName" [items]="unitsData"
+                                placeholder="Select Bank" bindLabel="bank" bindValue="unit" required (change)="getRecordStatus($event)"
+                                [attr.title]="isDropdownOpen ? null : showSelectedBank" (open)="isDropdownOpen = true"
+                                (close)="isDropdownOpen = false">
+                                <ng-template ng-option-tmp let-item="item">
+                                    <span class="ng-option-label" [attr.title]="item.bank">{{ item.bank }}</span>
+                                </ng-template>
+                            </ng-select>
+                        </div>
+
+                    </div>
+                    <!-- FY Start -->
+                    <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
+                        <div class="col-lg-4 col-md-3 col-sm-4">
+                            <label class="unitLabel">FY End</label>
+                        </div>
+                        <div class="col-lg-8 col-md-9 col-sm-9 responsiveStyle">
+                            <ng-select [clearable]="false" [(ngModel)]="selectedFyEndYear"
+                                (ngModelChange)="updateEndYears()" id="startYear" class="startDropdown">
+                                <ng-option *ngFor="let year of startYearspopup" [value]="year">{{ year }}</ng-option>
+                            </ng-select>
+                        </div>
+                    </div>
+                    <!-- fy ending -->
+                    <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
+                        <div class="col-lg-4 col-md-3 col-sm-4">
+                            <label class="unitLabel">Qtr End</label>
+                        </div>
+                        <div class="col-lg-9 col-md-9 col-sm-9 responsiveStyle">
+                            <ng-select [clearable]="false" [(ngModel)]="selectedQtrYear"
+                                (ngModelChange)="onSelectFinancialYear()" placeholder="select year" id="endYear">
+
+                                <ng-option *ngFor="let year of qtdata" [value]="year">{{ year }}</ng-option>
+                            </ng-select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 d-flex text-center">
+                        <button *ngIf="uploadFileType == 'nrlm'&& item!='20215' && item!='20217'" type="submit"
+                            class="btn btn-sm SaveButton" (click)="getuploadedfiles()">Submit</button>
+                        <button *ngIf="uploadFileType == 'account' && item!='20215'  && item!='20217'" type="submit"
+                            class="btn btn-sm SaveButton" (click)="getAccountUploadedFilesAfterSubmit()">Submit</button>
+                        <button *ngIf="item=='20215'" type="submit" class="btn btn-sm SaveButton"
+                            (click)="getclosedaccountlist()">Submit</button>
+                        <button *ngIf="item=='20217'" type="submit" class="btn btn-sm SaveButton"
+                            (click)="getclaimedAccountlist()">Submit</button>
+                    </div>
+                </div>
+            </div>
+
+
+                <div class="row">
+                    <div class="row mt-2 align-items-center secondGrid">
+                        <div class="row">
+                            <!-- icons -->
+                            <div class="col-lg-1 col-sm-2 col-xs-1 colIcons">
+                                <img (click)="generatePDF(gridOptions)" src="../../assets/image/pdf icon.svg"
+                                    title="Download PDF">
+                            </div>
+                            <div class="col-lg-1 col-sm-2 col-xs-1 colIcons">
+                                <img (click)="downloadExcel()" src="../../assets/image/excel icon.svg" title="Download Excel">
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-sm-6 multiSelect">
+                                <form [formGroup]="myForms">
+                                    <!-- Use different methods -->
+                                    <ng-multiselect-dropdown class="gridHDrop" formControlName="name"
+                                        title="Select Columns" [settings]="dropdownSettings" [data]="toppingList"
+                                        (onSelect)="ColumnSelect($event)" (onDeSelect)="ColumnDeSelect($event)"
+                                        (onDeSelectAll)="ColumnDeSelectOrAll($event)"
+                                        (onSelectAll)="ColumnSelectOrAll($event)">
+                                    </ng-multiselect-dropdown>
+                                </form>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6 text-center align-items-center d-flex">
+                                <label *ngIf="uploadFileType == 'nrlm' && item!='20215'" class="entityLabel">NRLM Master
+                                    Upload</label>
+                                <label *ngIf="uploadFileType == 'account'  && item!='20215'" class="entityLabel">SHG Master
+                                    Upload</label>
+                                <label *ngIf="item=='20215'" class="entityLabel">Closed Accounts Upload</label>
+                                <label *ngIf="item=='20217'" class="entityLabel">Claims Upload</label>
+                            </div>
+                            <div class="col-lg-2 col-md-4 col-sm-4 align-items-center d-flex">
+                                <div class="d-flex searchBarstyle">
+                                    <mat-icon class="searchIcon">search</mat-icon>
+                                    <input class="searchbarInput" type="text" name=""
+                                        (keyup)="onFilterTextBoxChanged(gridOptions,$event)" placeholder="Search ">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6 iconCol">
+                            <button type="button" class="btn btn-sm btn-dark" style="border-radius: 5px;" data-bs-toggle="modal"
+                                data-bs-target="#exampleModalUpload"
+                                *ngIf="uploadPermission && EditPermission">
+                                Upload File
+                            </button>
+
+                                <img *ngIf="viewPermission && showhided && uploadFileType ==='nrlm'  && item!=='20215' &&  item!=='20217' && celldata.uploadStatus !== 'R'"
+                                    src="../../assets/image/view.svg" (click)="viewEnity()" title="View"
+                                    style="margin-left: 3%;">
+                                <img *ngIf="viewPermission && showhided && uploadFileType === 'account' && item!=='20215'&&  item!=='20217' && celldata.uploadStatus !== 'R'"
+                                    src="../../assets/image/view.svg" (click)="viewAccountsEnity()" title="View"
+                                    style="margin-left: 3%;">
+                                <img *ngIf="viewPermission && showhided && uploadFileType != 'account' && uploadFileType === 'claimsUpload' && item==='20217'  && celldata.uploadStatus !== 'R'"
+                                    src="../../assets/image/view.svg" (click)="viewclaimsaccount()" title="View"
+                                    style="margin-left: 3%;">
+                                <!-- <img   *ngIf="viewPermission && showhided  && celldata.uploadStatus !== 'R'" src="../../assets/image/view.svg" (click)="viewEnity()" title="View" style="margin-left: 5%;"> -->
+                                <img *ngIf="viewPermission && showhided && uploadFileType ==='closedAccount' && item==='20215' && celldata.uploadStatus !== 'R'"
+                                    src="../../assets/image/view.svg" (click)="viewEnityaccountClosed()" title="View"
+                                    style="margin-left: 5%;">
+                                <img src="../../assets/image/Authorize-button.svg"
+                                    *ngIf="(authorizePermission && showhided && (uploadstatus === 'Success'|| uploadstatus === 'S') && uploadFileType==='nrlm') && checker !== maker"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModal" class="editImg" title="Authorise">
+                                <img src="../../assets/image/Authorize-button.svg"
+                                    *ngIf="(authorizePermission && showhided &&(uploadstatus === 'Success'|| uploadstatus === 'S') && uploadFileType==='account') && checker !== maker"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModal1" class="editImg" title="Authorise">
+                                <img src="../../assets/image/Authorize-button.svg"
+                                    *ngIf="(authorizePermission && showhided && (uploadstatus === 'Success'|| uploadstatus === 'S') && uploadFileType==='closedAccount') && checker !== maker"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModal2" class="editImg" title="Authorise">
+                                <img src="../../assets/image/Authorize-button.svg"
+                                    *ngIf="(authorizePermission && showhided && (uploadstatus === 'Success'|| uploadstatus === 'S') && uploadFileType==='claimsUpload'&& item==='20217') && checker !== maker"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModal3" class="editImg" title="Authorise">
+                                <img src="../../assets/image/Delete-button.svg"
+                                    *ngIf="deleteView && showhided &&(uploadstatus === 'E' || uploadstatus ==='R') && showhided && uploadFileType==='nrlm'"
+                                    (click)="DeleteEntity()" class="editImg" title="Delete">
+                                <img src="../../assets/image/Delete-button.svg"
+                                    *ngIf="deleteView && showhided && (uploadstatus==='R' || uploadstatus==='E') && showhided && uploadFileType==='claimsUpload'"
+                                    (click)="DeleteClaimsUploadEntity()" class="editImg" title="Delete">
+                                <img src="../../assets/image/Delete-button.svg"
+                                    *ngIf="deleteView &&showhided && (uploadstatus==='R' || uploadstatus==='E') && showhided && uploadFileType==='account'"
+                                    (click)="DeleteAccountsData()" class="editImg" title="Delete">
+                                <img src="../../assets/image/Delete-button.svg"
+                                    *ngIf="deleteView && showhided &&(uploadstatus==='R' || uploadstatus==='E') && showhided && uploadFileType==='closedAccount'"
+                                    (click)="DeleteClosedAccountsData()" class="editImg" title="Delete">
+                                <img src="../../assets/image/download.png"
+                                    *ngIf="showhided && fileView && uploadFileType == 'nrlm' && item!=='20215'  && item!=='20217'  && celldata.uploadStatus !== 'R'"
+                                    class="deleteImg" (click)="onBtnExport()" title="Download">
+                                <img src="../../assets/image/download.png"
+                                    *ngIf="showhided && fileView && uploadFileType == 'account' && item!=='20215'  && item!=='20217'  && celldata.uploadStatus !== 'R'"
+                                    class="deleteImg" (click)="onAccountBtnExport()" title="Download">
+                                <img src="../../assets/image/download.png"
+                                    *ngIf="showhided && fileView && item=='20215'  && celldata.uploadStatus !== 'R'"
+                                    class="deleteImg" (click)="onAccountcloseBtnExport()" title="Download">
+                                <img src="../../assets/image/download.png"
+                                    *ngIf="showhided && fileView && item=='20217'  && celldata.uploadStatus !== 'R'"
+                                    class="deleteImg" (click)="onclaimdataexport()" title="Download">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="gridStyleMain">
+                        <div class="col-12">
+                            <ag-grid-angular class="gridUnit"
+                                style="font-size: 12px; height: 455px; position: relative; right: 4px;"
+                                *ngIf="uploadFileType == 'account'  && item!='20215'" class="ag-theme-alpine"
+                                [rowData]="uploadedfiles" (gridReady)="onGridReady($event)"
+                                (cellClicked)="onCellClicked($event)" [defaultColDef]="defaultColDef"
+                                [columnDefs]="columnDefs2" [pagination]="true" [paginationAutoPageSize]="false"
+                                [paginationPageSize]="pageSize" [suppressExcelExport]="true">
+                            </ag-grid-angular>
+                            <ag-grid-angular class="gridUnit"
+                                style="font-size: 12px; height: 455px; position: relative; right: 4px;"
+                                *ngIf="item=='20215'" class="ag-theme-alpine" [rowData]="uploadedfiles"
+                                (gridReady)="onGridReady($event)" (cellClicked)="onCellClicked($event)"
+                                [defaultColDef]="defaultColDef" [columnDefs]="columnDefs1" [pagination]="true"
+                                [paginationAutoPageSize]="false" [paginationPageSize]="pageSize"
+                                [suppressExcelExport]="true">
+                            </ag-grid-angular>
+                            <ag-grid-angular class="gridUnit"
+                                style="font-size: 12px; height: 455px; position: relative; right: 4px;"
+                                *ngIf="uploadFileType == 'nrlm' && item!='20215'" class="ag-theme-alpine"
+                                [rowData]="uploadedfiles" (gridReady)="onGridReady($event)"
+                                (cellClicked)="onCellClicked($event)" [defaultColDef]="defaultColDef"
+                                [columnDefs]="columnDefs" [pagination]="true" [paginationAutoPageSize]="false"
+                                [paginationPageSize]="pageSize" [suppressExcelExport]="true">
+                            </ag-grid-angular>
+                            <ag-grid-angular class="gridUnit"
+                                style="font-size: 12px; height: 455px; position: relative; right: 4px;"
+                                *ngIf="item=='20217'" class="ag-theme-alpine" [rowData]="uploadedfiles"
+                                (gridReady)="onGridReady($event)" (cellClicked)="onCellClicked($event)"
+                                [defaultColDef]="defaultColDef" [columnDefs]="columnDefs3" [pagination]="true"
+                                [paginationAutoPageSize]="false" [paginationPageSize]="pageSize"
+                                [suppressExcelExport]="true">
+                            </ag-grid-angular>
+                        </div>
+                    </div>
+                </div>
+
+           
+                <div class="row">
+                        <div class="col-12 backBtn">
+                            <button  type="button" class="btn backButton" (click)="navigateToBack()">Back</button>
+                        </div>
+                </div>
+        </div>
+        <div class="row">
+            <div class="col-12 footer">
+                <app-nrlm-footer></app-nrlm-footer>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Popup for Utils Last updated Qtr -->
+    <div class="modal fade" id="exampleModalLstQtr" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-center">
+                    <h1 class="modal-title text-center flex-grow-1" id="exampleModalLabel">Warning!</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3" *ngFor=" let data of LstUpdateQtrData">
+                        <span>{{data}}</span>
+                        <!-- <textarea class="form-control" [(ngModel)]="remarks" id="exampleFormControlTextarea1" rows="3"
+                        required></textarea> -->
+
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-around m-3">
+                    <button style="background: #FF5B5B; color: white;" type="button" class="btn"
+                        data-bs-dismiss="modal">Cancel</button>
+                    <button *ngIf="uploadFileType == 'nrlm'" style="background: #00A2FF;color: white;" type="button"
+                        class="btn" (click)="uploadFile()">Ok</button>
+                    <button *ngIf="uploadFileType == 'account'" style="background: #00A2FF;color: white;" type="button"
+                        class="btn" (click)="uploadAccountFile()">Ok</button>
+                    <button *ngIf="item=='20215'" style="background: #00A2FF;color: white;" type="button" class="btn"
+                        (click)="uploadclosedAccounts()">Ok</button>
+                    <button *ngIf="item=='20217'" style="background: #00A2FF;color: white;" type="button" class="btn"
+                        (click)="uploadClaimUpload()">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-center" style="background: red;">
+                    <h1 class="modal-title text-center flex-grow-1" style="margin-top: 15px;" id="exampleModalLabel">
+                        Action Required</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4>* Remarks are mandatory for Reject</h4>
+                    <div class="mb-3">
+                        <textarea class="form-control" [(ngModel)]="remarks" id="exampleFormControlTextarea1" rows="3"
+                            required style="height: 75px;"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-around">
+                    <button style="background:  #FF5B5B; color: white; width: 110px;" type="button" class="btn" data-bs-toggle="modal"
+                        data-bs-target="#exampleModalToggle3" data-bs-dismiss="modal"
+                        [disabled]="remarks.trim() === ''">Reject</button>
+                    <button style="background:  #00A2FF;color: white; width: 110px;" type="button" class="btn" data-bs-toggle="modal"
+                        data-bs-dismiss="modal" (click)="Authorize()">Authorise</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Reject comment modal -->
+    <div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3"
+        tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-center" style="background:red !important">
+                    <h1 class="modal-title text-center flex-grow-1 mt-3" id="exampleModalLabel">Warning !</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center p-5" style="margin-top: 10px; height: 110px;">
+                    <h4>Are you sure want to Reject?</h4>
+                </div>
+                <div class="modal-footer justify-content-around m-3">
+                    <a class="btn" data-bs-toggle="modal" data-bs-dismiss="modal" (click)="reject()"
+                        style="background-color: red;color: #fff; width: 50px !important;">Yes</a>
+                    <a class="btn" data-bs-toggle="modal" data-bs-target="#exampleModalToggle"
+                        style="background-color: #ccc; color:#000000; width: 50px !important;">No</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AccountsAuthorize ND Reject -->
+
+    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-center">
+                    <h1 class="modal-title text-center flex-grow-1 mt-3" id="exampleModalLabel">Action Required</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4>* Remarks are mandatory for Reject</h4>
+                    <div class="mb-3">
+                        <textarea class="form-control" [(ngModel)]="remarks" id="exampleFormControlTextarea1" rows="3"
+                            required style="height: 75px;"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-around">
+                    <button style="background: #FF5B5B; color: white; width: 110px;" type="button" class="btn" data-bs-toggle="modal"
+                        data-bs-target="#exampleModalToggle4" data-bs-dismiss="modal"
+                        [disabled]="remarks.trim() === ''">Reject</button>
+                    <button style="background: #00A2FF;color: white; width: 110px;" type="button" class="btn" data-bs-dismiss="modal"
+                        (click)="AuthorizeAccount()">Authorise</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Reject comment modal -->
+    <div class="modal fade" id="exampleModalToggle4" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3"
+        tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-center" style="background:red !important">
+                    <h1 class="modal-title text-center flex-grow-1 mt-3" id="exampleModalLabel">Warning !</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center p-5">
+                    <h4>Are you sure want to Reject?</h4>
+                </div>
+                <div class="modal-footer justify-content-around m-3">
+                    <a class="btn" data-bs-toggle="modal" data-bs-dismiss="modal" (click)="rejectAccount()" style="background-color: red;
+                    color: #fff; width: 50px !important;">Yes</a>
+                    <a class="btn" data-bs-toggle="modal" data-bs-target="#exampleModalToggle"
+                        style="background-color: #ccc; color:#000000; width:50px !important">No</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ClosedAccountsAuthorize ND Reject -->
+
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-center">
+                    <h1 class="modal-title text-center flex-grow-1 mt-3" id="exampleModalLabel">Action Required</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4>* Remarks are mandatory for Reject</h4>
+                    <div class="mb-3">
+                        <textarea class="form-control" [(ngModel)]="remarks" id="exampleFormControlTextarea1" rows="3"
+                            required style="height: 75px;"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-around">
+                    <button style="background: #FF5B5B; color: white; width: 110px;" type="button" class="btn" data-bs-toggle="modal"
+                        data-bs-target="#exampleModalToggle5" data-bs-dismiss="modal"
+                        [disabled]="remarks.trim() === ''">Reject</button>
+                    <button style="background: #00A2FF;color: white; width: 110px;" type="button" class="btn" data-bs-toggle="modal"
+                        data-bs-dismiss="modal" (click)="AuthorizeClosedAccount()">Authorise</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Closed Account Reject comment modal -->
+    <div class="modal fade" id="exampleModalToggle5" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3"
+        tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-center" style="background:red !important">
+                    <h1 class="modal-title text-center flex-grow-1 mt-3" id="exampleModalLabel">Warning !</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center p-5">
+                    <h4>Are you sure want to Reject?</h4>
+                </div>
+                <div class="modal-footer justify-content-around m-3">
+                    <a class="btn" style="background-color: red;color: #fff; width:50px !important"
+                        data-bs-toggle="modal" data-bs-dismiss="modal" (click)="rejectClosedAccount()">Yes</a>
+                    <a class="btn" data-bs-toggle="modal"
+                        style="background-color: #ccc; color:#000000; width:50px !important"
+                        data-bs-target="#exampleModalToggle">No</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Claims Upload Authorize -->
+
+    <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-center">
+                    <h1 class="modal-title text-center flex-grow-1 mt-3" id="exampleModalLabel">Action Required</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4>* Remarks are mandatory for Reject</h4>
+                    <div class="mb-3">
+                        <textarea class="form-control" [(ngModel)]="remarks" id="exampleFormControlTextarea1" rows="3"
+                            required style="height: 75px;"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-around">
+                    <button style="background: #FF5B5B; color: white; width: 110px;" type="button" class="btn" data-bs-toggle="modal"
+                        data-bs-target="#exampleModalToggle6" data-bs-dismiss="modal"
+                        [disabled]="remarks.trim() === ''">Reject</button>
+                    <button style="background: #00A2FF;color: white; width: 110px;" type="button" class="btn" data-bs-toggle="modal"
+                        data-bs-dismiss="modal" (click)="AuthorizeClaimsUpload()">Authorise</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Claims Upload Reject comment modal -->
+    <div class="modal fade" id="exampleModalToggle6" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3"
+        tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-center" style="background:red !important">
+                    <h1 class="modal-title text-center flex-grow-1 mt-3" id="exampleModalLabel">Warning !</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center p-5">
+                    <h4>Are you sure want to Reject?</h4>
+                </div>
+                <div class="modal-footer justify-content-around m-3">
+                    <a class="btn" data-bs-toggle="modal" data-bs-dismiss="modal" (click)="rejectClaimsUpload()"
+                        style="background-color: red;color: #fff; width: 50px !important;">Yes</a>
+                    <a class="btn" data-bs-toggle="modal" data-bs-target="#exampleModalToggle"
+                        style="background-color: #ccc; color:#000000;width: 50px !important;">No</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NRLM Upload  Screen-->
+    <div class="modal fade modal-xl" id="exampleModalUpload" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="container modal-content">
+                <div class="row d-flex">
+                    <div class="col-4">
+                        <img src="../../assets/image/close.png" data-bs-dismiss="modal" aria-label="Close"
+                            class="close-icon">
+                    </div>
+                </div>
+                <div class="row m-0 d-flex justify-content-start">
+                    <!-- select unit -->
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 d-flex ">
+                        <div class=" col-lg-3 col-md-3 col-sm-3 bankscl">
+                            <br>
+                            <label class="unitLabel">Bank</label>
+                        </div>
+                        <div class="col-lg-9 col-md-9 col-sm-9 responsWidth fyDrp">
+                            <br>
+                            <ng-select [clearable]="false" [(ngModel)]="selectedBank" id="uniName" name="uniName" [items]="unitsUploadData"
+                                placeholder="Select Bank" bindLabel="bank" bindValue="unit" required (change)="getUploadRecordStatus($event)"  [attr.title]="isUploadBankOpen ? null : showUploadBank" (open)="isUploadBankOpen = true"
+                                (close)="isUploadBankOpen = false">
+                                <ng-template ng-option-tmp let-item="item">
+                                    <span class="ng-option-label" [attr.title]="item.bank">{{ item.bank }}</span>
+                                </ng-template>
+                            </ng-select>
+                        </div>
+
+                    </div>
+                    <!-- fy ending -->
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 d-flex">
+                        <div class="col-lg-4 col-sm-3">
+                            <br>
+                            <label class="unitLabel">FY End</label>
+                        </div>
+                        <div class=" col-lg-9 col-md-9 col-sm-9 responsWidth">
+                            <ng-select [clearable]="false" [(ngModel)]="selectedFyEndDate"
+                                (ngModelChange)="onSelectFinancialYearpopup()" id="startYear"
+                                class="startDropdown yearCol">
+                                <ng-option *ngFor="let year of startYearspopup" [value]="year">{{ year }}</ng-option>
+                            </ng-select>
+                        </div>
+                    </div>
+                    <!-- qtr ending -->
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 d-flex">
+                        <div class="col-lg-4 col-sm-3">
+                            <br>
+                            <label class="unitLabel
+                            ">Qtr End</label>
+                        </div>
+                        <div class=" col-lg-9 col-md-9 col-sm-9 responsWidth yearCol">
+                            <ng-select [clearable]="false" [(ngModel)]="selectedQtrEndDate"
+                                (ngModelChange)="qtrEnding()" placeholder="select year" id="endYear">
+
+                                <ng-option *ngFor="let year of uploadQtrData" [value]="year">{{ year }}</ng-option>
+                            </ng-select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 colFilepIcker d-flex">
+                        <div class="col-lg-4 col-sm-6 mt-1">
+                            <label class="unitLabel">Select File</label>
+                        </div>
+                        <div class="col-3">
+                            <input accept=".csv" type="file" name="inputFile" style="display: none" #fileInput
+                                (change)="changeListener(fileInput)" />
+                            <!-- <button mat-raised-button > -->
+                            <img src="../../assets/image/attach icon.svg" class="file-select-button"
+                                (click)="fileInput.click()" title="Upload files">
+                            <label *ngIf="checkCSV === false" class="unitcodeLabel"
+                                style="margin-left: -70px; color: red; font-size: 10px;">Please upload file in .csv
+                                format.</label>
+                            <!-- </button> -->
+                        </div>
+                        <div class="col-4">
+                            <p class="file-name" *ngIf="selectedFile">{{ selectedFile.name }}</p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row m-0 d-flex justify-content-center">
+                    <div *ngIf="!sizeExceed" class="col-4"></div>
+                    <div class="col-4 submitBtn">
+                        <button *ngIf="uploadFileType == 'nrlm' && item!='20215'  && item!='20217'"
+                            [disabled]="!selectedBank || !selectedFyEndDate || !selectedQtrEndDate || !selectedFile || !checkCSV"
+                            class="btn btn-sm SubmitButton" data-bs-dismiss="modal" (click)="uploadFile()">Submit</button>
+                        <button *ngIf="uploadFileType == 'account'  && item!='20215'  && item!='20217'"
+                            [disabled]="!selectedBank || !selectedFyEndDate || !selectedQtrEndDate || !selectedFile || !checkCSV"
+                            class="btn btn-sm SubmitButton" (click)="uploadAccountFile()"
+                            data-bs-dismiss="modal">Submit</button>
+                        <button *ngIf="item=='20215'"
+                            [disabled]="!selectedBank || !selectedFyEndDate || !selectedQtrEndDate || !selectedFile || !checkCSV"
+                            class="btn btn-sm SubmitButton" (click)="uploadclosedAccounts()"
+                            data-bs-dismiss="modal">Submit</button>
+                        <button *ngIf="item=='20217'"
+                            [disabled]="!selectedBank || !selectedFyEndDate || !selectedQtrEndDate || !selectedFile || !checkCSV"
+                            class="btn btn-sm SubmitButton" (click)="uploadClaimUpload()"
+                            data-bs-dismiss="modal">Submit</button>
+                        <!-- <button *ngIf="uploadFileType == 'account'" [disabled]="!financialYear || !fyend || !qtrselected || !selectedFile"
+                        class="btn btn-sm SaveButton" (click)="uploadAccountFile()">Submit</button> -->
+                    </div>
+                    <div class="col-3"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <app-error-dialog></app-error-dialog>
+    <app-warning-dialog></app-warning-dialog>

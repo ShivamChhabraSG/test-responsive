@@ -1,0 +1,1032 @@
+<div class="claimScreen">
+    <div class="claimsD">
+        <hr>
+        <div class="container-fluid gridRow">
+            <!-- <div class="row"> -->
+                <div class="row">
+                    <div class="row align-items-center gridStyle mt-2"
+                    style="background-color: rgba(43, 190, 95, 0.1);">
+                        <!-- Select Region -->
+                        <div class="col-lg-3 col-sm-6 col-md-6 d-flex">
+                            <div class="col-lg-3 col-sm-4">
+                                <label class="unitLabel">Region</label>
+                            </div>
+                            <div class="col-lg-6 col-sm-8 drpdown">
+                                <ng-select [clearable]="false" [(ngModel)]="recordStatus"
+                                    id="unitName" name="unitName" [items]="unitsData" placeholder="Select Region"
+                                    bindLabel="unitName" bindValue="unitCode" required (change)="getRecordStatus($event)" [attr.title]="isBankDropdownOpen ? null : showSelectedRegion" (open)="isBankDropdownOpen = true"
+                                    (close)="isBankDropdownOpen = false">
+                                    <ng-template ng-option-tmp let-item="item">
+                                        <span class="ng-option-label" [attr.title]="item.unitName">{{ item.unitName }}</span>
+                                    </ng-template>
+                                </ng-select>
+                            </div>
+                        </div>
+                        <!-- Select Bank -->
+                        <div class="col-lg-2 col-sm-6 col-md-6 d-flex">
+                            <div  class="col-lg-3 col-sm-4 bankCol">
+                                <label class="unitLabel">Bank</label>
+                            </div>
+                            <div class="col-lg-4 col-sm-8 drpdown">
+                                <ng-select [clearable]="false" [(ngModel)]="bankStatus" id="unitName"
+                                    name="unitName" [items]="banksData" placeholder="Select Bank" bindLabel="unitName"
+                                    bindValue="unitCode" required (change)="getBankStatus($event)"[attr.title]="isDropdownOpen ? null : showSelectedBank" (open)="isDropdownOpen = true"
+                                    (close)="isDropdownOpen = false">
+                                    <ng-template ng-option-tmp let-item="item">
+                                        <span class="ng-option-label" [attr.title]="item.unitName">{{ item.unitName }}</span>
+                                    </ng-template>
+                                </ng-select>
+                            </div>
+                        </div>
+                        <!-- FY Start -->
+                        <div class="col-lg-3 col-sm-6 col-md-6 d-flex">
+                            <div class="col-lg-3 col-sm-4 fyCol">
+                                <label class="unitLabel">FY End</label>
+                            </div>
+                            <div class="col-lg-4 col-sm-8 drpdown">
+                                <ng-select [clearable]="false" [(ngModel)]="selectedFyEnd"
+                                (ngModelChange)="onSelectFinancialYearpopup()" placeholder="select year"
+                                    id="startYear">
+                                    <ng-option *ngFor="let year of startYearspopup" [value]="year">{{ year }}</ng-option>
+                                </ng-select>
+                            </div>
+                        </div>
+                        <!-- FY End -->
+                        <div class="col-lg-3 col-sm-6 col-md-6 d-flex">
+                            <div class="col-lg-3 col-sm-4">
+                                <label class="unitLabel">Qtr End </label>
+                            </div>
+                            <div  class="col-lg-9 col-sm-8 drpdown">
+                                <ng-select [clearable]="false" [(ngModel)]="selectedQtrEnd" (ngModelChange)="qtrEnding($event)"
+                                    placeholder="select year" id="endYear">
+                                    <ng-option *ngFor="let year of qtdata" [value]="year">{{ year }}</ng-option>
+                                </ng-select>
+                            </div>
+                        </div>
+                        <!-- Submit Button -->
+                        <div  class="col-lg-1 col-sm-6">
+                            <button class="btn btn-success btn-sm btnNRLM" (click)="getsghCodesbyYear()">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            <!-- </div> -->
+
+                <div class="row">
+                    <div class="align-items-center secondGrid">
+                        <div class="row">
+                            <div class="col-lg-1 col-sm-2 col-xs-1 colStyle">
+                                <img (click)="generatePDF(gridOptions)" src="../../assets/image/pdf icon.svg" title="Download PDF">
+                            </div>
+                            <div class="col-lg-1 col-sm-2 col-xs-1 colStyle">
+                                <img (click)="onBtnExport()" src="../../assets/image/excel icon.svg" title="Download Excel">
+                            </div>
+                            <div class="col-lg-3 col-sm-5 col-xs-8 colStyles">
+                                <form [formGroup]="myForms">
+                                    <!-- Use different methods -->
+                                    <ng-multiselect-dropdown class="columnDrp" formControlName="name"
+                                        title="Select Columns" [settings]="dropdownSettings" [data]="toppingList"
+                                        (onSelect)="ColumnSelect($event)" (onDeSelect)="ColumnDeSelect($event)"
+                                        (onDeSelectAll)="ColumnDeSelectOrAll($event)" (onSelectAll)="ColumnSelectOrAll($event)">
+                                    </ng-multiselect-dropdown>
+                                </form>
+                            </div>
+
+                            <div class="col-lg-1  col-sm-4 col-xs-2 pLabel">
+                                <label class="entityLabel">Claims Settlement</label>
+                            </div>
+                            <div class="col-lg-2 col-sm-4 col-xs-3 colStyles search1">
+                                <div class="d-flex searchBarstyle">
+                                    <mat-icon class="searchIcon">search</mat-icon>
+                                    <input class="searchInput searchbarInput" type="text" name=""
+                                        (keyup)="onFilterTextBoxChanged(gridOptions,$event)" placeholder="Search">
+                                </div>
+                            </div>
+                            <div class="col-xxl-2 col-xl-3 col-lg-3 col-md-4 d-flex">
+                                <div class="col-1" *ngIf="viewPermission && showhided" style="left: 50%; position: relative;">
+                                    <img src="../../assets/image/view.svg" data-bs-toggle="modal" data-bs-target="#exampleModalUpload"
+                                        (click)="viewClaimsData()" class="editImg" title="View Claims">
+                                </div>
+                                <div class="col" style="position: relative; left: 58%;">
+                                    <img src="../../assets/image/edit.svg" class="editImg" title="Edit"
+                                        *ngIf="EditPermission  && showhided &&(celldata.approvalStatus === 'U' || celldata.approvalStatus === 'E' || celldata.approvalStatus === 'R')"
+                                        data-bs-toggle="modal" data-bs-target="#exampleModalUpload" (click)="editClaimsData()">
+                                </div>
+                                <div class="col-2" style="position: relative; left: 38px;"
+                                    *ngIf="authorizePermission && showhided  && loginUserId !== makerId && celldata?.approvalStatus ==='S'">
+                                    <img src="../../assets/image/Authorize-button.svg" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModalUploadChecker" class="editImg" title="Authorise Claim Settlement">
+                                </div>
+                                <div class="col" *ngIf="viewPermission && showhided" class="pdfImg2"
+                                    [ngClass]=" {'pdfImg1' : EditPermission  && showhided &&(celldata.approvalStatus === 'U' || celldata.approvalStatus === 'E' || celldata.approvalStatus === 'R') , 'pdfImg5':authorizePermission && showhided  && loginUserId !== makerId && celldata?.approvalStatus ==='S'}">
+                                    <img src="../../assets/image/download-pdf.gif" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModalDownload" class="pdfImg" title="Claims Summary">
+                                </div>
+                
+                                <div *ngIf="viewPermission && showhided" class="pdfImg4"
+                                    [ngClass]="{'pdfImg1' : EditPermission  && showhided &&(celldata.approvalStatus === 'U' || celldata.approvalStatus === 'E' || celldata.approvalStatus === 'R') , 'pdfImg6':authorizePermission && showhided  && loginUserId !== makerId && celldata?.approvalStatus ==='S'}">
+                                    <img src="../../assets/image/download-pdf.gif" title="Slab1 Certificate" class="pdfImg"
+                                        data-bs-toggle="modal" data-bs-target="#exampleModalslab1">
+                                    <img src="../../assets/image/download-pdf.gif" title="Slab2 Certificate" class="pdfImg"
+                                        data-bs-toggle="modal" data-bs-target="#exampleModalslab2">
+                                </div>
+                
+                                <div class="col-2" *ngIf="EditPermission && showhided && entityStatus === 'Rejected'">
+                                    <img src="../../assets/image/Delete-button.svg" (click)="DeleteEntity()" class="editImg"
+                                        title="Delete Claim Settlement">
+                                </div>
+                                <img *ngIf="fileView && showhided" src="../../assets/image/download.png" (click)="downloadRecord()"
+                                    title="Download">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="gridStyleMain">
+                        <div class="col-12">
+                            <ag-grid-angular class="ag-theme-alpine gridUnit" [rowData]="settlementGridData"
+                            style="font-size: 12px; height: 455px; position: relative; right: 4px;"
+                                (cellClicked)="onCellClicked($event)" (gridReady)="onGridReady($event)"
+                                [defaultColDef]="defaultColDef" [columnDefs]="columnDefs" [pagination]="true"
+                                [paginationAutoPageSize]="false" [paginationPageSize]="pageSize">
+                            </ag-grid-angular>
+                        </div>
+                    </div>
+                </div>
+          
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 footer">
+            <app-nrlm-footer></app-nrlm-footer>
+        </div>
+    </div>
+</div>
+<!-- Claims Settlement Edit Modal Screen for Maker-->
+<div class="modal fade modal-xl claimsSettle" id="exampleModalUpload" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="container modal-content">
+            <div class="claimsS">
+                <div class="row d-flex">
+                    <div class="col-4">
+
+                        <img src="../../assets/image/close.png" data-bs-dismiss="modal" aria-label="Close"
+                            class="close-icon">
+                    </div>
+                </div>
+                <div class="row m-0 d-flex justify-content-start addModalRow">
+                    <!-- Claims Amt Slab1-->
+                    <div class="col-4 d-flex regionMCol">
+                        <div class="col-md-4 col-12">
+                            <label style="width: 184px;" class="unitLabelm">Claim Amt Slab1<span>&nbsp;*</span></label>
+                        </div>
+                        <div style="margin-left: 56px !important;" class="col-md-8 col-12 regColumn">
+                            <input disabled style="width: 20% !important;" placeholder="" id="refid" [(ngModel)]="claimsAmtSlab1"
+                                name="refid" class="unitnameInput" pInputText required />
+                        </div>
+                    </div>
+                    <!-- Claims Amt Slab2 -->
+                    <div class="col-4 d-flex bankMCol">
+                        <div class="col-md-4 col-12">
+                            <label class="unitLabelbm">Claim Amt Slab2<span>&nbsp;*</span></label>
+                        </div>
+                        <div class="col-md-8 col-12 slab2">
+                            <input style="width: 12%;" disabled placeholder="" id="samount" [(ngModel)]="claimsAmtSlab2"
+                                name="samount" class="samountInput" pInputText required />
+                        </div>
+                    </div>
+                    <!-- Total Claims Amt -->
+                    <div class="col-4 d-flex bankMCol">
+                        <div class="col-md-4 col-12">
+                            <label class="unitLabelbm">Total Claim Amt<span>&nbsp;*</span></label>
+                        </div>
+                        <div class="col-md-8 col-12 slab2">
+                            <input style="width: 12%" disabled  placeholder="" id="samount" [(ngModel)]="totalClaimsAmt"
+                                name="samount" class="samountInput" pInputText required />
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row m-0 d-flex justify-content-start addModalRow">
+                    <!-- Ref ID -->
+                    <div class="col-3 d-flex regionMCol">
+                        <div class="col-md-4 col-12">
+                            <label class="unitLabelm">Ref No<span>&nbsp;*</span></label>
+                        </div>
+                        <div class="col-md-8 col-12 regColumn">
+                            <input [disabled]="ClaimsView==='viewClaims'" placeholder="" id="refid" [(ngModel)]="refNo" (ngModelChange)="updateRefNo()"
+                                name="refid" class="unitnameInput" pInputText required />
+                        </div>
+                    </div>
+                    <!-- Settlement Amount -->
+                    <div class="col-3 d-flex bankMCol">
+                        <div class="col-md-4 col-12">
+                            <label class="unitLabelbmn">Approved Claim Amount<span>&nbsp;*</span></label>
+                        </div>
+                        <div class="col-md-8 col-12 bankColumn">
+                            <input [disabled]="ClaimsView==='viewClaims'" pattern="^[0-9]+(?:\\.[0-9]{1,2})?$" style="width: 79% !important;" placeholder="" id="samount" [(ngModel)]="approveClaimAmt"
+                            (keyup)="approveClaimAmnt($event)" name="samount" class="samountInput" pInputText
+                                required />
+                        </div>
+                    </div>
+
+                    <!-- Settlement Date -->
+                    <div class="col-4 d-flex settleDateRow">
+                        <div class="col-md-6 col-12">
+                            <label class="unitLabels">Payment Date<span>&nbsp;*</span></label>
+                        </div>
+                        <div class="col-md-4 col-12 fyendDrpM">
+                            <input [disabled]="ClaimsView==='viewClaims'" type="date" class="form-control sdate" name="effectiveDate" id="date" required
+                                [(ngModel)]="paymentDate" (ngModelChange)="paymentDateSelected()"
+                                [max]="getPaymentDate()">
+                        </div>
+                    </div>
+                                        <!-- Approval Date -->
+                                        <div class="col-2 d-flex g-0 qtrendMCol">
+                                            <div class="col-md-6 col-12">
+                                                <label class="unitLabelssM">Approval Date<span>&nbsp;*</span></label>
+                                            </div>
+                                            <div class="col-md-7 col-12 yearCol qtrEndDrp">
+                                                <input [disabled]="ClaimsView==='viewClaims'" type="date" class="form-control adate" name="effectiveDate" id="date" required
+                                                    [(ngModel)]="approvalDate" (ngModelChange)="approvalDateSelected()"
+                                                    [max]="paymentDate">
+                                                <!-- <mat-form-field>
+                                                    <input matInput [matDatepicker]="picker" placeholder="Choose a date" [max]="tomorrow">
+                                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                                    <mat-datepicker #picker></mat-datepicker>
+                                                  </mat-form-field> -->
+                                            </div>
+                                        </div>
+
+                </div>
+                <br>
+                <div class="row m-0 d-flex justify-content-start addModalRowS">
+                    <!-- Remarks -->
+                    <div class="col-2 d-flex g-0 remarkRow">
+                        <div class="col-md-6 col-12">
+                            <label style="margin-left: -15px !important;" class="unitLabelssM">Remarks</label>
+                        </div>
+                        <div class="col-md-7 col-12 remarCol ">
+                            <input placeholder="" [(ngModel)]="settlementRemarks" disabled
+                                (ngModelChange)="AddsettlementRemarks()" id="remarks" name="remarks"
+                                class="remarksInput" pInputText required />
+                        </div>
+                    </div>
+                    <br>
+
+                </div>
+                <br>
+                <div class="row m-0 d-flex justify-content-center">
+                    <div class="col-3"></div>
+                    <div *ngIf="ClaimsView!=='viewClaims'" class="col-2" style="margin-top: 2.5rem;">
+                        <button [disabled]="!approvalDate || !approveClaimAmt || !refNo"
+                            class="btn btn-sm SaveButtonnn" data-bs-dismiss="modal" (click)="submitSettlement()">Submit</button>
+
+                    </div>
+                    <div *ngIf="ClaimsView!=='viewClaims'" class="col-2" style="margin-top: 2.5rem;">
+                        <button [disabled]="!approvalDate || !approveClaimAmt || !refNo"
+                            class="btn btn-sm SaveButtonnn"  data-bs-dismiss="modal" (click)="saveSettlement()">Save</button>
+
+                    </div>
+                    <div *ngIf="ClaimsView==='viewClaims'" class="col-2" style="margin-top: 2.5rem;">
+                        <button class="btn btn-sm SaveButtonnn"  data-bs-dismiss="modal">Cancel</button>
+
+                    </div>
+                    <div *ngIf="ClaimsView!=='viewClaims'" class="col-2" style="margin-top: 2.5rem;">
+                        <button [disabled]="!approvalDate || !approveClaimAmt || !refNo"
+                            class="btn btn-sm btn-danger RejectButtonnn" (click)="deleteSettlement()" data-bs-dismiss="modal">Delete</button>
+
+                    </div>
+                    <div class="col-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- Claims Settlement Edit Modal Screen for Checker-->
+<div class="modal fade modal-xl claimsSettle" id="exampleModalUploadChecker" tabindex="-1"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="container modal-content">
+            <div class="claimsS">
+                <div class="row d-flex">
+                    <div class="col-4">
+
+                        <img src="../../assets/image/close.png" data-bs-dismiss="modal" aria-label="Close"
+                            class="close-icon">
+                    </div>
+                </div>
+                <div class="row m-0 d-flex justify-content-start addModalRow">
+                    <!-- Claims Amt Slab1-->
+                    <div class="col-4 d-flex regionMCol">
+                        <div class="col-md-4 col-12">
+                            <label style="width: 184px;" class="unitLabelm">Claim Amt Slab1</label>
+                        </div>
+                        <div style="margin-left: 43px" class="col-md-8 col-12 regColumn">
+                            <input disabled style="width:22%;" placeholder="" id="refid" [(ngModel)]="claimsAmtSlab1"
+                                name="refid" class="unitnameInput" pInputText required />
+                        </div>
+                    </div>
+                    <!-- Claims Amt Slab2 -->
+                    <div class="col-4 d-flex bankMCol">
+                        <div class="col-md-4 col-12">
+                            <label class="unitLabelbm">Claim Amt Slab2</label>
+                        </div>
+                        <div class="col-md-8 col-12 slab2">
+                            <input disabled style="width:12%;" placeholder="" id="samount" [(ngModel)]="claimsAmtSlab2"
+                                name="samount" class="samountInput" pInputText required />
+                        </div>
+                    </div>
+                    <!-- Total Claims Amt -->
+                    <div class="col-4 d-flex bankMCol">
+                        <div class="col-md-4 col-12">
+                            <label class="unitLabelbm">Total Claim Amt</label>
+                        </div>
+                        <div class="col-md-8 col-12 slab2">
+                            <input disabled style="width:12%;" placeholder="" id="samount" [(ngModel)]="totalClaimsAmt"
+                                name="samount" class="samountInput" pInputText required />
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row m-0 d-flex justify-content-start addModalRow">
+                    <!-- Ref ID -->
+                    <div class="col-3 d-flex regionMCol">
+                        <div class="col-md-4 col-12">
+                            <label class="unitLabelm">Ref No</label>
+                        </div>
+                        <div class="col-md-8 col-12 regColumn">
+                            <input disabled placeholder="" id="refid" [(ngModel)]="refNo"
+                                (ngModelChange)="updateRefNo()" name="refid" class="unitnameInput" pInputText
+                                required />
+                        </div>
+                    </div>
+                    <!-- Settlement Amount -->
+                    <div class="col-3 d-flex bankMCol">
+                        <div class="col-md-4 col-12">
+                            <label class="unitLabelbmn">Approved Claim Amount</label>
+                        </div>
+                        <div class="col-md-8 col-12 bankColumn">
+                            <input style="width: 79% !important;"  pattern="^[0-9]+(?:\\.[0-9]{1,2})?$" disabled placeholder="" id="samount" [(ngModel)]="approveClaimAmt"
+                                (keyup)="approveClaimAmnt($event)" name="samount" class="samountInput" pInputText
+                                required />
+                        </div>
+                    </div>
+
+                    <!-- Settlement Date -->
+                    <div class="col-4 d-flex settleDateRow">
+                        <div class="col-md-6 col-12">
+                            <label class="unitLabels">Payment Date</label>
+                        </div>
+                        <div class="col-md-4 col-12 fyendDrpM">
+                            <input disabled type="date" class="form-control sdate" name="effectiveDate" id="date"
+                                required [(ngModel)]="paymentDate" (ngModelChange)="paymentDateSelected()"
+                                [max]="getPaymentDate()">
+                        </div>
+                    </div>
+
+                    <!-- Approval Date -->
+                    <div class="col-2 d-flex g-0 qtrendMCol">
+                        <div class="col-md-6 col-12">
+                            <label class="unitLabelssM">Approval Date </label>
+                        </div>
+                        <div class="col-md-7 col-12 yearCol qtrEndDrp">
+                            <input disabled type="date" class="form-control adate" name="effectiveDate" id="date"
+                                required [(ngModel)]="approvalDate" (ngModelChange)="approvalDateSelected()"
+                                [max]="paymentDate">
+                            <!-- <mat-form-field>
+                                <input matInput [matDatepicker]="picker" placeholder="Choose a date" [max]="tomorrow">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                              </mat-form-field> -->
+                        </div>
+                    </div>
+
+                </div>
+                <br>
+                <div class="row m-0 d-flex justify-content-start addModalRowS">
+                    <!-- Remarks -->
+                    <div class="col-2 d-flex g-0 remarkRow">
+                        <div class="col-md-6 col-12">
+                            <label style="margin-left: -15px !important;"  class="unitLabelssM">Remarks</label>
+                        </div>
+                        <div class="col-md-7 col-12 remarCol ">
+                            <input disabled placeholder="" [(ngModel)]="settlementRemarks"
+                                (ngModelChange)="AddsettlementRemarks()" id="remarks" name="remarks"
+                                class="remarksInput" pInputText required />
+                        </div>
+                    </div>
+                    <br>
+
+                </div>
+                <br>
+                <div class="row m-0 d-flex justify-content-center">
+                    <div class="col-3"></div>
+                    <div class="col-3" style="margin-top: 2.5rem;">
+                        <button [disabled]="!approvalDate || !approveClaimAmt || !refNo"
+                            class="btn btn-sm SaveButtonnn" data-bs-toggle="modal"
+                            data-bs-target="#exampleModalUploadCheckerRemarks">Authorise</button>
+
+                    </div>
+                    <div class="col-3" style="margin-top: 2.5rem;">
+                        <button [disabled]="!approvalDate || !approveClaimAmt || !refNo"
+                            class="btn btn-sm btn-danger RejectButtonnn" data-bs-toggle="modal"
+                            data-bs-target="#exampleModalRejectCheckerRemarks">Reject</button>
+
+                    </div>
+                    <div class="col-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Claims Settlement Authorized By HO Checker-->
+<div *ngIf="messageSuccess" class="modal fade modal-xl claimsRemarks" id="exampleModalUploadCheckerRemarks" tabindex="-1"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content">
+            <div class="modal-header d-flex justify-content-center" style="background: rgb(10, 200, 121) ; height: 50px;">
+                <h1 class="modal-title text-center flex-grow-1 fs-5 mt-3" id="exampleModalLabel">Authorise</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h4>Please add Remarks to Authorise</h4>
+                <div class="mb-3 authTextbox">
+                    <textarea [maxlength]="200" class="form-control" [(ngModel)]="settlementCheckerRemarks" name="remarks"
+                    (ngModelChange)="AddsettlementCheckerRemarks()" id="remarks" name="remarks"  rows="3" required></textarea>
+                </div>
+            </div>
+            <div class="modal-footer" style="display: flex; justify-content: center;">
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModalToggle"
+                (click)="authorizeSettlement()">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Claims Settlement Reject By HO Checker-->
+<!-- <div *ngIf="messageSuccess" class="modal fade modal-xl claimsRemarks" id="exampleModalRejectCheckerRemarks" tabindex="-1"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="container modal-content">
+            <div class="claimsS">
+                <div class="row d-flex">
+                    <div class="col-4">
+
+                        <img src="../../assets/image/close.png" data-bs-dismiss="modal" aria-label="Close"
+                            class="close-icon">
+                    </div>
+                </div>
+                <div class="row m-0 d-flex justify-content-start addModalRowS">
+                    <div class="col-2 d-flex g-0 remarkRow">
+                        <div class="col-md-6 col-12">
+                            <label class="unitLabelssM">Remarks</label>
+                        </div>
+                        <div class="col-md-7 col-12 remarCol ">
+                            <input [disabled]="settlementCheckerRemarks === ''" placeholder="Enter Remarks" [(ngModel)]="settlementCheckerRemarks"
+                                (ngModelChange)="AddsettlementCheckerRemarks()"  id="remarks" name="remarks"
+                                class="remarksInput" pInputText required />
+                        </div>
+                    </div>
+                    <br>
+
+                </div>
+                <br>
+                <div class="row m-0 d-flex justify-content-center">
+                    <div class="col-3"></div>
+                    <div class="col-3" style="margin-top: 2.5rem;">
+                        <button class="btn btn-sm SaveButtonnn" (click)="rejectSettlement()">Submit</button>
+
+                    </div>
+                    <div class="col-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div> -->
+<!-- Not Maker Edit modal -->
+<div *ngIf="messageSuccess" class="modal fade modal-xl claimsRemarks" id="exampleModalRejectCheckerRemarks" tabindex="-1"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content">
+            <div class="modal-header d-flex justify-content-center" style="background: red !important ; height :50px" >
+                <h1 class="modal-title text-center flex-grow-1 fs-5 mt-3" id="exampleModalLabel">Reject</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h4>* Remarks are mandatory for Reject</h4>
+                <div class="mb-3 rejectTextbox">
+                    <textarea [maxlength]="200" class="form-control"[(ngModel)]="settlementCheckerRemarks"
+                    (ngModelChange)="AddsettlementCheckerRemarks()"  id="remarks" name="remarks" name="remarks"  rows="3" required></textarea>
+                </div>
+            </div>
+            <div class="modal-footer" style="display: flex; justify-content: center;">
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModalToggle"
+                (click)="rejectSettlement()" [disabled]="isButtonDisabled">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" data-bs-backdrop="static" id="exampleModalToggle2" aria-hidden="true"
+    aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header d-flex justify-content-center" style="background:#E1F6E8 !important">
+                <h1 class="modal-title text-center flex-grow-1" id="exampleModalLabel">Warning !</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center p-5">
+                <h4>You are not the maker, Do you still want to edit?</h4>
+            </div>
+            <div class="modal-footer justify-content-around m-3">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                    (click)="EditEntity()">Yes</button>
+                <button type="button" class="btn " data-bs-dismiss="modal" aria-label="Close">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Download PDF -->
+
+<div class="modal fade modal-xl" id="exampleModalDownload" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="container modal-content tablecontainer">
+                            <div class="row d-flex">
+                <div class="col-4">
+                   
+                      <img src="../../assets/image/close.png" data-bs-dismiss="modal" aria-label="Close" class="close-icon">
+                </div>
+            </div>
+            <div #pdfContent>
+            <!-- <table class="tg" style="table-layout: fixed; width: 695px">
+                <colgroup>
+                    <col style="width: 50px">
+                    <col style="width: 100px">
+                    <col style="width: 550px">
+                    <col style="width: 100px">
+                </colgroup>
+                <thead>
+                    <h2 class="heading">Claim Summary</h2>
+                    <p style="width: 300px;"><span style="font-weight:bold;"> Bank: 
+                        {{bankData}} </span></p>
+                    <p style="width: 300px;"><span style="font-weight:bold;"> Quarter: 
+                            {{EffectiveDate}} </span></p>
+                    <tr>
+                        <th class="tg-uzvj">Sr.No.</th>
+                        <th class="tg-g7sd"></th>
+                        <th class="tg-g7sd">Particulars</th>
+                        <th class="tg-uzvj">Amount(Rs.)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="tg-9wq8">1</td>
+                        <td class="tg-9wq8" rowspan="2">Slab 1 (Upto 3 Lakhs)</td>
+                        <td class="tg-lboi">Outstanding Amount of NRLM SHG loans having outstanding at the end of the quater
+                            Upto Rs. 3 Lakhs with interest at 7% p.a.</td>
+                        <td class="tg-yz93">{{celldata?.m3s1Sum}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-9wq8">2</td>
+                        <td class="tg-lboi">Number of such accounts</td>
+                        <td class="tg-yz93"> {{celldata?.m3s1Cnt}} </td>
+                    </tr>
+                    <tr>
+                        <td class="tg-9wq8">3</td>
+                        <td class="tg-lboi" rowspan="2">Slab 2 (3 lakhs to 5 Lakhs)</td>
+                        <td class="tg-lboi">Outstanding Amount of NRLM SHG loans having outstanding as on 30-06-2022 Rs.
+                            3lakhs to Rs. 5 lakhs, with interest at 10 % p.a. (as per one year MCLR/Other Benchmark)
+                        </td>
+                        <td class="tg-yz93">{{celldata?.m3s2Sum}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-9wq8">4</td>
+                        <td class="tg-lboi">Number of such accounts</td>
+                        <td class="tg-yz93">{{celldata?.m3s2Cnt}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-9wq8">5</td>
+                        <td class="tg-lboi" colspan="2">Sum of Total Outstanding (1+3)</td>
+                        <td class="tg-yz93">{{celldata?.m3s1Sum+ celldata?.m3s2Sum}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-9wq8">6</td>
+                        <td class="tg-lboi" colspan="2">Refinance Amount for the above loans</td>
+                        <td class="tg-yz93">{{celldata?.ui2}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-9wq8">7</td>
+                        <td class="tg-lboi" colspan="2">Sum product of total NRLM SHG loan outstanding for the period
+                            (<span style="font-weight:bold">Product =Amount Outstanding X No.of days outstanding</span>)
+                        </td>
+                        <td class="tg-yz93">{{celldata?.ui1}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-9wq8">8</td>
+                        <td class="tg-lboi">Slab 1 (Upto 3 Lakhs)</td>
+                        <td class="tg-lboi">Sum product of total NRLM SHG loan outstanding for period for credit upto 3
+                            lakhs (proratio basis)</td>
+                        <td class="tg-yz93">{{F1}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-9wq8">9</td>
+                        <td class="tg-lboi">Slab 2 (3 lakhs to 5 Lakhs)</td>
+                        <td class="tg-lboi">Sum product of total NRLM SHG loan outstanding for period for credit 3 lakhs
+                            to
+                            5 lakhs(pro ratio basis)</td>
+                        <td class="tg-yz93">{{G1}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-9wq8">10</td>
+                        <td class="tg-lboi" colspan="2">Sum product of concessional refinance availed from NABARD for
+                            the
+                            same period against the NRLM SHGloans</td>
+                        <td class="tg-yz93">{{celldata?.ui3}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-9wq8">11</td>
+                        <td class="tg-lboi">Slab 1 (Upto 3 Lakhs)</td>
+                        <td class="tg-lboi">Sum product of concessional refinance for the credit upto 3 lakhs (pro ratio
+                            basis)</td>
+                        <td class="tg-yz93">{{H1}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-9wq8">12</td>
+                        <td class="tg-lboi">Slab 2 (3 lakhs to 5 Lakhs)</td>
+                        <td class="tg-lboi">Sum product of concessional refinance for the credit 3 lakhs to 5 lakhs (pro
+                            ratio basis)</td>
+                        <td class="tg-yz93">{{I1}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-9wq8">13</td>
+                        <td class="tg-lboi" rowspan="2">Slab 1 (Upto 3 Lakhs)</td>
+                        <td class="tg-lboi">Total product of amount eligible for the period in respect of loans by the
+                            bank
+                            out of their own resources (8 - 11)</td>
+                        <td class="tg-yz93">{{J1}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-9wq8">14</td>
+                        <td class="tg-lboi">Eligible Interest Subvention Amount now claimed for the above period ((13 X
+                            4.5)/36500)</td>
+                        <td class="tg-yz93">{{L1}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-9wq8">15</td>
+                        <td class="tg-lboi" rowspan="2">Slab 2 (3 lakhs to 5 Lakhs)</td>
+                        <td class="tg-lboi">Total product of amount eligible for the period in respect of loans by the
+                            bank
+                            out of theirown resources (9 - 12)</td>
+                        <td class="tg-yz93">{{K1}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-9wq8">16</td>
+                        <td class="tg-lboi">Eligible Interest Subvention Amount now claimed for the above period ((15 X
+                            5.0 )/36500)</td>
+                        <td class="tg-yz93">{{M1}}</td>
+                    </tr>
+                </tbody>
+            </table> -->
+
+            <table class="tg" style="table-layout: fixed; width: 80vw !important">
+                <colgroup>
+                  <col style="width: 50px">
+                  <col style="width: 100px">
+                  <col style="width: 550px">
+                  <col style="width: 150px">
+                </colgroup>
+                <thead>
+                  <h2 *ngIf="claimsCellDataQtrEnding==='03'" class="heading">Claim for Interest Subvention on loans to NRLM SHGs {{extendedyr}}-{{claimsCellDataQtrEndingYear}} </h2>
+                  <h2 *ngIf="claimsCellDataQtrEnding!=='03'" class="heading">Claim for Interest Subvention on loans to NRLM SHGs {{claimsCellDataQtrEndingYear}}-{{extendedyr}} </h2>
+                  <!-- <h3 class="subheading">Claim for Interest Subvention on loans to NRLM SHGs</h3> -->
+                  <p style="width: 300px;"><span style="font-weight:bold;position: relative;left: 24rem;"> Bank:
+                      {{bankData}} </span></p>
+                  <p style="width: 300px;"><span style="font-weight:bold;position: relative;left: 29rem;"> Quarter:&nbsp;
+                      {{newBankdata}} </span></p>
+                  <tr>
+                    <th class="tg-uzvj">Sr.No.</th>
+                    <th class="tg-g7sd"></th>
+                    <th class="tg-g7sd">Particulars</th>
+                    <th class="tg-uzvj">Amount &nbsp;(Rs.)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="tg-9wq8">1</td>
+                    <td class="tg-lboi" rowspan="3">Slab 1</td>
+                    <td class="tg-lboi">Outstanding Amount of NRLM SHG loans having outstanding at the end of the quater
+                      Upto ₹3 lakh with interest at 7% p.a.</td>
+                    <td class="tg-yz93">{{celldata?.m3s1Sum |numberFormat}}</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-9wq8">2</td>
+                    <td class="tg-lboi">Number of such accounts</td>
+                    <td class="tg-yz93"> {{(celldata?.m3s1Cnt)}} </td>
+                  </tr>
+                  <tr>
+                    <td class="tg-9wq8">3</td>
+                    <!-- <td class="tg-9wq8"></td> -->
+                    <td class="tg-lboi"> Sum of account level Interest subvention</td>
+                    <td class="tg-yz93">{{cellInt3Data |numberFormat}} </td>
+                  </tr>
+                  <tr>
+                    <td class="tg-9wq8">4</td>
+                    <td class="tg-lboi" rowspan="3">Slab 2</td>
+                    <td class="tg-lboi">Outstanding Amount of NRLM SHG loans having outstanding at the end of the quarter ₹3 lakh to ₹5 lakh, with interest at 10 % p.a. <br> (as per one year MCLR/Benchmark rate)
+                    </td>
+                    <td class="tg-yz93">{{celldata?.m3s2Sum | numberFormat}}</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-9wq8">5</td>
+                    <td class="tg-lboi">Number of such accounts</td>
+                    <td class="tg-yz93">{{(celldata?.m3s2Cnt)}}</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-9wq8">6</td>
+                    <!-- <td class="tg-9wq8"></td> -->
+                    <td class="tg-lboi"> Sum of account level Interest subvention</td>
+                    <td class="tg-yz93">{{cellInt5Data |numberFormat}}</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-9wq8">7</td>
+                    <td class="tg-lboi" colspan="2">Sum of Total Outstanding <span style="font-weight:bold">(Sr.No. 1 + Sr.No. 4)</span></td>
+                    <td class="tg-yz93">{{totalSoNo1Nd4 |numberFormat}}</td>
+                  </tr>
+                  <!-- <tr>
+                    <td class="tg-9wq8">6</td>
+                    <td class="tg-lboi" colspan="2">Refinance Amount for the above loans</td>
+                    <td class="tg-yz93">{{Y1 | numberFormat}}</td>
+                  </tr> -->
+                               <tr>
+                    <td class="tg-9wq8">8</td>
+                    <td class="tg-lboi" colspan="2">Sum of Interest subvention <span style="font-weight:bold">(Sr.No. 3 + Sr.No. 6)</span></td>
+                    <td class="tg-yz93">{{((cellInt3Data) + (cellInt5Data))|numberFormat}}</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-9wq8">9</td>
+                    <td class="tg-lboi" colspan="2">Whether Bank has availed Refinance</td>
+                    <td class="tg-yz93"> {{refinance}} </td>
+                  </tr>
+                  <tr>
+                    <td class="tg-9wq8">10</td>
+                    <td class="tg-lboi" colspan="2">Sum product of total NRLM SHG loan outstanding for the period <br>
+                      (<span style="font-weight:bold">Product = Amount outstanding X No.of days outstanding</span>)
+                    </td>
+                    <td class="tg-yz93">{{celldata?.ui1 | numberFormat}}</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-9wq8">11</td>
+                    <td class="tg-lboi">Slab 1</td>
+                    <td class="tg-lboi">Sum product of total NRLM SHG loan outstanding for the period for credit upto ₹3
+                      lakh (pro rata basis)</td>
+                    <td class="tg-yz93">{{F1 | numberFormat}}</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-9wq8">12</td>
+                    <td class="tg-lboi">Slab 2</td>
+                    <td class="tg-lboi">Sum product of total NRLM SHG loan outstanding for the period for credit ₹3 lakh
+                      to ₹5 lakh(pro rata basis)</td>
+                    <td class="tg-yz93">{{G1 | numberFormat}}</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-9wq8">13</td>
+                    <td class="tg-lboi" colspan="2">Refinance Amount for the above loans</td>
+                    <td class="tg-yz93">{{(celldata?.ui2)|numberFormat}}</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-9wq8">14</td>
+                    <td class="tg-lboi" colspan="2">Sum product of concessional refinance availed from NABARD for
+                      the
+                      same period against the NRLM SHGloans</td>
+                    <td class="tg-yz93">{{(celldata?.ui3) | numberFormat}}</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-9wq8">15</td>
+                    <td class="tg-lboi">Slab 1</td>
+                    <td class="tg-lboi">Sum product of concessional refinance for the credit upto ₹3 lakh (pro rata
+                      basis)</td>
+                    <td class="tg-yz93">{{H1 | numberFormat}}</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-9wq8">16</td>
+                    <td class="tg-lboi">Slab 2</td>
+                    <td class="tg-lboi">Sum product of concessional refinance for the credit ₹3 lakh to ₹5 lakh (pro
+                      rata basis)</td>
+                    <td class="tg-yz93">{{I1 | numberFormat}}</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-9wq8">17</td>
+                    <td class="tg-lboi" rowspan="2">Slab 1</td>
+                    <td class="tg-lboi">Total product of amount eligible for the period in respect of loans by the
+                      bank
+                      out of their own resources <span style="font-weight:bold">(Sr.No. 11 - Sr.No. 15)</span></td>
+                    <td class="tg-yz93">{{J1 | numberFormat}}</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-9wq8">18</td>
+                    <td class="tg-lboi">Eligible Interest Subvention Amount now claimed for the above period<br> <span style="font-weight:bold">(Sr.No. 17 X 4.5/36500-If refinance availed), (Sr.No. 3- if refinance not availed)</span></td>
+                    <td class="tg-yz93">{{L1 | numberFormat}}</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-9wq8">19</td>
+                    <td class="tg-lboi" rowspan="2">Slab 2</td>
+                    <td class="tg-lboi">Total product of amount eligible for the period in respect of loans by the
+                      bank
+                      out of theirown resources (Sr.No. 12 - Sr.No. 16)</td>
+                    <td class="tg-yz93">{{K1 | numberFormat}}</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-9wq8">20</td>
+                    <td class="tg-lboi">Eligible Interest Subvention Amount now claimed for the above period. <br> <span style="font-weight:bold"> (Sr.No. 19 X 5.0/36500-If refinance availed), (Sr.No. 6- if refinance not availed)</span></td>
+                    <td class="tg-yz93">{{M1 | numberFormat}}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+            <div class="modal-footer justify-content-around m-1" >
+                <button style="width: 110px;" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="convertToPdf()">Download</button>
+                </div>
+        </div>
+    </div>
+
+</div>
+
+
+  <!-- Slab1 Certificate -->
+  <div class="modal fade modal-xl" id="exampleModalslab1" tabindex="-1" aria-labelledby="exampleModalLabel"aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="row">
+          <div class="col-11"></div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="left: 50px;top: 15px;position: relative;"></button>
+        </div>
+        <div #slab1pdf>
+          <h1 class="modal-title fs-6 text-center text-decoration-underline" id="exampleModalLabel">Claim for Interest Subvention on credit upto ₹3
+            lakh to women SHGs at 7% per annum, for the year <b *ngIf="slab1Data && slab1Data.length > 0">{{slab1Data[0]?.FyYear}}</b></h1>
+          <div class="ms-4">
+            <p class="fs-7">Name of Bank:&nbsp;&nbsp;<b *ngIf="slab1Data && slab1Data.length > 0">{{slab1Data[0]?.BankName }}</b></p>
+            <p class="fs-7">Statement for claims for the period <b *ngIf="slab1Data && slab1Data.length > 0">{{slab1Data[0]?.FromPeriod}}</b> to <b  *ngIf="slab1Data && slab1Data.length > 0">{{slab1Data[0]?.ToPeriod}}</b> credit disbursed/outstanding up-to ₹3 lakh</p>
+          </div>
+          <table class="table mt-4" style="width: 96%; margin-left: 2%;">
+            <tr>
+              <th colspan="2" class="text-center w-25">New loan accounts opened during the period <b *ngIf="slab1Data && slab1Data.length > 0">{{slab1Data[0]?.FromPeriod}}</b> to <br> <b *ngIf="slab1Data && slab1Data.length > 0">{{slab1Data[0]?.ToPeriod}}</b></th>
+              <th colspan="2" class="text-center w-25">Outstanding as at<b *ngIf="slab1Data && slab1Data.length > 0">{{slab1Data[0]?.PrevQtr}}</b>(end of previous period)</th>
+              <th colspan="2" class="text-center w-25">Total outstanding as at<b *ngIf="slab1Data && slab1Data.length > 0">{{slab1Data[0]?.ToPeriod}}</b> </th>
+              <th colspan="2" class="text-center w-25">Amount of interest Subvention  @4.5%</th>
+            </tr>
+            <tr>
+              <th colspan="1" class="text-center">No.of Accounts</th>
+              <th colspan="1" class="text-center">Amount</th>
+              <th colspan="1" class="text-center">No.of Accounts</th>
+              <th colspan="1" class="text-center">Amount</th>
+              <th colspan="1" class="text-center">No.of Accounts</th>
+              <th colspan="1" class="text-center">Amount</th>
+              <th colspan="1" class="text-center">Amount</th>
+            </tr>
+            <tr *ngFor="let item of slab1Data">
+              <td colspan="1" class="text-center">{{item.LsdCount}}</td>
+              <td colspan="1" class="text-center">{{item.DPAmnt | numberFormat}}</td>
+              <td colspan="1" class="text-center">{{item.M1OBCount}}</td>
+              <td colspan="1" class="text-center">{{item.M1OBAmnt | numberFormat}}</td>
+              <td colspan="1" class="text-center">{{item.M3S1Count}}</td>
+              <td colspan="1" class="text-center">{{item.M3S1Sum | numberFormat}}</td>
+              <td colspan="2" class="text-center">{{item.SVAmnt | numberFormat}}</td>
+            </tr>
+          </table>
+          <table class="table" style="width: 50%; margin-left: 2%;">
+            <thead>
+              <tr>
+                <th class="text-center">No of unique SHGs availed interest subvention</th>
+                <th class="text-center">Amount of Interest subvention</th>
+              </tr>
+            </thead>
+            <tr  *ngFor="let item of slab1Data">
+              <td class="text-center">{{item.UniqueSHG}}</td>
+              <td class="text-center">{{item.SVAmnt | numberFormat}}</td>
+            </tr>
+          </table>
+          <div class="ms-4">
+            <p class="fs-7" style="width: 98%;">NB : Number (No) and Amount in actual figures.<br>
+              We here by certify that credit to women SHGs upto ₹3 lakh were charged
+              interest 7% per annum on the above disbursement/outstanding in the year <b *ngIf="slab1Data && slab1Data.length > 0">{{slab1Data[0]?.FyYear}}</b>. We certify that the accounts
+              are
+              eligible for interest subvention as per RBI guidelines and Bank has verified and flagged all these accounts as
+              'SHGs
+              under DAY-NRLM on CBS. We also certify that there is no duplication in the claims and minimal human intervention
+              while
+              submitting the interest subvention claim from the branch level onwards.</p>
+          </div>
+          <p class="fs-7 ms-4 mb-1" style="margin-top: 8%;">Dated</p>
+          <p class="fs-7 ms-4">Authorised Signatory & Seal</p>
+          <p class="fs-7" style="width: 96%; margin-left: 2%;"><b><i>(This claim format, consolidated for the year, needs to be
+            duly certified by Statutory Auditors and submitted along with the claims for the quarter ending <b *ngIf="slab1Data && slab1Data.length > 0">{{slab1Data[0]?.SubmitFor}}</b> within <b *ngIf="slab1Data && slab1Data.length > 0">{{slab1Data[0]?.SubmitTo}}</b>)</i></b></p>
+        
+      </div>
+      <div class="modal-footer justify-content-around m-1">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+          (click)="downloadPdf('slab1')">Download</button>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <!-- Slab2 Certificate -->
+
+  <div class="modal fade modal-xl" id="exampleModalslab2" tabindex="-1" aria-labelledby="exampleModalLabel"aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="row">
+          <div class="col-11"></div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="left: 50px;top: 15px;position: relative;"></button>
+        </div>
+        <div #slab2pdf>
+          <h1 class="modal-title fs-6 text-center text-decoration-underline" id="exampleModalLabel">Claim for Interest Subvention on credit above ₹3 lakh and upto ₹5 lakh to women SHGs , for the year <b *ngIf="slab2Data && slab2Data.length > 0">{{slab2Data[0]?.FyYear}}</b></h1>
+          <div class="ms-4">
+            <p class="fs-7">Name of Bank:&nbsp;&nbsp;<b *ngIf="slab2Data && slab2Data.length > 0">{{slab2Data[0]?.BankName}}</b></p>
+            <p class="fs-7">Statement for claims for the period <b *ngIf="slab2Data && slab2Data.length > 0">{{slab2Data[0]?.FromPeriod}}</b> to <b *ngIf="slab2Data && slab2Data.length > 0">{{slab2Data[0]?.ToPeriod}}</b> credit disbursed/outstanding above ₹3 lakh and upto ₹5 lakh</p>
+          </div>
+          <table class="table mt-4" style="width: 96%; margin-left: 2%;">
+            <tr>
+              <th colspan="3" class="text-center" style="width: 25%;">New loan accounts opened during the period <b *ngIf="slab2Data && slab2Data.length > 0">{{slab2Data[0]?.FromPeriod}}</b> to <br> <b *ngIf="slab2Data && slab2Data.length > 0">{{slab2Data[0]?.ToPeriod}}</b></th>
+              <th colspan="3" class="text-center" style="width: 25%;">Outstanding as at<b *ngIf="slab2Data && slab2Data.length > 0">{{slab2Data[0]?.PrevQtr}}</b>(end of previous period)</th>
+              <th colspan="3" class="text-center" style="width: 25%;">Total outstanding as at <br><b *ngIf="slab2Data && slab2Data.length > 0">{{slab2Data[0]?.ToPeriod}}</b></th>
+              <th colspan="2" class="text-center" style="width:10% !important;">Amount of interest <br>Subvention @5%</th>
+            </tr>
+            <tr>
+              <th colspan="1" class="text-center" style="width: 55px;">No.of Accounts</th>
+              <th colspan="1" class="text-center" style="width: 55px;">Applicable <br> Interest <br> rate <br>(1 yr MCLR / Benchmark rate)</th>
+              <th colspan="1" class="text-center">Amount</th>
+              <th colspan="1" class="text-center" style="width: 55px;">No.of Accounts</th>
+              <th colspan="1" class="text-center" style="width: 55px;">Applicable <br> Interest <br> rate <br>(1 yr MCLR / Benchmark rate)</th>
+              <th colspan="1" class="text-center">Amount</th>
+              <th colspan="1" class="text-center" style="width: 55px;">No.of Accounts</th>
+              <th colspan="1" class="text-center" style="width: 55px;">Applicable <br> Interest <br> rate <br>(1 yr MCLR / Benchmark rate)</th>
+              <th colspan="1" class="text-center">Amount</th>
+              <th colspan="1" class="text-center">Amount</th>
+            </tr>
+            <tr *ngFor="let itemData of slab2Data">
+              <td colspan="1" class="text-center">{{itemData.C2AcctsCount}}</td>
+              <td colspan="1" class="text-center">{{itemData.MCLRRate1}}</td>
+              <td colspan="1" class="text-center">{{itemData.C2AcctsSum | numberFormat}}</td>
+              <td colspan="1" class="text-center">{{itemData.C2m1Accts}}</td>
+              <td colspan="1" class="text-center">{{itemData.MCLRRate2}}</td>
+              <td colspan="1" class="text-center">{{itemData.C2m1AcctsSum | numberFormat}}</td>
+              <td colspan="1" class="text-center">{{itemData.C2m3s1Count}}</td>
+              <td colspan="1" class="text-center">{{itemData.MCLRRate3}}</td>
+              <td colspan="1" class="text-center">{{itemData.C2m3S1Sum | numberFormat}}</td>
+              <td colspan="2" class="text-center">{{itemData.C2svAmnt | numberFormat}}</td>
+            </tr>
+          </table>
+          <table class="table" style="width: 50%; margin-left: 2%;">
+            <thead>
+              <tr>
+                <th class="text-center">No of unique SHGs availed interest subvention</th>
+                <th class="text-center">Amount of Interest subvention</th>
+              </tr>
+            </thead>
+            <tr *ngFor="let itemData of slab2Data">
+              <td class="text-center">{{itemData.C2shgCount}}</td>
+              <td class="text-center">{{itemData.C2svAmnt  | numberFormat}}</td>
+            </tr>
+          </table>
+          <div class="ms-4">
+            <p class="fs-7" style="width: 98%;">NB : Number (No) and Amount in actual figures.<br>
+              We here by certify that credit to women SHGs above ₹3 lakh and upto ₹5 lakh were charged interest as per Banks disclosed 1 year MCLR/Benchmark rate on the above disbursement/outstanding in the year <b *ngIf="slab2Data && slab2Data.length > 0">{{slab2Data[0]?.FyYear}}</b>. We certify that the accounts
+              are
+              eligible for interest subvention as per RBI guidelines and Bank has verified and flagged all those accounts as
+              'SHGs
+              under DAY-NRLM on CBS We als certify that there is no duplication in the claims and minimal human intervention
+              while
+              submitting the interest subvention claim from the branch level onwards</p>
+          </div>
+          <p class="fs-7 ms-4 mb-1" style="margin-top: 8%;">Dated</p>
+          <p class="fs-7 ms-4">Authorised Signatory & Seal</p>
+          <p class="fs-7" style="width: 96%; margin-left: 2%;"><i>
+            <b>
+              (This claim format, consolidated for the year, needs to be
+                duly certified by Statutory Auditors and submitted along with the claims for the quarter ending <b *ngIf="slab2Data && slab2Data.length > 0">{{slab2Data[0]?.SubmitFor}}</b> within <b *ngIf="slab2Data && slab2Data.length > 0">{{slab2Data[0]?.SubmitTo}}</b>)
+            </b>
+          </i></p>
+        
+      </div>
+      <div class="modal-footer justify-content-around m-1">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+          (click)="downloadPdf('slab2')">Download</button>
+      </div>
+    </div>
+    </div>
+  </div>
+
+
+<app-error-dialog></app-error-dialog>

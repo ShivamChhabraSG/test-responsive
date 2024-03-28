@@ -1,0 +1,129 @@
+.dashBoardScreen{
+    height: 790px;
+}
+.footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.claimsD{
+    margin-top: -24px;
+}
+
+.planned {
+    text-align: center;
+    border: 1.5px solid #4473c4;
+    border-radius:  0.375rem;
+}
+
+
+.planned-count{
+    font-size: 18px;
+    color: black;
+    padding: 12px 0px 12px 0px;
+}
+
+
+.planned-title {
+    border-top: 1.5px solid #4473c4;
+    font-size: 14px;
+    color: #FFF;
+    background-color: #4473c4;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.shg-title{
+    border-bottom: 1.5px solid #4473c4;
+    font-size: 14px;
+    color: #FFF;
+    background-color: #4473c4;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+.search-title{
+    font-size: 11px;
+    color: black;
+}
+
+::ng-deep.mat-mdc-menu-content{
+    width: 150px;
+    padding: 10px !important;
+    /* height: 150px; */
+} 
+
+.ng-select.custom ::ng-deep .ng-select-container .ng-value-container .ng-placeholder {
+    font-size: 10px !important;
+}
+
+.ng-select.custom ::ng-deep .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+    font-size: 10px !important;
+    padding: 0px 10px;
+}
+
+.ng-select.custom.ng-select-single ::ng-deep .ng-select-container .ng-value-container .ng-value {
+    font-size: 10px !important;
+}
+.ng-select.custom ::ng-deep .ng-select-container {
+  min-height: 26px !important;
+}
+
+.ng-select.custom.ng-select-single ::ng-deep .ng-select-container {
+  height: 26px !important;
+}
+
+.ng-select.region ::ng-deep .ng-dropdown-panel .scroll-host{
+  height: 75px !important;
+}
+/* .wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .dataCard{
+    max-width: 342px;
+    margin-left: 10px;
+    border: 1.5px solid #4473c4;
+} */
+
+
+  /* .wrapper {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .dataCard {
+    flex: 1 1 auto;
+    max-width: calc(33.33% - 10px);
+    margin-left: 8px;
+    border: 1.5px solid #799fa0;
+  } */
+
+  .wrapper {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .dataCard {
+    flex: 1 1 auto; 
+    max-width: calc(33.33% - 10px); 
+    margin-left: 8px;
+    border: 1.5px solid #799fa0;
+  }
+  
+  /* Adjustments for smaller screens */
+  @media (max-width: 768px) {
+    .dataCard {
+      max-width: calc(50% - 10px); 
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .dataCard {
+      max-width: 100%;
+      margin-left: 0; 
+    }
+  }
+  

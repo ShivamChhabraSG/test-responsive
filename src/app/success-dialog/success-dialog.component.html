@@ -1,0 +1,124 @@
+<div class="dialog-overlay">
+
+    <div  class="dialog-content-success" *ngIf="dialogData.saveSettlement" (click)="$event.stopPropagation()">
+        <div class="row warnHeader">
+      
+            <div class="col-12">
+                <h1 class="heading">Success ! </h1>
+                <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+            </div>
+        </div>
+        <br>
+        <div class="row warningRow">
+            <div class="col-12">
+                <p class="warningMsg text-center">{{dialogData.message}}</p>
+            </div>
+            <br>
+            <hr><br>
+    
+        </div>
+        <div class="button-container">
+            <div class="col-6">
+                <label class="closed-button" (click)="closeDialog()" >Close</label>
+            </div>
+        </div>
+    </div>
+
+    <div  class="dialog-content-success" *ngIf="dialogData.submitSettlement" (click)="$event.stopPropagation()">
+        <div class="row warnHeader">
+      
+            <div class="col-12">
+                <h1 class="heading">Success ! </h1>
+                <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+            </div>
+        </div>
+        <br>
+        <div class="row warningRow">
+            <div class="col-12">
+                <p class="warningMsg text-center">{{dialogData.message}}</p>
+            </div>
+            <br>
+            <hr><br>
+    
+        </div>
+        <div class="button-container">
+            <div class="col-6">
+                <label class="closed-button" (click)="closeDialog()" >Close</label>
+            </div>
+        </div>
+    </div>
+
+    <div  class="dialog-content-success" *ngIf="dialogData.authoriseSettlement" (click)="$event.stopPropagation()">
+        <div class="row warnHeader">
+      
+            <div class="col-12">
+                <h1 class="heading">Success ! </h1>
+                <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+            </div>
+        </div>
+        <br>
+        <div class="row warningRow">
+            <div class="col-12">
+                <p class="warningMsg text-center">{{dialogData.message}}</p>
+            </div>
+            <br>
+            <hr><br>
+    
+        </div>
+        <div class="button-container">
+            <div class="col-6">
+                <label class="closed-button" (click)="closeDialog()" >Close</label>
+            </div>
+        </div>
+    </div>
+
+    <div  class="dialog-content-success" *ngIf="dialogData.rejectSettlement" (click)="$event.stopPropagation()">
+        <div class="row warnHeader">
+      
+            <div class="col-12">
+                <h1 class="heading">Success ! </h1>
+                <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+            </div>
+        </div>
+        <br>
+        <div class="row warningRow">
+            <div class="col-12">
+                <p class="warningMsg text-center">{{dialogData.message}}</p>
+            </div>
+            <br>
+            <hr><br>
+    
+        </div>
+        <div class="button-container">
+            <div class="col-6">
+                <label class="closed-button" (click)="closeDialog()" >Close</label>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="dialogData.deleteSettlement"  class="dialog-content" (click)="$event.stopPropagation()">
+        <div class="row warnHeader">
+      
+            <div class="col-12">
+                <h1 class="heading">Delete</h1>
+            </div>
+        </div>
+        <br>
+        <div class="row warningRow">
+            <div class="col-12">
+                <p class="warningMsg">{{dialogData.message}}?</p>
+            </div>
+            <br>
+            <hr><br>
+    
+        </div>
+        <div class="button-container">
+            <div class="col-6">
+                <label class="delete-button" (click)="deleteClaimSettlement()">Yes</label>
+            </div>
+            <div class="col-6">
+                <label class="cancel-button" (click)="close()">No</label>
+            </div>
+        </div>
+    </div>
+</div>

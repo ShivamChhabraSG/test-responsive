@@ -1,0 +1,126 @@
+<div class="dashBoardScreen">
+  <div class="claimsD">
+    <hr>
+    <div class="container-fluid">
+
+      <div class="row">
+        <div class="col" *ngFor="let item of barChartData">
+          <div class="planned" style="width: 100%;">
+            <div class="planned-count">{{ item.value || 0}}</div>
+            <div class="planned-title">{{ item.label }}</div>
+          </div>
+        </div>
+
+        <div class="col-1 d-flex align-items-center justify-content-center">
+
+          <mat-icon style="cursor: pointer; color: #4473c4;" [matMenuTriggerFor]="menu">filter_list</mat-icon>
+       
+          <mat-menu #menu="matMenu">
+            <div>
+              <label class="search-title">Fy Year</label>
+              <ng-select [items]="fyYear" placeholder="Select Fy Year" class="custom" [searchable]="false"
+                (click)="$event.stopPropagation()" [(ngModel)]="selectedFyYear">
+              </ng-select>
+            </div>
+
+            <div *ngIf="level === 1 || level === 2">
+              <label class="search-title">Bank Type</label>
+              <ng-select [items]="bank_Type" bindLabel="banktype" placeholder="Select Bank Type" class="custom"
+                [searchable]="false" [(ngModel)]="selectedBankType" (click)="$event.stopPropagation()">
+              </ng-select>
+            </div>
+
+            <div *ngIf="level === 1">
+              <label class="search-title">Region</label>
+              <ng-select [items]="regions" placeholder="Select Region" class="custom region" [searchable]="false"
+                (click)="$event.stopPropagation()" [(ngModel)]="selectedRegion"
+                [attr.title]="isDropdownOpen ? null : selectedRegion" (open)="isDropdownOpen = true"
+                (close)="isDropdownOpen = false">
+                <ng-template ng-option-tmp let-item="item">
+                  <span class="ng-option-label" [attr.title]="item">{{ item }}</span>
+                </ng-template>
+              </ng-select>
+            </div>
+
+            <div class="d-flex align-items-center justify-content-evenly mt-5">
+                <button class="btn btn-sm" style="background-color: #4473c4; color: #FFF" (click)="fetchDashboardData()">
+                <!-- [disabled]="!selectedFyYear || (!selectedBankType && (level === 1 || level === 2)) || (!selectedRegion && level === 1)" -->
+                Go
+              </button>
+
+              <button class="btn btn-sm btn-secondary" (click)="clearAll()">Cancel</button>
+            </div>
+          </mat-menu>
+        </div>
+
+      </div>
+
+      <div class="row mt-2">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div class="row wrapper">
+
+            <div class="col card dataCard">
+              <div style="display: block;">
+                <canvas baseChart height="300" [type]="barChartType" [data]="claimStatusData"
+                  [options]="claimStatusDataChartOptions" [legend]="barChartLegend">
+                </canvas>
+              </div>
+            </div>
+
+            <div class="col card dataCard">
+              <div style="display: block;">
+                <canvas baseChart height="300" [type]="barChartType" [data]="submissionStatusData"
+                  [options]="submissionStatusDataChartOptions" [legend]="barChartLegend">
+                </canvas>
+              </div>
+            </div>
+
+            <div class="col card dataCard">
+              <div style="display: block;">
+                <canvas baseChart height="300" [type]="barChartType" [data]="claimDueData"
+                  [options]="claimDueDataChartOptions" [legend]="barChartLegend">
+                </canvas>
+              </div>
+            </div>
+
+            <div class="col card dataCard mt-2">
+              <div style="display: block;">
+                <canvas baseChart height="300" [type]="barChartType" [data]="approvalStatusData"
+                  [options]="approvalStatusDataChartOptions" [legend]="barChartLegend">
+                </canvas>
+              </div>
+            </div>
+
+            <div class="col card dataCard mt-2">
+              <div style="display: block;">
+                <canvas baseChart height="300" [type]="barChartType" [data]="approvalPercentStatusData"
+                  [options]="approvalPercentStatusChartOptions" [legend]="barChartLegend">
+                </canvas>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="col mt-2" *ngFor="let item of barChartSHGs">
+                <div class="planned" style="width: 100%;">
+                  <div class="shg-title">{{ item.label }}</div>
+                  <div class="planned-count" *ngIf="item.label.includes('Amount')">{{ item.value | numberFormat }}</div>
+                  <div class="planned-count" *ngIf="!item.label.includes('Amount')">{{ item.value || 0}}</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12 footer">
+    <app-nrlm-footer></app-nrlm-footer>
+  </div>
+</div>
+
+<app-error-dialog></app-error-dialog>

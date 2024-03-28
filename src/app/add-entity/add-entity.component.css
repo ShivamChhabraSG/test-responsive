@@ -1,0 +1,757 @@
+.app-dashboarscreen {
+    position: relative;
+    bottom: 71px;
+}
+
+.row{
+    display: flex;
+}
+
+@media (max-width: 1050px) {
+  
+  .row{
+    flex-direction: column;
+  }
+  .addEntitytab{
+    height: 820px;
+  }
+ 
+
+}
+
+.main{
+    overflow: hidden; 
+    height: 480px; 
+}
+
+.containerStyle {
+    border: 1px solid #E6E6E6;
+    border-radius: 10px;
+    height: 880px;
+    margin-left: 16px;
+    width: 98%;
+    position: sticky;
+}
+
+.entityLabel {
+    background: #E1F6E8;
+    text-align: center;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 49px;
+    color: #000000;
+}
+
+.unitInput {
+    border: 1px solid #B2B3B4;
+    border-radius: 5px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    color: black;
+    box-sizing: border-box;
+    position: absolute;
+    width: 24%px;
+    height: 36px;
+    border: 1px solid #B2B3B4;
+    border-radius: 5px;
+    padding-left: 13px;
+}
+
+.pinCodeInput {
+    border: 1px solid #B2B3B4;
+    border-radius: 5px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    color:black;
+    box-sizing: border-box;
+    position: absolute;
+    width: 300px;
+    height: 36px;
+    border: 1px solid #B2B3B4;
+    border-radius: 5px;
+    padding-left: 13px;
+}
+
+.unitnameInput {
+    border: 1px solid #B2B3B4;
+    border-radius: 5px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    color: black;
+    box-sizing: border-box;
+    position: absolute;
+    width: 460px;
+    height: 36px;
+    border: 1px solid #B2B3B4;
+    border-radius: 5px;
+    padding-left: 13px;
+}
+
+.ifscInput {
+    border: 1px solid #B2B3B4;
+    border-radius: 5px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    color: black;
+    box-sizing: border-box;
+    position: absolute;
+    width: 40%;
+    height: 36px;
+    border: 1px solid #B2B3B4;
+    border-radius: 5px;
+    padding-left: 13px;
+}
+
+.entityDetail {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 69px;
+    color: #EC8737;
+    text-decoration-line: underline;
+}
+
+.horLine {
+    color: #EC8737;
+}
+
+::ng-deep.addEntitytab .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label,
+.mat-mdc-tab-link:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label {
+    color: black;
+    position: relative;
+    /* right: 650px; */
+}
+
+::ng-deep.addEntitytab .mat-mdc-tab-body-wrapper {
+    height: 508px;
+
+}
+ .mat-mdc-tab-group {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    height: 100%;
+}
+
+:host ::ng-deep.addEntitytab .mat-mdc-tab-body-content {
+    height: 100%;
+    overflow: hidden;
+    width: 97%;
+    position: relative;
+    left: 19px;
+}
+
+::ng-deep.addEntitytab .mat-mdc-tab-labels {
+    display: flex;
+    flex: 1 0 auto;
+    width: 12%;
+    height: 0px;
+}
+
+.unitcodeLabel {
+    line-height: 42px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    color: #464A53;
+    margin-bottom: 5px;
+    height: 30px;
+}
+.ifscLabel {
+    line-height: 42px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    color: #464A53;
+    margin-bottom: 5px;
+    height: 30px;
+}
+.unitcodeLabels {
+    line-height: 42px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    color: #464A53;
+    margin-bottom: 5px;
+    height: 30px;
+}
+
+
+
+
+.stateLabel {
+    line-height: 85px;
+}
+
+::ng-deep.levelDropdown .ng-select.ng-select-single .ng-select-container {
+    /* height: 30px; */
+    line-height: 1.5; 
+    font-size: 12px;
+}
+
+::ng-deep.stateDropdown .ng-select.ng-select-single .ng-select-container {
+    /* height: 30px; */
+    line-height: 1.5; 
+    font-size: 12px;
+}
+
+::ng-deep.levelDropdowns .ng-select.ng-select-single .ng-select-container {
+    /* height: 30px; */
+    line-height: 1.5; 
+    font-size: 12px;
+}
+
+
+.modal-header {
+    background: #E1F6E8 !important;
+}
+
+.btn {
+    width: 125px !important
+}
+  
+
+:host ::ng-deep.ng-select .ng-select-container {
+    color: #333;
+    background-color: #fff;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    min-height: 30px;
+    align-items: center;
+}
+
+.ng-select .ng-select-container .ng-value-container .ng-placeholder {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 54px;
+    display: flex;
+    align-items: center;
+    color: #C9C9C9;
+    }
+
+.rowState {
+    margin-top: 34px;
+}
+.section{
+    margin-top: 10px;
+}
+
+.sLabel {
+    line-height: 20px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    color: #464A53;
+    margin-bottom: 5px;
+}
+.esLabel {
+    line-height: 20px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    color: #464A53;
+    margin-bottom: 5px;
+}
+.rsLabel {
+    line-height: 20px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    color: #464A53;
+    margin-bottom: 5px;
+}
+
+.emailsInput {
+    border: 1px solid #B2B3B4;
+    border-radius: 5px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    color: black;
+    box-sizing: border-box;
+    position: absolute;
+    width: 460px;
+    height: 36px;
+    border: 1px solid #B2B3B4;
+    border-radius: 5px;
+    padding-left: 13px;
+}
+
+
+.backButton {
+    width: 125px;
+    background: #00A2FF;
+    border-radius: 5px;
+}
+
+.back-btn{
+    width: 125px;
+    background: #00A2FF;
+    border-radius: 5px;
+}
+
+.delete-btn{
+    background: red;
+    border-radius: 5px;
+    width: 125px;
+}
+
+.reset-btn{
+    background: #00A2FF;
+    border-radius: 5px;
+    width: 125px;
+}
+
+.save-btn{
+    width: 125px;
+    background: #7BB31A;
+    border-radius: 5px;
+    margin-left: 63px;
+}
+ 
+.hide-Delete{
+   margin-left: 12%; 
+}
+.SaveButton {
+    width: 125px;
+    background: #7BB31A;
+    border-radius: 5px;
+}
+.entity-checker{
+    margin-left: -12%;
+}
+
+.rejected-Maker{
+    margin-left: 2%;
+}
+.btn-Width{
+    width: 150px !important;
+}
+
+.resetButton {
+    width: 125px;
+    background: #00A2FF;
+    border-radius: 5px;
+    margin-left: 50%;
+}
+.deleteButton {
+
+    width: 125px;
+    background: red;
+    border-radius: 5px;
+}
+::placeholder {
+    color:#C9C9C9;
+    opacity: 1; /* Firefox */
+  }
+
+:host ::ng-deep.levelDropdown .ng-dropdown-panel.ng-select-bottom {
+    width: 232px;
+    position: absolute;
+    /* left: 2px; */
+    line-height: 1.5; 
+    font-size: 12px;
+}
+
+:host ::ng-deep.stateDropdown .ng-dropdown-panel.ng-select-bottom {
+    width: 230px;
+    position: absolute;
+    /* left: 2px; */
+    line-height: 1.5;
+    font-size: 12px;
+}
+
+:host ::ng-deep.ng-dropdown-panel .ng-dropdown-panel-items {
+    max-height: 140px;
+}
+
+:host ::ng-deep.levelDropdowns .ng-dropdown-panel.ng-select-bottom {
+    width: 224px;
+    position: absolute;
+    left: 2px;
+    line-height: 1.5; 
+    font-size: 12px;
+}
+::after.ng-select .ng-has-value.ng-placeholder {
+    display: none;
+    }
+
+    body {
+        padding: 20px;
+      }
+      ::ng-deep.select {
+        word-wrap: normal;
+        height: 30px;
+        width: 25%;
+        /* position: absolute; */
+        left: 940px;
+    }
+
+   :host ::ng-deep.ng-value-container .ng-value {
+        white-space: normal;
+    }
+    .errMSggg {
+        color: red;
+        position: absolute;
+        /* top: 49px; */
+        margin-top: 34px;
+        width: 161px;
+        font-size: 12px !important;
+        font-family: 'Roboto' !important;
+      }
+      .errMSgggs {
+        color: red;
+        position: absolute;
+        /* top: 49px; */
+        margin-top: 35px;
+        width: 190px;
+             font-size: 12px !important;
+        font-family: 'Roboto' !important;
+      }
+      .errMSgggss {
+        color: red;
+        position: absolute;
+        /* top: 49px; */
+        margin-top: 35px;
+        width: 375px;
+             font-size: 12px !important;
+        font-family: 'Roboto' !important;
+      }
+      .errParentU{
+        color: red;
+        position: absolute;
+             font-size: 12px !important;
+        font-family: 'Roboto' !important;
+      
+      }
+  .rowDivsection{
+      margin-top: 6px;
+}
+:host ::ng-deep.ng-select{
+    display: flex;
+}
+.errState{
+    color: red;
+    position: absolute;
+    font-size: 12px !important;
+    font-family: 'Roboto' !important;
+}
+.errorEntity{
+    color: red;
+    font-size: 20px;
+}
+
+.checker-backButton{
+     width: 125px;
+    /* height: 50px; */
+    background: #00A2FF;
+    border-radius: 5px;
+}
+
+.checker-authButton{
+    width: 125px;
+    /* height: 50px; */
+    background: #00A2FF;
+    border-radius: 5px;
+}
+
+.checker-rejectButton{
+    width: 125px;
+    /* height: 50px; */
+    background: red;
+    border-radius: 5px;
+}
+
+.checker-back-margin{
+    margin-left: 4%;
+}
+@supports (-moz-appearance:none) {
+    .ifscInput {
+       width: 577px;
+    }
+    .pinCodeInput{
+        width:31%
+    }
+    .unitnameInput{
+        width: 825px;
+    }
+    .emailsInput{
+        /* width: 935px; */
+        width: 90% !important;
+        height: 36px;
+    }
+    .backButton{
+        left: 877px;
+    }
+.rowFirefox{
+    position: relative;
+    bottom: 22px;
+}  
+.unitInput{
+    width: 30%;
+    height: 30px;
+}
+}
+/* @media screen and (-webkit-min-device-pixel-mediaratio:0) {-chrome-:only
+.ifscInput {
+    width: 40%;
+ }
+ .pinCodeInput{
+    width: 22%;
+ }
+ .unitnameInput{
+    width: 48%;
+    height: 36px;
+ }
+ .emailsInput{
+    width:  60%;
+    height: 36px;
+ }
+ .unitInput{
+    width: 24%;
+    height: 36px;
+}
+} */
+
+
+
+.addEnS{
+    margin-top: -25px;
+  
+}
+
+input:disabled {
+    font-weight: 700 !important;
+    background-color: #EFEFEF4D;
+    color: #C9C9C9;
+}
+:host ::ng-deep .ng-select.ng-select-disabled>.ng-select-container {
+    font-weight: 700 !important;
+    color: #C9C9C9;
+    background-color: #EFEFEF4D;
+}
+
+.editData1{
+    position: relative;
+    /* left: 13.5%; */
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+::ng-deep.ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+    font-family: 'Roboto' !important;
+    font-size: 12px !important;
+  }
+::ng-deep.ng-select .ng-select-container .ng-value-container .ng-placeholder {
+    font-family: 'Roboto' !important;
+    font-size: 12px !important;
+  }
+
+  ::ng-deep.ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value {
+    font-family: 'Roboto' !important;
+    font-size: 12px !important; 
+  }
+  @media (max-width: 1275px) {
+    .pinCodeInput{
+        width: 240px;
+    }
+    .main{
+        height: 563px;
+    }
+    .save-btn{
+        margin-left: 0px;
+    }
+    .delete-btn{
+        margin-left: -63px;
+    }
+    .reset-btn{
+        margin-left: -55px;
+    }
+    .back-btn{
+        margin-left: -49px;
+    }
+
+}
+
+@media (max-width: 1050px) {
+    .entity-checker{
+        margin-left: 2%;
+    }
+
+    .main{
+        overflow: hidden; 
+        height: 1050px; 
+    }
+    .btn-Width{
+        margin-left: 1% !important;
+        margin-top: 2px;
+    }
+    .unitcodeLabel {
+        line-height: 12px;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        color: #464A53;
+        margin-bottom: 3px;
+        height: 20px;
+    }
+    .ifscLabel {
+        line-height: 12px;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        color: #464A53;
+        margin-bottom: 3px;
+        height: 20px;
+        margin-top: 40px;
+    }
+    .unitcodeLabels {
+        line-height: 12px;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        color: #464A53;
+        margin-bottom: 3px;
+        margin-top: 40px;
+        height: 20px;
+    }
+    .ifscInput {
+        width: 90%;
+        /* margin-left: -21px; */
+     }
+     .pinCodeInput{
+        width: 90%;
+     }
+     .unitnameInput{
+        width: 90%;
+        height: 36px;
+     }
+     .emailsInput{
+        width:  90% !important;
+        height: 36px;
+     }
+     .unitInput{
+        width: 90%;
+        height: 36px;
+    }
+    .levelDropdown{
+        width: 190%;
+    }
+    .stateDropdown{
+        width: 300%;
+    }
+    .levelDropdowns{
+        width: 400%;
+    }
+    .stateDropdown{
+        width: 400%;
+    }
+    .sLabel{
+        line-height: 20px;
+        margin-top: 10px;
+    }
+    .esLabel{
+        line-height: 20px;
+        margin-top: 20px;
+    }
+    .rsLabel{
+        line-height: 20px;
+        margin-top: 40px;
+    }
+    .containerStyle{
+        height: 990px;
+    }
+    .save-btn{
+        margin-left: 0px;
+    }
+    .delete-btn{
+        margin-left: 0px;
+    }
+    .reset-btn{
+        margin-left: 0px;
+    }
+    .back-btn{
+        margin-left: 0px;
+    }
+    ::ng-deep.addEntitytab .mat-mdc-tab-body-wrapper {
+        height: 927px;
+    
+    }
+    
+}
+
+@media (max-width: 767px) {
+    .levelDropdowns{
+     width: 90%;
+    }
+
+    .stateDropdown{
+        width: 90%;
+    }
+ }
+
+ @media (max-width: 550px) {
+    .levelDropdowns{
+     width: 90%;
+    }
+
+    .stateDropdown{
+        width: 90%;
+    }
+ }

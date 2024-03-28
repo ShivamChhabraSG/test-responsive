@@ -1,0 +1,431 @@
+.groupLogo {
+    text-align: right;
+}
+
+.vl {
+    border-right: 2px solid green;
+    height: 122.2%;
+    /* height: 528px;
+    left: 124%;
+    position: relative;
+    bottom: 23px; */
+}
+
+.horiLine {
+    color: inherit;
+    border: 0;
+    border-top: 1px solid;
+    opacity: .25;
+}
+
+.container {
+    padding: 1px;
+    height: 500px;
+    /* border: 2px solid green; */
+}
+
+.scheme-img  {
+    /* width: 85%; */
+    width: 42.7%;
+    display: block;
+    margin: auto;
+}
+.scheme-imgkids {
+    width: 200px;
+    height: 115.21px;
+    display: block;
+    margin: auto;
+}
+.homepage {
+    margin-left: 0;
+    border-width: 2px;
+    border-style: solid;
+    border-color: green;
+    width: 100%;
+    overflow: hidden;
+    height: 100vh;
+}
+/* Width 1600 to 2000 */
+@media all and (min-width: 1600px) and (max-width: 2000px) {
+}
+/* Width 1200 to 1500 */
+@media all and (min-width: 1200px) and (max-width: 1600px) {
+}
+/* for mobile less than 400px-------------------------------------------------------------- */
+
+@media all and (min-width: 250px) and (max-width: 400px) {}
+@media all and (max-width: 520px) {
+    .homepage {
+        margin-left: 0;
+        border-width: 2px;
+        border-style: solid;
+        border-color: green;
+        width: 100%;
+        overflow-y: hidden;
+        height: 100vh;
+        display: block;
+    }
+}
+@media all and (max-width: 768px) {
+    .homepage {
+        margin-left: 0;
+        border-width: 2px;
+        border-style: solid;
+        border-color: green;
+        width: 100%;
+        overflow-y: hidden;
+        height: 100vh;
+        /* display: block; */
+        overflow-y: scroll;
+    }
+}
+
+.img1styl {
+    width:80px;height: 50px;
+}
+.img2styl {
+    width:80px;height: 50px;
+}
+.img3styl {
+    width:130px;height: 50px;
+}
+.img4styl {
+    width:80px;height: 50px;
+}
+@media screen and (width: 750px){
+    .primary-nav #item1 {
+        font-size: 18px;
+        line-height: 25.9px;
+    }
+}
+@media screen and (max-height: 600px){
+    ::ng-deep.textSize {
+        overflow-y: scroll;
+        height: 68vh !important;
+    }
+    .imageWidth {
+        width: 800px;
+        height: 68vh;
+    }
+}
+@media screen and (max-height: 400px){
+    ::ng-deep.textSize {
+        overflow-y: scroll;
+        height: 72vh !important;
+    }
+    .imageWidth {
+        width: 800px;
+        height: 72vh;
+    }
+}
+@media screen and (width<= 600px){
+    ::ng-deep.textSize {
+        overflow-y: scroll;
+        height: 72vh !important;
+        /* background-color: #EC8737; */
+    }
+    .imageWidth {
+        width: 800px;
+        height: 72vh;
+    }
+}
+@media screen and (width<= 400px){
+    .img1styl {
+        width:70px;height: 50px;
+    }
+    .img2styl {
+        width:70px;height: 50px;
+    }
+    .img3styl {
+        width:70px;height: 50px;
+    }
+    .img4styl {
+        width:30px;height: 50px;
+    }
+}
+@media screen and (max-height: 800px){
+    ::ng-deep.textSize {
+        overflow-y: scroll;
+        height: 70vh !important;
+    }
+    .imageWidth {
+        width: 800px;
+        height: 65vh;
+    }
+}
+.textSize {
+    overflow-y: scroll;
+    height: 72vh;
+}
+.imageWidth {
+    width: 800px;
+    height: 70vh;
+}
+.verticalLine {
+    position: relative;
+    left: 124%;
+    bottom: 2%;
+    color: green;
+    height: 545px;
+    border-width: 2px 0px 2px 2px;
+}
+
+.loginBtn {
+    /* width: 135px; */
+    background: linear-gradient(180deg, #FDAD3E 0%, #FF0749 100%);
+    border-radius: 17px;
+    /* height: 57.9px; */
+    color:#FFFFFF;
+    border-color: #FDAD3E;
+    cursor: pointer;
+    margin-top: 14px;
+    width: 94px;
+    height: 30px;
+    font-family: 'Roboto';
+    font-style: normal;
+    /* font-weight: bold;
+    font-size: 15px; */
+    line-height: 14px;
+}
+.chngTxtBtn {
+        background: linear-gradient(180deg, #FDAD3E 0%, #FF0749 100%);
+        border-radius: 17px;
+        color: #FFFFFF;
+        border-color: #FDAD3E;
+        cursor: pointer;
+        width: 99px;
+        height: 36px;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: bold;
+        font-size: 15px;
+        line-height: 16px;
+        /* left: 1rem;
+        position: relative;  */
+}
+.loginImg {
+   height: 15px;
+   width: 15px;
+}
+.labelSc {
+    font-weight: 400;
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.schemeName {
+    font-weight: 400;
+    font-size: 16px;
+  
+}
+
+.schemeName2 {
+    font-weight: 400;
+    font-size: 16px;
+}
+
+/* ::ng-deep.mat-mdc-dialog-container .mdc-dialog__surface {
+    display: block;
+    width: 91%;
+    height: 84%;
+    padding: 24px;
+    position: relative;
+    bottom: 155%;
+    left: 66%;
+} */
+.fullScreenLine {
+    color: white;
+}
+
+.kidsFullImage {
+    width: 158px;
+}
+
+.bchatFullLogo {
+    width: 100px;
+    margin-left: 73px;
+}
+.headingCol{
+    position: relative;
+    left: 40px;
+}
+.headingNRLM {
+    color: #EC8737;
+    text-align: center;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    font-display: swap;
+}
+.interestNRLM {
+    color: #000000;
+    text-align: center;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+}
+.headingDesc {
+    text-align: center;
+}
+
+.hcontainer {
+    text-align: right;
+}
+
+.horiLine2 {
+    border-width: 0px 0px 2px 2px;
+    border-style: solid;
+    border-color: green;
+    width: 200px;
+    margin: auto;
+    margin-top: 15px;
+}
+::ng-deep.carousel-item {
+    transition-duration: 0s !important;
+    /* display: flex !important; */
+  }
+.rowLogin {
+    padding-left: 63%;
+    position: relative;
+    right: 13%;
+}
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+.btnStyle {
+    color: #EC8737;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 23px;
+    width: 7% !important;
+    position: relative;
+    top: 2rem;
+    left: 1rem;
+    border: none;
+    background: white;
+}
+/* .primary-nav #item1 {
+    font-size: 21px;
+    line-height: 27px;
+  } */
+  .primary-nav #item1{
+    font-size: 17px;
+    line-height: 25.9px;
+}
+/* @media only screen and (max-width: 600px) {
+    .groupLogo {
+     text-align: center;
+    }
+  } */
+
+  .backdropBackground {
+    filter: blur(20px);
+    background: rgba(0, 0, 0, 0.3);
+    /* opacity: 9 !important; */
+    width: 1819px;
+    height: 711px;
+    position: relative;
+    bottom: 827px;
+  }
+  .custom-gif {
+    max-height: 400px; /* Set the desired maximum height for the GIF */
+    display: block; /* Ensures proper inline-block behavior for the image */
+    margin: 0 auto; /* Optional: Center the image horizontally */
+  }
+
+.dropdown-container {
+    position: relative;
+    display: inline-block;
+    left: 40px;
+  }
+  
+  .download-btn {
+    position: relative;
+    background: linear-gradient(180deg, #FDAD3E 0%, #FF0749 100%);
+    border-radius: 17px;
+    color: #FFFFFF;
+    border-color: #FDAD3E;
+  }
+
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 37px;
+    left: 1%;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .dropdown-menu {
+    display: block;
+    width: 200px;
+  }
+
+  .pdf-menu{
+    width: 150px !important;
+    position: absolute;
+    top: 37px;
+    left: 3%;
+  }
+  
+  .dropdown-menu a {
+    font-weight: 500;
+    display: block;
+    padding: 8px;
+    text-decoration: none;
+    color: #333;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  
+  .btn-close{
+    font-size: 14px;
+    position: absolute;
+    left: 176px;
+    box-shadow: none;
+    outline: none;
+    top: 0px;
+  }
+
+  .close-icon{
+    top: 0px;
+    font-size: 14px;
+    position: absolute;
+    left: 135px;
+    box-shadow: none;
+    outline: none;
+  }
+
+
+  .blink-text {
+    color: #FFFFFF; 
+  }
+
+@media screen and (min-width : 500px) and (max-width : 576px){
+    .headingCol{
+        left: 10px;
+    }
+    .pdf-container{
+        margin-top: 5px;
+    }
+}
+
+@media screen and (min-width : 992px) and (max-width : 1191px){
+    .dropdown-container {
+        left: 15px;
+    }
+    .pdf-container{
+        position: relative !important;
+        left: 5px !important;
+    }
+}
+@media screen and (min-width : 1192px) and (max-width : 1200px){
+    .dropdown-container {
+        left: 30px;
+    }
+}

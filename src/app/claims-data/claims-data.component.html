@@ -1,0 +1,132 @@
+<!-- <div class="row">
+    <div class="col-2" style="padding-top: 2%;
+        padding-left: 6%;">
+        <app-sidenav-bar class="siden"></app-sidenav-bar>
+        <app-dashboard-header class="app-dashboarscreen"></app-dashboard-header>
+    </div>
+</div> -->
+<div class="claimsL">
+<hr>
+<div class="container-fluid">
+    <div class="row gridRow">
+        <div class="col-12">
+           
+            <div style="margin-top: 6px;padding: 4px;">
+                <div class="row  gridStyle">
+                    <div class="col-1 colStyle ">
+                        <img (click)="generatePDF(gridOptions)" src="../../assets/image/pdf icon.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Download Pdf">
+                    </div>
+                    <div class="col-1 colStylee">
+                        <img (click)="downloadExcel()" src="../../assets/image/excel icon.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Download Excel">
+                    </div>
+                    <div class="col-2 colStyles">
+                        <form [formGroup]="myForms">
+                            <!-- Use different methods -->
+                            <ng-multiselect-dropdown class="promo statuses111" formControlName="name"
+                                [settings]="dropdownSettings" [data]="toppingList" (onSelect)="ColumnSelect($event)"
+                                (onDeSelect)="ColumnDeSelect($event)"
+                                (onDeSelectAll)="ColumnDeSelectOrAll($event)"
+                                (onSelectAll)="ColumnSelectOrAll($event)">
+                            </ng-multiselect-dropdown>
+                        </form>
+                    </div>
+                    <div class="col-1 colStyle" >
+                        <img src="../../assets/image/attach icon.svg" (click)="isOpen = !isOpen" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
+                        <div>
+                            <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger"
+                                [cdkConnectedOverlayOpen]="isOpen" (overlayOutsideClick)="isOpen = false">
+                                <div class="overlayDiv">
+                                    <div class="row">
+                                        <div class="col-6 overlayCol1">
+                                            <label><b>left:</b></label>
+                                            <form [formGroup]="myForms">
+                                                <ng-multiselect-dropdown class=" pinningdrp" placeholder="Select field"
+                                                    [settings]="dropdownSettings" [data]="toppingListLeft"  formControlName="name1"
+                                                    [disabled]="disabled" (onSelect)="onItemSelect($event, 'left')"
+                                                    (onDeSelect)="onItemDeSelect($event, 'left')"
+                                                    (onDeSelectAll)="onItemDeSelectOrAll($event, 'left')"
+                                                    (onSelectAll)="onItemSelectOrAll($event, 'left')">
+                                                </ng-multiselect-dropdown>
+                                            </form>
+                                        </div>
+                                        <div class="col-6 overlayCol2">
+                                            <label><b>right:</b></label>
+                                            <form [formGroup]="myForms">
+                                                <ng-multiselect-dropdown class=" pinningdrp" placeholder="Select field" formControlName="name2"
+                                                    [settings]="dropdownSettings" [data]="toppingListRight"
+                                                    [disabled]="disabled" (onSelect)="onItemSelect($event, 'right')"
+                                                    (onDeSelect)="onItemDeSelect($event, 'right')"
+                                                    (onDeSelectAll)="onItemDeSelectOrAll($event, 'right')"
+                                                    (onSelectAll)="onItemSelectOrAll($event, 'right')">
+                                                </ng-multiselect-dropdown>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </div>
+                    </div>
+                    <div class="col-4 colStyle">
+                        <label class="entityLabel">Closed Accounts Data Upload</label>
+                    </div>
+                    <div class="col-2 colStyle">
+                        <div class="searchBox d-flex searchBarstyle">
+                            <mat-icon class="searchIcon">search</mat-icon>
+                            <input class="searchInput searchbarInput" type="text" name=""
+                                (keyup)="onFilterTextBoxChanged(gridOptions,$event)" placeholder="Search ">
+                        </div>
+                    </div>
+                    <div class="col-1 colAdd" (click)="addEntity()" routerLinkActive="active" *ngIf="AddPermission">
+                        <img src="../../assets/image/add new icon.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Add Rate" >    
+                    </div>
+                    <div class="col-2 colStylesss" *ngIf="showhided">
+                       <img src="../../assets/image/view.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="View Rate" (click)="viewEnity()"class="viewEn" *ngIf="viewPermission">
+                       <img src="../../assets/image/edit.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Rate" class="editImg" (click)="editEnity()" *ngIf="EditPermission">
+                       <ng-container *ngIf="authorizePermission && showhided && checker !== maker && statusname !== 'Authorized' && statusname !== 'Rejected'">
+                        <img src="../../assets/image/Authorize-button.svg"
+                             data-bs-toggle="tooltip"
+                             data-bs-placement="top"
+                             title="Authorize Rate"
+                             class="editImg"
+                             (click)="AuthorizeEntity()">
+                      </ng-container>                                    
+                      
+                      <ng-container *ngIf="EditPermission && showhided && statusname === 'Rejected'">
+                        <img src="../../assets/image/Delete-button.svg"
+                             data-bs-toggle="tooltip"
+                             data-bs-placement="top"
+                             title="Delete Rate"
+                             class="editImg"
+                             (click)="deleteEntity()">
+                      </ng-container>
+               </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-12">
+                        <ag-grid-angular class="gridUnit" style=" height: 350px; position: relative; right: 12px;text-align: center;"
+                            class="ag-theme-alpine" 
+                            [rowData]="rowData" 
+                            [columnDefs]="columnDefs" 
+                            [suppressExcelExport]="true"
+                            (gridReady)="onGridReady($event)"
+                            (cellClicked)="onCellClicked($event)"
+                            [defaultColDef]="defaultColDef" 
+                            [pagination]="true"
+                            [paginationAutoPageSize]="false"
+                            [paginationPageSize]="pageSize">
+                        </ag-grid-angular>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div class="row">
+    <div class="col-12 footer m-0" >
+      <app-nrlm-footer></app-nrlm-footer>
+    </div>
+  </div>
+

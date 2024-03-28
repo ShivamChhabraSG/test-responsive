@@ -1,0 +1,136 @@
+<div [ngClass]="leabelkey!='20215' ? 'viewNrlmUpload' : 'viewNrlmUpload1'">
+    <div class="viewNrlm">
+        <hr>
+        <div class="container-fluid" [ngClass]="leabelkey!='20215' ? 'gridRow' : 'gridRow1'">
+            <div class="row">
+                <div class="row mt-2 align-items-center d-flex text-center gridStyle">
+                    <div class="col-lg-12 col-md-12 col-sm-12" *ngIf="leabelkey!='20215'">
+                        <label class="nrlmUploadHeader">View NRLM Upload</label>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12" *ngIf="leabelkey=='20215'">
+                        <label class="nrlmUploadHeader">View Closed Account Upload</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="row fRow" *ngIf="leabelkey!='20215'">
+                    <div class="col-lg-3 col-md-6 col-sm-6 firstRow">
+                        <div class="col-4">
+                            <label class="unitLabel">FY Ending</label>
+                        </div>
+                        <div class="col-8 inpBox">
+                            <input class="viewBox" type="" disabled [(ngModel)]="Qtr_Ending[0].FY_Ending">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 firstRow">
+                        <div class="col-4">
+                            <label class="unitLabel">State Code</label>
+                        </div>
+                        <div class="col-8 inpBox">
+                            <input class="viewBox" type="" disabled [(ngModel)]="Qtr_Ending[0].Stat_Code">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 firstRow">
+                        <div class="col-4">
+                            <label class="unitLabel">Bank Code</label>
+                        </div>
+                        <div class="col-8 inpBox">
+                            <input class="viewBox" type="" disabled [(ngModel)]="Qtr_Ending[0].Bank_Code">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 firstRow">
+                        <div class="col-4">
+                            <label class="unitLabel">Qtr Ending</label>
+                        </div>
+                        <div class="col-8 inpBox">
+                            <input class="viewBox" type="" disabled [(ngModel)]="Qtr_Ending[0].Qtr_Ending">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-6 firstRow">
+                        <div class="col-1 sRow">
+                            <label class="unitLabel">Bank Name</label>
+                        </div>
+                        <div class="col-1 inpBox">
+                            <input class="viewBox" type="" disabled [(ngModel)]="Qtr_Ending[0].Bank">
+                        </div>
+                    </div>
+                </div>
+                <div class="row fRow" *ngIf="leabelkey=='20215'">
+                    <div class="col-lg-3 col-md-6 col-sm-6 firstRow">
+                        <div class="col-4">
+                            <label class="unitLabel">FY Ending</label>
+                        </div>
+                        <div class="col-8 inpBox">
+                            <input class="viewBox" type="" disabled [(ngModel)]="Qtr_Ending[0].FY_Ending">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-6 firstRow">
+                        <div class="col-4">
+                            <label class="unitLabel">Bank Code</label>
+                        </div>
+                        <div class="col-8 inpBox">
+                            <input class="viewBox" type="" disabled [(ngModel)]="bankCodeUser">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 firstRow">
+                        <div class="col-4">
+                            <label class="unitLabel">Qtr Ending</label>
+                        </div>
+                        <div class="col-8 inpBox">
+                            <input class="viewBox" type="" disabled [(ngModel)]="Qtr_Ending[0].Qtr_Ending">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 firstRow">
+                        <div class="col-4 sRow">
+                            <label class="unitLabel">Bank Name</label>
+                        </div>
+                        <div class="col-8 inpBox">
+                            <input class="viewBoxx" type="" disabled [(ngModel)]="Qtr_Ending[0].Bank">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="gridStyleMain">
+                    <div class="col-12">
+                        <ag-grid-angular *ngIf="leabelkey=='20211'" class="ag-theme-alpine gridUnit"
+                            style="font-size: 12px; height: 455px; position: relative; right: 4px;"
+                            [rowData]="selectedLevelData" (gridReady)="onGridReady($event)"
+                            (cellClicked)="onCellClicked($event)" (gridReady)="onGridReady($event)"
+                            [defaultColDef]="defaultColDef" [columnDefs]="columnDefs" [pagination]="true"
+                            [paginationAutoPageSize]="false" [paginationPageSize]="defaultPage" [rowHeight]="rowHeight"
+                            [headerHeight]="rowHeight">
+                        </ag-grid-angular>
+
+                        <ag-grid-angular *ngIf="leabelkey=='20215'" class="ag-theme-alpine gridUnit"
+                            style="font-size: 12px; height: 455px; position: relative; right: 4px;"
+                            [rowData]="selectedLevelData" (gridReady)="onGridReady($event)"
+                            (cellClicked)="onCellClicked($event)" (gridReady)="onGridReady($event)"
+                            [defaultColDef]="defaultColDef" [columnDefs]="columnDefs1" [pagination]="true"
+                            [paginationAutoPageSize]="false" [paginationPageSize]="defaultPage" [rowHeight]="rowHeight"
+                            [headerHeight]="rowHeight">
+                        </ag-grid-angular>
+                    </div>
+                </div>
+             
+            </div>
+
+            <div class="row">
+                <div class="col-12 backBtn">
+                    <button type="button" (click)="back()" class="btn backButton">Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 footer">
+        <app-nrlm-footer></app-nrlm-footer>
+    </div>
+</div>
+
+<app-error-dialog></app-error-dialog>

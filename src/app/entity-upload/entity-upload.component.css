@@ -1,0 +1,737 @@
+.container,
+.container-fluid,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl,
+.container-xxl {
+    background: white;
+    /* margin-left: 4%; */
+    /* height: 1152px; */
+    padding-left: 20px;
+}
+
+::ng-deep.mat-mdc-tab-labels {
+    width: 38%;
+
+}
+
+.modal-header {
+    background: #E1F6E8 !important;
+}
+.btn{
+    width:100px !important
+}
+.modal-footer a{
+    color: #00A2FF;
+    text-decoration: none;
+    cursor: pointer;
+}
+.authYes {
+height: 525px;
+}
+.authNo {
+height:600px ;
+}
+::ng-deep.mat-mdc-tab .mdc-tab__text-label {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 17px;
+    color: #F2B585;
+}
+
+::ng-deep.mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label,
+.mat-mdc-tab-link:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label {
+    color: #EC8737;
+}
+
+.gridRow {
+    /* height: 590px; */
+    background: rgba(255, 255, 255, 0.78);
+    opacity: 0.78;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    width: 101%;
+    margin-top: -5px;
+}
+
+
+
+:host ::ng-deep.mat-mdc-tab-body-content {
+    height: 100%;
+    overflow: unset;
+    width: 97%;
+    position: relative;
+    left: 19px;
+}
+
+
+.gridRow1 {
+    background: rgba(255, 255, 255, 0.78);
+    opacity: 0.78;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    /* height: 32%; */
+    /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
+    border-radius: 10px;
+}
+
+.editImg {
+    margin-left: 12px;
+    cursor: pointer;
+}
+.editViewImg {
+    margin-left: 22px;
+    cursor: pointer;
+}
+
+.gridStyle {
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    height: 49px;
+    border-radius: 3px;
+    width: 97%;
+    /* margin-left: 2px; */
+}
+
+/*-- Dropdown --*/
+.custom-wrapper {
+    max-width: 460px;
+    margin: 0 auto 50px;
+}
+
+::ng-deep.multiselect-dropdown {
+    border: 1px solid rgba(0, 0, 0, 0.33);
+    border-radius: 7px;
+    position: relative;
+    width: 69%;
+    font-size: inherit;
+    font-family: 'Roboto';
+}
+
+::ng-deep.multiselect-dropdown .dropdown-btn {
+    height: 36px;
+    width: 66%;
+}
+
+.entityLabel {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 34px;
+    /* left: 32%; */
+    position: relative;
+    text-align: center;
+    /* margin-left: 100px; */
+    color: #000000;
+    /* width: 70%; */
+}
+
+.searchIcon {
+    position: absolute;
+    top: 6px;
+    left: 7px;
+    color: grey;
+}
+
+.ag-header-cell-text {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 30px;
+    color: rgba(0, 0, 0, 0.78);
+}
+
+::ng-deep.ag-header-cell-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 30px;
+    font-weight: bolder;
+    color: rgba(0, 0, 0, 0.78) !important;
+}
+
+::ng-deep.ag-header {
+    background-color: rgba(43, 190, 95, 0.1);
+    ;
+}
+
+::ng-deep.ag-paging-panel {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.ag-theme-alpine {
+    --ag-header-column-separator-display: block;
+    --ag-header-column-separator-height: 50%;
+    --ag-header-column-separator-width: 1px;
+    --ag-header-column-separator-color: rgb(0, 0, 0);
+
+
+
+}
+
+.ag-theme-alpine {
+    /* disable all borders */
+    --ag-borders: display;
+    /* then add back a border between rows */
+    --ag-row-border-style: line;
+    --ag-row-border-width: 2px;
+    --ag-row-border-color: rgb(150, 150, 200);
+    /* background: rgba(255, 255, 255, 0.78);
+    opacity: 0.78;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px; */
+
+
+}
+
+::ng-deep.ag-header-cell {
+
+    border-right: 1px solid ag-param(secondary-border-color);
+}
+
+::ng-deep.ag-ltr .ag-cell {
+    cursor: pointer;
+    font-size: 12px;
+}
+
+/*  */
+
+.dropdown-form {
+    position: relative;
+}
+
+.colStyle {
+    margin-top: 10px;
+    cursor: pointer;
+    /* margin-left: 24px; */
+}
+
+.colStyleIcon {
+    margin-top: 10px;
+    cursor: pointer;
+    /* position: absolute;
+    left: 87%; */
+}
+.colStyleIconS {
+    margin-top: 28px;
+    cursor: pointer;
+    /* margin-left: 10%; */
+}
+.colStylee {
+    /* margin-left: -4%; */
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.colStyles {
+    margin-left: -3%;
+    margin-top: 10px;
+}
+
+.searchBarstyle {
+      top: 7px;
+    /* left: 70px; */
+    cursor: pointer;
+    position: relative;
+}
+
+.searchbarInput {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    /* width: 295px; */
+    height: 35px;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 7px;
+    padding-left: 31px;
+}
+
+.colAdd {
+    position: relative;
+    margin-top: 10px;
+    /* margin-left: 102px; */
+    cursor: pointer;
+    left: 98px;
+}
+
+.gridUnit {
+    /* width: 1373px; */
+    height: 445px; position: relative; 
+    right: 12px !important;
+}
+
+.sidenavStyle {
+    padding-top: 2%;
+    padding-left: 6%;
+}
+.file-name {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 10px;
+    overflow: auto;
+}
+.app-dashboarscreen {
+    position: relative;
+    bottom: 71px;
+}
+.paginDiv{
+    position:relative; 
+    bottom: 7%;
+    left: 63%;
+}
+.ag-theme-alpine {
+    --ag-header-column-separator-display: block;
+    --ag-header-column-separator-height: 30%;
+    --ag-header-column-separator-width: 2px;
+    --ag-header-column-separator-color: rgba(0, 0, 0, 0.34);
+
+}
+
+.class {
+    position: absolute;
+    left: 60%;
+    bottom: 22%;
+}
+
+::ng-deep.pinningdrp .multiselect-dropdown {
+    position: relative;
+    width: 41%;
+    font-size: inherit;
+    font-family: 'Roboto';
+}
+
+.overlayDiv {
+    position: relative;
+    height: 126px;
+    width: 477px;
+    border: 1px solid;
+    background: white;
+    padding-right: 16px;
+}
+
+.overlayCol1 {
+    position: relative;
+    top: 26px;
+    left: 10px;
+}
+
+.overlayCol2 {
+    position: relative;
+    top: 26px;
+}
+
+.viewEn {
+    cursor: pointer;
+    /* margin-left: 24px; */
+}
+
+::ng-deep .mat-mdc-tab-group {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    height: 4%;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.addImgIcon {
+ 
+    position: absolute;
+    right: 263px;
+    /* top: 16px; */
+    margin-top: 10px;
+}
+
+.submitRow {
+    position: relative;
+    /* bottom: 21px; */
+    top: 9px;
+}
+
+.SaveButton {
+    /* position: absolute; */
+    /* width: 150px; */
+    height: 41px;
+    /* left: 828px; */
+    background: #7BB31A;
+    border-radius: 5px;
+    right: 1px;
+}
+.colFilepIcker{
+    margin-top: 33px;
+    position: relative;
+    /* left: 1%; */
+    /* width: 23%; */
+}
+.mat-mdc-raised-button {
+    box-shadow: var(--mdc-protected-button-container-elevation, 0px 0px 0px -2px rgba(0, 0, 0, 0), 0px 0px 2px 0px rgba(0, 0, 0, 0), 0px 1px 5px 0px rgba(0, 0, 0, 0.0));
+}
+
+.mat-mdc-raised-button:hover {
+    box-shadow: var(--mdc-protected-button-container-elevation, 0px 0px 0px -2px rgba(0, 0, 0, 0), 0px 0px 2px 0px rgba(0, 0, 0, 0), 0px 1px 5px 0px rgba(0, 0, 0, 0.0));
+}
+
+.fileStyle{
+    position: relative;
+    bottom: 5px;
+    left: 43px;
+}
+.errState{
+    color: red;
+    position: absolute;
+    margin-top: -5%;
+    /* margin-left: 13%; */
+}
+.errParentU{
+    color: red;
+    position: absolute;
+    top: 0px;
+    font-size: 12px !important;
+    font-family: 'Roboto';
+  }
+  .unitcodeLabel {
+    line-height: 42px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    color: #464A53;
+}
+.levelRow{
+    margin-left: -5px;
+    height: 90px;
+    
+}
+.unitcodeLabell {
+    line-height: 42px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    /* display: flex; */
+    align-items: center;
+    color: #464A53;
+}
+.entityUpload{
+    overflow: hidden;
+    background: #FFFFFF;
+}
+.entityU{
+    margin-top: -17px;
+}
+.gridEntity {
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    /* height: 492px; */
+    border-radius: 3px;
+    /* padding-left: 19px;
+    padding-top: 10px;
+    margin-top: 8px; */
+    width: 97%;
+    /* margin-left: 2px; */
+}
+/* .gridEntity{
+
+    margin-left: 2px;
+    width: 102%;
+} */
+.back-btn{
+    background-color: #00A2FF;
+    border-radius: 5px;
+    color: white;
+    /* height: 50px; */
+}
+  @media screen and (max-width:706px){
+    .errParentU {
+        color: red;
+        position: relative;
+        bottom: 13px;
+        font-size: 12px !important;
+        font-family: 'Roboto';
+    }
+    .colStyleIconS {
+        position: relative;
+        /* left: 34px; */
+    }
+}
+@media screen and (max-width:993px){
+    ::ng-deep.ag-root-wrapper.ag-layout-normal {
+        height: 93%;
+    }
+}
+@media screen and (max-width: 992px) {
+    .gridStyle{
+        height: 95px;
+    }
+    .gridUnit {
+        height: 325px !important;
+    }
+    .levelRow{
+        height: 148px;
+    }
+ }
+
+ @media screen and (max-width: 885px) {
+    .searchbarInput{
+        width: 120px;
+    }
+ }
+ @media screen and (max-width: 885px) {
+    /* .colStyleIcon{
+        left: 69%;
+    } */
+ }
+ @media screen and (max-width: 830px) {
+    /* .colStyleIcon{
+        left: 80%;
+    } */
+ }
+ @media screen and (max-width: 670px) {
+    /* .colStyleIcon{
+        left: 80%;
+    } */
+ }
+ @media screen and (max-width: 751px) {
+    .entityLabel{
+        font-size: 12px;
+    }
+ }
+ @media screen and (max-width: 670px) {
+    .entityLabel{
+        font-size: 12px;
+    }
+    .searchbarInput {
+        width:115px;
+    }
+ }
+ @media screen and (max-width: 650px) {
+    .entityLabel{
+        font-size: 12px;
+        position: relative;
+        left: 19px;
+    }
+    .searchbarInput {
+        width:115px;
+    }
+ }
+ .checkerscrn {
+    height: 610px;
+ }
+ .makerscrn {
+    height: 700px;
+ }
+ @media screen and (min-width:534px)  and (max-width:587px) {
+    .gridUnit {
+        height: 600px !important;
+    }
+ }
+ /* @media screen and (max-width:533px) {
+ .gridUnit {
+    height: 502px !important;
+}
+ } */
+ /* @media screen and (min-width:549px)  and (max-width:576px) {
+
+    .gridUnit {
+        height: 777px !important;
+    }
+
+ } */
+ @media screen and (min-width:576px)  and (max-width:750px) {
+
+    .pdfIcon {
+       position: relative;
+       right: 10px;
+    }
+    .secondDiv {
+        position: relative;
+        right: 11px;
+    }
+
+
+ }
+ @media screen and (min-width:992px)  and (max-width:1024px) {
+
+    .colStyleIcon {
+        margin-top: 10px;
+        cursor: pointer;
+        position: relative;
+        left: 32px;
+    }
+
+ }
+ @media screen and (min-width:992px) and (max-width:1075px) {
+    .colStyleIcon {
+        width: 135px !important;
+    }
+ }
+ @media screen  and (max-width:576px) {
+    .entityLabel{
+        font-size: 13px;
+    }
+    .fileStyle {
+        left: 0px;
+        top: -5px;
+    }
+    ::ng-deep.ag-paging-panel {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        font-size: 10px !important;
+        width: 250px ;
+    }
+    /* .gridRow {
+        height: 659px !important
+    } */
+    /* .searchBarstyle {
+        top: -4px;
+    } */
+    .searchbarInput {
+        width: 190px;
+    }
+    /* .colStyleIcon {
+        left: 60%;
+    } */
+    .makerscrn {
+        height: 752px;
+    }
+    /* .gridUnit {
+        height: 777px !important;
+    } */
+    .authNo {
+        height: 655px;
+    }
+    .gridStyle {
+        overflow-y: scroll;
+    }
+    .gridEntity {
+        height: 248px !important;
+        position: relative;
+        right: 14px;
+    }
+    .gridUnit {
+        height: 244px !important;
+    }
+    .gridStyle {
+       width: 92% !important; 
+    }
+    .back-btn {
+    right: 0px !important;
+    }
+    .gridStyle.row>* {
+        width: auto !important;
+    }
+    /* ::ng-deep.ag-root-wrapper.ag-layout-normal {
+        height: 45%;
+    } */
+ }
+ /* @media screen and (max-width:574px) {
+    ::ng-deep.ag-root-wrapper.ag-layout-normal {
+        height: 52%;
+    }
+ } */
+ /* @media screen and (max-width:730px) {
+    .searchbarInput {
+        width: 120px;
+        position: relative;
+        right: 91px;
+    }
+ } */
+ @media screen  and (min-width:1025px) and (max-width:1052px){
+    .colStyleIcon {
+        position: relative;
+        left: 1rem;
+    }
+}
+ @media screen and (max-width:630px) {
+    ::ng-deep.ag-root-wrapper.ag-layout-normal {
+        height: 100%;
+    }
+    .back-btn {
+        position: relative;
+        right: 94%;
+    }
+    /* .gridUnit{
+        height: 691px !important;
+    } */
+ }
+ /* @media screen and (min-width:588px) and (max-width:630px) {
+    .gridUnit{
+        height: 600px !important;
+    }
+ } */
+ @media screen  and (min-width:577px) and (max-width:630px) {
+    .gridUnit{
+        height: 314px !important;
+    }
+    .gridEntity {
+        background: rgba(255, 255, 255, 0.78);
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 3px;
+        width: 95% !important;
+        height: 317px !important;
+    }
+ }
+
+ @media screen and (max-width: 593px) {
+
+    .levelRow{
+        height: 184px;
+    }
+ }
+
+ @media screen and (max-width: 576px) {
+
+    .levelRow{
+        height: 300px;
+    }
+ }
+
+
+
+/* @supports (-moz-appearance:none) {
+    .searchBarstyle {
+        cursor: pointer;
+        position: relative;
+        margin-left: 68%;
+      }
+} */
+
+::ng-deep.ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+    font-family: 'Roboto' !important;
+    font-size: 12px !important;
+  }
+::ng-deep.ng-select .ng-select-container .ng-value-container .ng-placeholder {
+    font-family: 'Roboto' !important;
+    font-size: 12px !important;
+  }
+
+  ::ng-deep.ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value {
+    font-family: 'Roboto' !important;
+    font-size: 12px !important; 
+  }
+
+  ::ng-deep.modal-backdrop {
+    position: relative;
+  }

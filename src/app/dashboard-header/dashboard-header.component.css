@@ -1,0 +1,93 @@
+/* ::ng-deep.mat-mdc-dialog-container .mdc-dialog__surface {
+    display: none;
+    width: 534px;
+    height: 540px;
+    padding: 7px;
+    position: relative;
+    bottom: 155%;
+    left: -652px;
+    border-color: rgba(236, 135, 55, 1)
+    rgba(43, 189, 95, 1);
+    border: 5px solid ; 
+} */
+.img1styl {
+    width:80px;height: 50px;
+}
+.img2styl {
+    width:80px;height: 50px;left: 8%;
+}
+.img3styl {
+    width:130px;height: 50px;left: 22%;
+}
+.img4styl {
+    width:80px;height: 50px;
+}
+.loginImg {
+    height: 15px;
+    width: 15px;
+ }
+.NRLMLogo {
+    width: 68px;
+    /* width: 83%; */
+    /* position: relative; */
+    padding-bottom: -5%;
+    /* top: -13%;
+    left: 35px; */
+    /* margin-left:-8px; */
+    margin-top: 6px;
+
+}
+.nabardLogo{
+    padding-left: 75%;
+    /* width: 841%; */
+    width: 152px;
+    /* padding-top: -34%;
+    margin-left: 1022px;
+    position: relative; */
+    /* bottom: 6px; */
+}
+.nabardCol{
+    position: relative;
+    left: 35rem;
+   margin-top: 15px;
+}
+.logoutCol{
+    position: relative;
+    left: 45rem;
+
+}
+.arrowLogo{
+    /* padding-top: 22%; */
+    /* width: 66%; */
+    /* padding-left: 139%; */
+    position: relative;
+    /* left: 1220px; */
+    /* margin-top: 8px; */
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    top: 8px;
+    left: 56%;
+    
+}
+::ng-deep.mat-toolbar-row {
+    display: block !important;
+}
+@supports (-moz-appearance:none) {
+    .logoutCol {
+        position: absolute;
+        top: 91%;
+        left: 1369px;
+}
+
+.nabardCol {
+    position: absolute;
+    left: 1200px;
+    top: 75%;
+}
+.nabardLogo{
+    padding-left: 75%;
+    width: 152px;
+  }
+
+}

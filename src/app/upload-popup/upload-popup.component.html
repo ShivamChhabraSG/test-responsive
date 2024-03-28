@@ -1,0 +1,52 @@
+
+<div class="container alertPopups" *ngIf="dialogData.upload">
+    <img src="../../assets/image/close.png" alt="" class="close-icon" (click)="closepopup()">
+    <div class="actv-user text-center">
+        <div class="row">
+            <div class="col-12">
+               <p class="headingPop">Do you Want to Upload or Authorize?</p>
+            </div>
+        </div>
+        <br>
+       <div class="row">
+        <div class="col-4">
+            <button class="exit" (click)="entityUpload()">Upload</button>
+        </div>
+        <div class="col-4">
+            <button class="exit" (click)="entityUpload()" >Authorise</button>
+        </div>
+        <div class="col-4">
+            <button class="exit" (click)="uploadScreen()">Back</button>
+        </div>
+       </div>
+        
+        </div>
+</div>
+
+
+<div class="dialog-overlay">
+
+    <div  class="dialog-content-success" *ngIf="dialogData.deletedSettlement" (click)="$event.stopPropagation()">
+        <div class="row warnHeader">
+      
+            <div class="col-12">
+                <h1 class="heading">Success ! </h1>
+                <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+            </div>
+        </div>
+        <br>
+        <div class="row warningRow">
+            <div class="col-12">
+                <p class="warningMsg text-center">{{dialogData.message}}</p>
+            </div>
+            <br>
+            <hr><br>
+    
+        </div>
+        <div class="button-container">
+            <div class="col-6">
+                <label class="closed-button" (click)="closeDialog()">Close</label>
+            </div>
+        </div>
+    </div>
+</div>

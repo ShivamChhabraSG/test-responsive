@@ -1,0 +1,226 @@
+<div [ngClass]="this.intrestScreen == 'addData' ? 'addRate1': 'addRate'">
+  <div class="container-fluid">
+    <div class="row entityLabel">
+      <div class="col-12">
+        <label style="font-size: 15px !important;">{{mode}} Rate</label>
+      </div>
+    </div>
+    <br>
+    <div class="row addRateColumn">
+      <div class="col-lg-4 col-sm-4">
+        <label class="unitcodeLabel">Bank*</label>
+        <ng-select disabled="true" [clearable]="false" [(ngModel)]="bankSelected" class="levelDropdown"
+          [ngClass]="isDisabled ? 'isDisabledField' : 'levelDropdown'" id="unitName" name="unitName"
+          [items]="addRateBanks" placeholder="Select Bank" bindLabel="unitName" bindValue="unit" required>
+        </ng-select>
+      </div>
+      <div class="col-lg-4 col-sm-4" *ngIf="this.intrestScreen == 'addData'">
+        <label class="unitcodeLabel">FY End*</label>
+        <select disabled class="form-select" aria-label="Default select example"
+          [ngClass]="isDisabled ? 'isDisabledField' : 'form-select'">
+          <option selected>{{selectedFyStart}}</option>
+        </select>
+      </div>
+      <div class="col-lg-4 col-sm-4">
+        <label class="unitcodeLabel">Qtr End*</label>
+        <select disabled class="form-select" aria-label="Default select example"
+          [ngClass]="isDisabled ? 'isDisabledField' : 'form-select'">
+          <option selected>{{selectedQtrEnd}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row rowState">
+      <div class="col-lg-2 col-sm-4">
+        <label class="unitcodeLabel">Rate Type *</label>
+        <select
+          [disabled]="(!(this.intrestScreen == 'addData') && !(this.intrestScreen == 'editData')) || (this.intrestScreen == 'viewData')"
+          [(ngModel)]="selectedRateType" (change)="rateTypeEvent($event)" class="form-select" aria-label="Rate Type"
+          [ngClass]="isDisabled ? 'isDisabledField' : 'form-select'">
+          <option [value]="'MCLR'">MCLR</option>
+          <option [value]="'Benchmark'">Benchmark</option>
+        </select>
+      </div>
+      <div class="col-lg-2 col-sm-4">
+        <label class="unitcodeLabel">Frequency*</label>
+        <select
+          [disabled]="(!(this.intrestScreen == 'addData') && !(this.intrestScreen == 'editData')) || (this.intrestScreen == 'viewData')"
+          [(ngModel)]="selectedFrequency" (change)="FreqSelect($event)" class="form-select" aria-label="Frequency"
+          [ngClass]="isDisabled ? 'isDisabledField' : 'form-select'">
+          <option [value]="'Quarterly'">Quarterly</option>
+          <option [value]="'Monthly'">Monthly</option>
+        </select>
+      </div>
+      <div class="col-lg-2 col-sm-4">
+        <label class="unitcodeLabel">Quarter Rate*</label>
+        <input (keyup)="QantityRate($event)" [(ngModel)]="quantityRate"
+          [disabled]="(!(this.intrestScreen == 'addData') && !(this.intrestScreen == 'editData')) || (this.intrestScreen == 'viewData') || disableQtyRate"
+          pattern="^\d+(\.\d{1,2})?$" class="qtyrate" type="text" title="Quantity Rate"
+          [ngClass]="isDisabled ? 'isDisabledField' : 'qtyrate'">
+        <div class="validation-errors">
+          <span style="color: red;" *ngIf="errmsg">Value should be less than or equal to 10</span>
+          <span style="color: red;" *ngIf="errmsgQ">Value should be greater than 0</span>
+        </div>
+      </div>
+      <div class="col-lg-2 col-sm-4">
+        <label class="unitcodeLabel">M1 Rate*</label>
+        <input
+          [disabled]="(!(this.intrestScreen == 'addData') && !(this.intrestScreen == 'editData')) || (this.intrestScreen == 'viewData') || disableRates"
+          [(ngModel)]="m1Rate" (keyup)="selectedM1Rate($event)" pattern="^[0-9]+(\.[0-9]{1,2})?$" class="qtyrate"
+          type="text" title="M3 Rate" [ngClass]="isDisabled ? 'isDisabledField' : 'qtyrate'">
+        <div class="validation-errors">
+          <span style="color: red;" *ngIf="errmsg1">Value should be less than or equal to 10</span>
+          <span style="color: red;" *ngIf="errmsg11">Value should be greater than 0</span>
+        </div>
+      </div>
+      <div class="col-lg-2 col-sm-4">
+        <label class="unitcodeLabel">M2 Rate*</label>
+        <input
+          [disabled]="(!(this.intrestScreen == 'addData') && !(this.intrestScreen == 'editData')) || (this.intrestScreen == 'viewData') || disableRates"
+          [(ngModel)]="m2Rate" (keyup)="selectedM2Rate($event)" pattern="^[0-9]+(?:\\.[0-9]{1,2})?$" class="qtyrate"
+          type="text" title="M2 Rate" [ngClass]="isDisabled ? 'isDisabledField' : 'qtyrate'">
+        <div class="validation-errors">
+          <span style="color: red;" *ngIf="errmsg2">Value should be less than or equal to 10</span>
+          <span style="color: red;" *ngIf="errmsg22">Value should be greater than 0</span>
+        </div>
+      </div>
+      <div class="col-lg-2 col-sm-4">
+        <label class="unitcodeLabel">M3 Rate*</label>
+        <input
+          [disabled]="(!(this.intrestScreen == 'addData') && !(this.intrestScreen == 'editData')) || (this.intrestScreen == 'viewData') || disableRates"
+          [(ngModel)]="m3Rate" (keyup)="selectedM3Rate($event)" pattern="^[0-9]+(?:\\.[0-9]{1,2})?$" class="qtyrate"
+          type="text" title="M3 Rate" [ngClass]="isDisabled ? 'isDisabledField' : 'qtyrate'">
+        <div class="validation-errors">
+          <span style="color: red;" *ngIf="errmsg3">Value should be less than or equal to 10</span>
+          <span style="color: red;" *ngIf="errmsg33">Value should be greater than 0</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row buttonsCol" *ngIf="intrestScreen === 'viewData'">
+      <div class="col-lg-10"></div>
+      <div class="col-lg-2 col-sm-4">
+        <button type="button" (click)="redirect()" class="btn btn-primary backButton">Back</button>
+      </div>
+    </div>
+    <div class="row buttonsCol" *ngIf="intrestScreen === 'addData' || intrestScreen === 'editData'">
+      <div class="col-lg-6"></div>
+      <div class="col-lg-2 col-sm-4">
+        <button type="button" (click)="redirect()" class="btn btn-primary backButton">Back</button>
+      </div>
+      <div class="col-lg-2 col-sm-4" *ngIf="intrestScreen === 'addData' || intrestScreen === 'editData'">
+        <button *ngIf="intrestScreen !== 'authorizeData' && intrestScreen !== 'deleteData'" type="button"
+          class="btn btn-primary resetButton" (click)="reset()">Reset</button>
+      </div>
+      <div class="col-lg-2 col-sm-4">
+        <button *ngIf="intrestScreen === 'addData' || intrestScreen === 'editData'" type="submit"
+          class="btn btn-primary SaveButton"
+          [disabled]="(!selectedRateType || !selectedFrequency || !quantityRate || (errmsg || errmsg1 || errmsg2 || errmsg3) || (errmsgQ || errmsg11 || errmsg22 || errmsg33)) && (!selectedRateType || !selectedFrequency || !m1Rate || !m2Rate || !m3Rate || (errmsg || errmsg1 || errmsg2 || errmsg3) || (errmsgQ || errmsg11 || errmsg22 || errmsg33)) "
+          (click)="saveAddRate()">Save</button>
+      </div>
+    </div>
+
+
+    <div class="row buttonsCol" *ngIf="intrestScreen === 'authorizeData'">
+      <div class="col-lg-6"></div>
+      <div class="col-lg-2 col-sm-4">
+        <button type="button" (click)="redirect()" class="btn btn-primary backButton">Back</button>
+      </div>
+      <div class="col-lg-2 col-sm-4">
+        <button *ngIf="intrestScreen === 'authorizeData'" (click)="AuthDialog()" type="submit" class="btn authBtn"
+          [disabled]="mode !== 'Authorise' "
+          style="width: 125px;background:#00A2FF; border-radius: 5px; color: white;">Authorise</button>
+      </div>
+      <div class="col-lg-2 col-sm-4">
+        <button *ngIf="intrestScreen === 'authorizeData'" (click)="RejectDialog()" type="submit" class="btn rejectBtn"
+          [disabled]="mode !== 'Authorise'"
+          style="width: 125px; background:red; border-radius: 5px; color: white;">Reject</button>
+      </div>
+
+      <!-- <div class="col-2">
+              <button *ngIf="intrestScreen === 'deleteData'" data-bs-toggle="modal" data-bs-target="#exampleModal4"
+                type="submit" class="btn btn-sm"
+                style="width: 125px; background:red; border-radius: 5px; color: white;">Delete</button>
+            </div> -->
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 footer">
+      <app-nrlm-footer></app-nrlm-footer>
+    </div>
+  </div>
+</div>
+
+
+<!-- Authorize comment Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-center">
+        <h1 class="modal-title text-center flex-grow-1 fs-5" id="exampleModalLabel">* Comment is mandatory for Reject
+        </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <textarea class="form-control" [(ngModel)]="remarks" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer" style="display: flex; justify-content: center;">
+        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModalToggle"
+          (click)="sendRateUpdate(false)">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Delete Comment modal -->
+<div class="modal fade" data-bs-backdrop="static" id="exampleModal4" aria-hidden="true"
+  aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-center" style="background:#E1F6E8 !important">
+        <h1 class="modal-title text-center flex-grow-1" id="exampleModalLabel">Warning !</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center p-5">
+        <h4> Are you sure want to delete ?</h4>
+      </div>
+      <!-- <div class="modal-footer justify-content-around m-3" >
+    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="deleteDocument()">Yes</button>
+    <button type="button" class="btn " data-bs-dismiss="modal" aria-label="Close">No</button>
+    <a class="btn btn-link btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModalToggle">No</a>
+    </div> -->
+      <div class="modal-footer justify-content-around m-3">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary" (click)="deleteRateData()">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Reject comment modal -->
+<div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3"
+  tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-center">
+        <h1 class="modal-title text-center flex-grow-1 fs-5" id="exampleModalLabel">* Comment is mandatory for Reject
+        </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <textarea class="form-control" [(ngModel)]="remarks" name="remarks" id="exampleFormControlTextarea1" rows="3"
+            required></textarea>
+        </div>
+      </div>
+      <div class="modal-footer" style="display: flex; justify-content: center;">
+        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModalToggle"
+          (click)="sendRateUpdate(true)" [disabled]="remarks.trim() === ''">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-warning-auth-dialog></app-warning-auth-dialog>
+<app-error-dialog></app-error-dialog>

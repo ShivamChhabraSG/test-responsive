@@ -1,0 +1,660 @@
+.app-dashboarscreen {
+    position: relative;
+    bottom: 71px;
+}
+
+.fileInput {
+    position: relative;
+    /* left: 146px; */
+    border: 1px solid grey;
+    border-radius: 6px;
+    height: 35px;
+    top: 22px;
+}
+.claimsViewUp{
+    margin-top: -24px;
+}
+
+.regionalInput {
+    position: relative;
+    right: 81px;
+    border: 1px solid grey;
+    border-radius: 6px;
+    height: 35px;
+    top: 19px;
+}
+
+.colF {
+    margin-top: 22px;
+}
+
+.colFF {
+    margin-top: 22px;
+    margin-left: 80px;
+}
+
+.yearCol {
+    margin-top: 19px;
+    margin-left: -29px
+}
+
+.yearCols {
+    margin-top: 19px;
+    margin-left: -10px
+}
+
+.unitLabel {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    padding-left: 21px;
+    margin-top: 7px;
+    color: black;
+}
+
+.dateInput {
+    width: 100px;
+    height: 36px
+}
+
+.container,
+.container-fluid,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl,
+.container-xxl {
+    background: white;
+    padding-left: 29px;
+}
+
+::ng-deep.mat-mdc-tab-labels {
+    width: 38%;
+
+}
+@media screen and (max-width:576px) {
+    ::ng-deep.ag-paging-panel {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        font-size: 10px !important;
+        width: 255px !important;
+    }
+}
+.modal-header {
+    background: #E1F6E8 !important;
+}
+
+.backButton {
+    width: 125px;
+    background-color: #00A2FF;
+    color: #fff;
+    margin-top: 5px;
+    margin-right: 9px;
+    /* margin-left: 50px; */
+}
+.backBtn {
+    display: flex;
+    justify-content: end;
+ }
+::ng-deep.gridStyleMainClView .ag-root-wrapper {
+    /* width: 1435px; */
+    margin-left: -6px;
+}
+
+.modal-footer a {
+    color: #00A2FF;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+::ng-deep.mat-mdc-tab .mdc-tab__text-label {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 17px;
+    color: #F2B585;
+}
+
+::ng-deep.mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label,
+.mat-mdc-tab-link:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label {
+    color: #EC8737;
+}
+
+.gridRow {
+    height: 650px;
+    background: rgba(255, 255, 255, 0.78);
+    opacity: 0.78;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    width: 99%;
+}
+
+:host ::ng-deep.mat-mdc-tab-body-content {
+    height: 100%;
+    overflow: unset;
+    width: 97%;
+    position: relative;
+    left: 19px;
+}
+
+.editImg {
+    margin-left: 19px;
+    cursor: pointer;
+}
+
+.gridStyle {
+      background: rgba(255, 255, 255, 0.78);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    height: 50px;
+    border-radius: 3px;
+    margin-left: 1px;
+    width: 98%;
+}
+
+/*-- Dropdown --*/
+.custom-wrapper {
+    max-width: 460px;
+    margin: 0 auto 50px;
+}
+
+::ng-deep.multiselect-dropdown {
+    border: 1px solid rgba(0, 0, 0, 0.33);
+    border-radius: 7px;
+    position: relative;
+    width: 69%;
+    font-size: inherit;
+    font-family: 'Roboto';
+}
+
+::ng-deep.multiselect-dropdown .dropdown-btn {
+    height: 36px;
+    width: 66%;
+}
+
+.entityLabel {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 34px;
+    color: #000000;
+}
+
+.searchIcon {
+    position: absolute;
+    top: 6px;
+    left: 7px;
+    color: grey;
+}
+
+.ag-header-cell-text {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    /* line-height: 30px; */
+    color: rgba(0, 0, 0, 0.78);
+}
+
+::ng-deep.ag-header-cell-text {
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    /* line-height: 30px; */
+    color: rgba(0, 0, 0, 0.78) !important;
+}
+
+::ng-deep.ag-header {
+    background-color: rgba(43, 190, 95, 0.1);
+    ;
+}
+
+::ng-deep.ag-paging-panel {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.ag-theme-alpine {
+    --ag-header-column-separator-display: block;
+    --ag-header-column-separator-height: 50%;
+    --ag-header-column-separator-width: 1px;
+    --ag-header-column-separator-color: darkgrey;
+
+
+
+}
+
+.ag-theme-alpine {
+    /* disable all borders */
+    --ag-borders: display;
+    /* then add back a border between rows */
+    --ag-row-border-style: line;
+    --ag-row-border-width: 2px;
+    --ag-row-border-color: rgb(150, 150, 200);
+    /* background: rgba(255, 255, 255, 0.78);
+    opacity: 0.78;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px; */
+
+
+}
+
+::ng-deep.ag-header-cell {
+
+    border-right: 1px solid ag-param(secondary-border-color);
+}
+
+::ng-deep.ag-ltr .ag-cell {
+    cursor: pointer;
+    font-size: 12px;
+}
+
+/*  */
+
+.dropdown-form {
+    position: relative;
+}
+
+.colStyle {
+    /* margin-top: 2px; */
+    text-align: center;
+    align-items: center;
+    /* cursor: pointer; */
+    /* margin-left: 24px; */
+}
+
+.colStyleIcon {
+    margin-top: 10px;
+    cursor: pointer;
+    margin-left: 138px;
+}
+
+.colStyleIconS {
+    margin-top: -42px;
+    cursor: pointer;
+    margin-left: 87%;
+}
+
+.colStylee {
+    margin-left: -67px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.colStyles {
+    margin-left: -14%;
+    margin-top: 10px;
+}
+
+.searchBarstyle {
+    cursor: pointer;
+    position: relative;
+    left: 215%;
+}
+
+.searchbarInput {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    width: 295px;
+    height: 35px;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 7px;
+    padding-left: 31px;
+}
+
+.colAdd {
+    position: relative;
+    margin-top: 10px;
+    /* margin-left: 102px; */
+    cursor: pointer;
+    left: 98px;
+}
+
+.gridUnit {
+    width: 1373px;
+    height: 350px;
+}
+
+.sidenavStyle {
+    padding-top: 2%;
+    padding-left: 6%;
+
+
+}
+
+/* ::ng-deep.wrapper{
+    z-index: 1;
+} */
+/* ::ng-deep.multiselect-dropdown  .dropdown-list
+   { display: none !important; }  */
+
+
+.ag-theme-alpine {
+    --ag-header-column-separator-display: block;
+    --ag-header-column-separator-height: 30%;
+    --ag-header-column-separator-width: 2px;
+    --ag-header-column-separator-color: rgba(0, 0, 0, 0.34);
+
+}
+
+.class {
+    position: absolute;
+    left: 60%;
+    bottom: 22%;
+}
+
+::ng-deep.pinningdrp .multiselect-dropdown {
+    position: relative;
+    width: 41%;
+    font-size: inherit;
+    font-family: 'Roboto';
+}
+
+.overlayDiv {
+    position: relative;
+    height: 126px;
+    width: 477px;
+    border: 1px solid;
+    background: white;
+    padding-right: 16px;
+}
+
+.overlayCol1 {
+    position: relative;
+    top: 26px;
+    left: 10px;
+}
+
+.overlayCol2 {
+    position: relative;
+    top: 26px;
+}
+
+.viewEn {
+    cursor: pointer;
+}
+
+::ng-deep .mat-mdc-tab-group {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    height: 4%;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.addImgIcon {
+    position: absolute;
+    right: 258px;
+}
+
+.submitRow {
+    position: relative;
+    /* bottom: 21px; */
+    top: 9px;
+}
+
+.SaveButton {
+    /* position: absolute; */
+    width: 125px;
+    /* height: 41px; */
+    /* left: 828px; */
+    background: #7BB31A;
+    border-radius: 5px;
+    right: 1px;
+}
+
+.colFilepIcker {
+    margin-top: 15px;
+    margin-left: 5px;
+}
+
+.mat-mdc-raised-button {
+    box-shadow: var(--mdc-protected-button-container-elevation, 0px 0px 0px -2px rgba(0, 0, 0, 0), 0px 0px 2px 0px rgba(0, 0, 0, 0), 0px 1px 5px 0px rgba(0, 0, 0, 0.0));
+}
+
+.mat-mdc-raised-button:hover {
+    box-shadow: var(--mdc-protected-button-container-elevation, 0px 0px 0px -2px rgba(0, 0, 0, 0), 0px 0px 2px 0px rgba(0, 0, 0, 0), 0px 1px 5px 0px rgba(0, 0, 0, 0.0));
+}
+
+.fileStyle {
+    position: relative;
+    bottom: 28px;
+    left: 147px;
+}
+
+.errState {
+    color: red;
+    position: fixed;
+}
+
+.errParentU {
+    color: red;
+    position: fixed;
+    margin-top: -4px;
+}
+
+.unitLabel {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    padding-left: 21px;
+    margin-top: 7px;
+    color: black;
+}
+
+.yearCol {
+    margin-top: 19px;
+    margin-left: -29px
+}
+
+.yearColl {
+    margin-top: 19px;
+    margin-left: -64px
+}
+
+.dateInput {
+    width: 97px;
+    height: 36px
+}
+
+.gridStyleMainClView {
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    height: 535px;
+    border-radius: 3px;
+    padding-left: 19px;
+    padding-top: 10px;
+    margin-top: 8px;
+    width: 98%;
+}
+
+
+::ng-deep.mat-mdc-tab-labels {
+    width: 38%;
+}
+
+::ng-deep.mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label,
+.mat-mdc-tab-link[_ngcontent-qpd-c71]:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label[_ngcontent-qpd-c71] {
+    font-size: 15px !important;
+    color: black;
+}
+
+::ng-deep.mat-mdc-tab .mdc-tab__text-label {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    color: black;
+}
+
+::ng-deep.mat-mdc-tab:not(.mat-mdc-tab-disabled) .mdc-tab-indicator__content--underline,
+.mat-mdc-tab-link:not(.mat-mdc-tab-disabled) .mdc-tab-indicator__content--underline {
+    border-color: black;
+   
+  
+}
+
+.bankCD {
+    border: 1px solid;
+    width: 120px;
+    height: 37px;
+    border-radius: 6px;
+    padding-left: 20px;
+    padding-top: 7px;
+    font-weight: bold;
+}
+.bankC {
+    border: 1px solid;
+    width: 100px;
+    height: 37px;
+    border-radius: 6px;
+    padding-left: 12px;
+    padding-top: 7px;
+    font-weight: bold;
+}
+.bankSN {
+    border: 1px solid;
+    width: 134px;
+    height: 37px;
+    border-radius: 6px;
+    padding-left: 12px;
+    padding-top: 7px;
+    font-weight: bold;
+}
+.bankSNN {
+    border: 1px solid;
+    width: 94px;
+    height: 37px;
+    border-radius: 6px;
+    padding-left: 12px;
+    padding-top: 7px;
+    font-weight: bold;
+}
+.bankDr {
+    border: 1px solid;
+    width: 131px;
+    height: 37px;
+    border-radius: 6px;
+    padding-left: 19px;
+    padding-top: 7px;
+    font-weight: bold;
+}
+
+.bLabel {
+    padding-left: 41px;
+}
+
+.bankCC {
+    width: 146px;
+    padding-left: 33px;
+    border: 1px solid;
+    border-radius: 6px;
+    padding-top: 7px;
+    height: 37px;
+    font-weight: bold;
+}
+.bankC {
+    width: 120px;
+    padding-left: 19px;
+    border: 1px solid;
+    border-radius: 6px;
+    padding-top: 7px;
+    height: 37px;
+    font-weight: bold;
+}
+.bankCS {
+    width: 130px;
+    padding-left: 19px;
+    border: 1px solid;
+    border-radius: 6px;
+    padding-top: 7px;
+    height: 37px;
+    font-weight: bold;
+}
+.bankCSHG {
+    width: 144px;
+    padding-left: 33px;
+    border: 1px solid;
+    border-radius: 6px;
+    padding-top: 7px;
+    height: 37px;
+    font-weight: bold;
+}
+
+.bankCN {
+    width: 153px;
+    padding-left: 19px;
+    border: 1px solid;
+    border-radius: 6px;
+    padding-top: 7px;
+    height: 37px;
+    font-weight: bold;
+}
+
+.bankN {
+    width: 136px;
+    padding-left: 19px;
+    border: 1px solid;
+    height: 37px;
+    border-radius: 6px;
+    padding-top: 7px;
+    font-weight: bold;
+}
+.bankCode {
+    width: 121px;
+    padding-left: 17px;
+    border: 1px solid;
+    border-radius: 6px;
+    padding-top: 7px;
+    height: 37px;
+    font-weight: bold;
+}
+.viewAcc{
+    margin-bottom: -35px;
+    margin-top: -23px;
+}
+
+.mat-expansion-indicator::after {
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    content: "";
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(45deg);
+    vertical-align: middle;
+    /* margin-left: -141%; */
+    margin-left: -237px;
+    left: 20px;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.claimsUpload{
+    height: 700px;
+}

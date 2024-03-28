@@ -1,0 +1,121 @@
+<div class="nrlmDataScreen">
+    <div class="claimsUp">
+    <hr>
+    <div class="container-fluid gridRow">
+        <div class="row">
+            <!-- First Row -->
+            <div class="row mt-2 align-items-center d-flex gridStyle"
+            style="background-color: rgba(43, 190, 95, 0.1);">
+                <!-- Select Bank -->
+                <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
+                    <div class="col-lg-3 col-md-3 col-sm-3">
+                        <label class="unitLabel">Bank</label>
+                    </div>
+                    <div class="col-lg-9 col-md-9 col-sm-9 resposiveWidth">
+                        <ng-select [clearable]="false"  [(ngModel)]="bankCode"  class="levelDropdown" id="Bank" name="unitName" [items]=unitsData
+                                   placeholder="Select Bank" bindLabel="bank" bindValue="unit" (change)="getbankCode($event)"
+                                   required [attr.title]="isDropdownOpen ? null : showSelectedBank" (open)="isDropdownOpen = true"
+                                   (close)="isDropdownOpen = false">
+                                   <ng-template ng-option-tmp let-item="item">
+                                    <span class="ng-option-label" [attr.title]="item.bank">{{ item.bank }}</span>
+                                </ng-template>
+                        </ng-select>
+                    </div>
+                </div>
+    
+                <!-- FY Start -->
+                <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
+                    <div class="col-lg-4 col-md-3 col-sm-4">
+                        <label class="unitLabel">FY Start</label>
+                    </div>
+                    <div class="col-lg-8 col-md-9 col-sm-9 resposiveWidth">
+                        <ng-select [clearable]="false" [(ngModel)]="selectedStartYear" (ngModelChange)="updateEndYears()" id="startYear">
+                            <ng-option *ngFor="let year of startYears" [value]="year">{{ year }}</ng-option>
+                          </ng-select>
+                    </div>
+                </div>
+    
+                <!-- FY End -->
+                <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
+                    <div class="col-lg-3 col-md-3 col-sm-3">
+                        <label class="unitLabel">FY End </label>
+                    </div>
+                    <div class="col-lg-9 col-md-9 col-sm-9 resposiveWidth">
+                        <ng-select [clearable]="false" placeholder="select year" [(ngModel)]="selectedEndYear" (ngModelChange)="EndYears()"  id="endYear">
+                            <ng-option *ngFor="let year of endYears" [value]="year">{{ year }}</ng-option>
+                        </ng-select>
+                    </div>
+                </div>
+    
+                <!-- Submit Button -->
+                 <div class="col-lg-3 col-md-6 col-sm-6 d-flex text-center">
+                    <button class="btn btn-success btn-sm btnNRLM" (click)="getClaimsUploadbyYear()">Submit</button>
+                </div>
+            </div>
+        </div>
+            <!-- Second Row -->
+            <div class="row">
+                <div class="row mt-2 align-items-center secondGrid">
+                    <div class="row">
+                        <div class="col-lg-1 col-sm-2 col-xs-1 colIcons">
+                            <img (click)="generatePDF(gridOptions)" src="../../assets/image/pdf icon.svg" title="Download PDF">
+                        </div>
+                        <div class="col-lg-1 col-sm-2 col-xs-1 colIcons">
+                            <img (click)="onBtnExport()" src="../../assets/image/excel icon.svg" title="Download Excel">
+                        </div>
+                        <div class="col-lg-2 col-md-3 col-sm-6 multiSelect">
+                            <form [formGroup]="myForms">
+                            <ng-multiselect-dropdown formControlName="name"
+                                [settings]="dropdownSettings" [data]="toppingList" (onSelect)="ColumnSelect($event)"
+                                (onDeSelect)="ColumnDeSelect($event)" (onDeSelectAll)="ColumnDeSelectOrAll($event)"
+                                (onSelectAll)="ColumnSelectOrAll($event)">
+                            </ng-multiselect-dropdown>
+                            </form>
+                        </div>
+                        <div class="col-lg-3 col-md-5 col-sm-8 text-center align-items-center d-flex">
+                            <label class="entityLabel ">Claims Upload Data</label>
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-sm-4 align-items-center d-flex">
+                            <div class="d-flex searchBarstyle">
+                                <mat-icon class="searchIcon">search</mat-icon>
+                                <input class="searchbarInput" type="text" name=""
+                                    (keyup)="onFilterTextBoxChanged(gridOptions,$event)" placeholder="Search">
+                            </div>
+                        </div>
+                     <div class="col-lg-3 col-md-8 col-sm-8 align-items-center d-flex UploadCol">
+                                <div>
+                                  <span (click)="UploadEntity()" [ngClass]="showhided ? 'uploadView':'uploadView1' "> Upload View</span>
+                              </div>
+                                  <div>
+                                      <img src="../../assets/image/view.svg" *ngIf="viewPermission && showhided" (click)="viewEnity()" title="Record View" style="left: 5px;position: relative;">
+                                      <img *ngIf="fileView && showhided" src="../../assets/image/download.png"  (click)="downloadRecord()" title="Download" style="left: 7px;position: relative;">
+                                  </div>
+                              </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Third Row -->
+            <div class="row">
+                <div class="gridStyleMain">
+                    <div class="col-12">
+                        <ag-grid-angular class="ag-theme-alpine gridUnit" [rowData]="sghCodes"
+                        style="font-size: 12px; height: 455px; position: relative; right: 4px;"
+                            (gridReady)="onGridReady($event)" (cellClicked)="onCellClicked($event)"
+                            (gridReady)="onGridReady($event)" [defaultColDef]="defaultColDef" [columnDefs]="columnDefs"
+                            [pagination]="true" [paginationAutoPageSize]="false" [paginationPageSize]="pageSize">
+                        </ag-grid-angular>
+                    </div>
+                </div>
+            </div>
+        
+    </div>
+    </div>
+</div>
+    <div class="row">
+        <div class="col-12 footer">
+            <app-nrlm-footer></app-nrlm-footer>
+        </div>
+    </div>
+
+<app-error-dialog></app-error-dialog>

@@ -1,0 +1,192 @@
+<!-- <p>entity-upload works!</p> -->
+<!-- <p>entity-screen works!</p> -->
+<div class="entityUpload" [ngClass]="authorizePermission ? 'checkerscrn':'makerscrn'">
+    <!-- <div class="row">
+    <div class="col-2" style="padding-left: 6%;">
+        <app-sidenav-bar></app-sidenav-bar>
+        <app-dashboard-header class="app-dashboarscreen"></app-dashboard-header>
+
+    </div>
+</div> -->
+    <div class="entityU">
+        <hr>
+        <div class="container-fluid">
+            <div class="row gridRow" [ngClass]="authorizePermission ? 'authYes':'authNo'">
+                <!-- <br> -->
+                <div class="row levelRow" *ngIf="!authorizePermission && EditFunctionality === 'EditTrue'">
+                    <div class="col-lg-3 col-sm-6">
+                        <label class="unitcodeLabel">Level*</label>
+                        <!-- <ng-select [items]="levelsData" [clearable]="false" class="levelDropdown"
+                    (change)=changeLevel($event) id="levelSt" name="levelSt" placeholder="Select Level" 
+                    bindLabel="levelName" bindValue="level" [(ngModel)]="Level" required #levelSt="ngModel">
+                </ng-select> -->
+                        <ng-select disabled="true" [(ngModel)]="Level" [clearable]="false" class="levelDropdown"
+                            placeholder="Select Level" required #levelSt="ngModel">
+                            <ng-option selected [value]="4">{{'Branches'}}</ng-option>
+                        </ng-select>
+                        <p *ngIf="levelSt.invalid && (levelSt.dirty || levelSt.touched)" class="alert">
+                            <span class="errState" *ngIf="levelSt.errors?.['required']">
+                                *Level is required
+                            </span>
+                        </p>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <label class="unitcodeLabel">Parent Unit *</label>
+                        <ng-select [clearable]="false" (change)="getParentLevel($event)" class="levelDropdown" id="parentu" name="parentu"
+                            placeholder="Select Parent Unit" [items]="combinedArray" bindLabel="unit" bindValue="unitCode"
+                            [(ngModel)]="parentUnit" required #parentu="ngModel" [attr.title]="isDropdownOpen ? null : showSelectedBank" (open)="isDropdownOpen = true"
+                            (close)="isDropdownOpen = false">
+                            <ng-template ng-option-tmp let-item="item">
+                                <span class="ng-option-label" [attr.title]="item.unit">{{ item.unit }}</span>
+                            </ng-template>
+                        </ng-select>
+                        <p *ngIf="parentu.invalid && (parentu.dirty || parentu.touched)" class="alert">
+                            <span class="errParentU" *ngIf="parentu.errors?.['required']">
+                                *Parent Unit is required
+                            </span>
+                        </p>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 colFilepIcker">
+                        <label class="unitcodeLabell">Select File : </label>
+                        <input accept="'.csv'" type="file" name="inputFile" style="display: none" #fileInput
+                            (change)="changeListener(fileInput)" />
+                        <button mat-raised-button class="file-select-button" (click)="fileInput.click()">
+                            <img src="../../assets/image/attach icon.svg">
+                        </button>
+                        <p class="file-name fileStyle" *ngIf="selectedFile">{{ selectedFile.name }}</p>
+                        <p style="color: red; margin-top: -10%;" *ngIf="!checkCSV" class="alert">
+                            <span class="errParentU">Please upload file in .csv format. </span>
+                        </p>
+
+                    </div>
+                    <div class="col-lg-3 col-sm-6 colStyleIconS">
+                        <button [disabled]="!parentUnit||!Level || !selectedFile" (click)="uploadFile()"
+                            class="btn btn-primary SaveButton">Submit</button>
+                    </div>
+                </div>
+                    <div class="row mt-2 ms-3  gridStyle secondDiv">
+                        <div class="col-lg-1 col-md-1 col-sm-1 pdfIcon colStyle ">
+                            <img (click)="generatePDF(gridOptions)" src="../../assets/image/pdf icon.svg"
+                                title="Download PDF">
+                        </div>
+                        <div class="col-lg-1 col-md-1 col-sm-1 colStylee">
+                            <img (click)="downloadExcel()" src="../../assets/image/excel icon.svg"
+                                title="Download Excel">
+                        </div>
+                        <div class="col-lg-3 col-md-5 col-sm-5 colStyle">
+                            <label class="entityLabel">Branches Upload</label>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-4">
+                            <div class="d-flex searchBarstyle">
+                                <mat-icon class="searchIcon">search</mat-icon>
+                                <input class="searchbarInput" type="text" name=""
+                                    (keyup)="onFilterTextBoxChanged(gridOptions,$event)" placeholder="Search ">
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-sm-4 colStyleIcon" *ngIf="!authorizePermission">
+                            <img *ngIf="showhided && viewPermission && !authorizePermission"
+                                src="../../assets/image/view.svg" (click)="forVIewDownloadData()" class="viewEn"
+                                title="View Entity">
+                            <img *ngIf=" uploadStatus !== 'A' && uploadStatus !== 'S' && showhided && EditFunctionality === 'EditTrue'"
+                                src="../../assets/image/Delete-button.svg" (click)="DeleteEntity()" class="editImg">
+                            <img *ngIf="showhided" src="../../assets/image/download.png" class="editImg"
+                                (click)="onBtnExport()">
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-sm-6 colStyleIcon">
+                            <img *ngIf="showhided && viewPermission && authorizePermission"
+                                src="../../assets/image/view.svg" (click)="forVIewDownloadData()" class="viewEn"
+                                title="View Entity">
+                            <img src="../../assets/image/Authorize-button.svg" title="Authorize Entity"
+                                *ngIf="authorizePermission && showhided && checker !== maker && uploadStatus === 'S'"
+                                data-bs-toggle="modal" data-bs-target="#exampleModal" class="editImg"
+                                [ngClass]="{ 'disabled': checker === maker }"
+                                [attr.disabled]="checker === maker ? true : null">
+                            <img src="../../assets/image/download.png" class="editImg" (click)="onBtnExport()"
+                                *ngIf="authorizePermission && showhided" title="Download Entity">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row gridEntity ms-3 mt-2">
+                        <!-- <div class="col-12"> -->
+                            <ag-grid-angular class="gridUnit ag-theme-alpine"
+                                 [rowData]="uploadFileData" (gridReady)="onGridReady($event)"
+                                (cellClicked)="onCellClicked($event)" (gridReady)="onGridReady($event)"
+                                [defaultColDef]="defaultColDef" [columnDefs]="columnDefs" [pagination]="true"
+                                [paginationPageSize]="pageSize" [paginationAutoPageSize]="false"
+                                [cacheBlockSize]="pageSize" [paginationNumberFormatter]="customNumberFormatter"
+                                [groupSelectsChildren]="true">>
+                            </ag-grid-angular>
+                        <!-- </div> -->
+                    </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-lg-10 col-sm-8">
+                    
+                </div>
+                <div class="col-lg-2 mt-2 col-sm-4">
+                    <button class="btn back-btn" routerLink="/entity-screen">Back</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 footer">
+                <app-nrlm-footer></app-nrlm-footer>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header d-flex justify-content-center" style="background: red !important; height: 45px;">
+                <h1 class="modal-title text-center flex-grow-1 mt-3" id="exampleModalLabel">Action Required</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h4>* Remarks is mandatory for Reject</h4>
+                <div class="mb-3">
+                    <textarea [maxlength]="200" class="form-control" [(ngModel)]="remarks"
+                        id="exampleFormControlTextarea1" rows="3" required style="height: 75px;"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-around">
+                <button style="background: #FF5B5B; color: white;width: 110px;" type="button" class="btn" data-bs-toggle="modal"
+                    data-bs-target="#exampleModalToggle3" data-bs-dismiss="modal"
+                    [disabled]="remarks.trim() === ''" (click)="Reject()">Reject</button>
+                <button style="background: #00A2FF;color: white;width: 110px;" type="button" class="btn" data-bs-toggle="modal"
+                    data-bs-target="#exampleModalToggle2" (click)="Authorize()">Authorise</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Reject comment modal -->
+<div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3"
+    tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header d-flex justify-content-center" style="background: red !important; height: 45px;">
+                <h1 class="modal-title text-center flex-grow-1 mt-3" id="exampleModalLabel">Warning !</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center p-5">
+                <h4>Are you sure you want to Reject?</h4>
+            </div>
+            <div class="modal-footer justify-content-around m-3">
+                <a class="btn" data-bs-toggle="modal" data-bs-target="#exampleModalToggle" (click)="reject()"
+                    style="background: red; color: white; width : 50px !important">Yes</a>
+                <a class="btn" data-bs-toggle="modal" data-bs-target="#exampleModalToggle"
+                    style="background: #ccc;color: white; width : 50px !important">No</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-upload-status-dialog></app-upload-status-dialog>
+<app-warning-auth-dialog></app-warning-auth-dialog>
+<app-warning-dialog></app-warning-dialog>
+<app-error-dialog></app-error-dialog>

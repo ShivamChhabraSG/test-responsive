@@ -1,0 +1,123 @@
+/* You can add global styles to this file, and also import other style files */
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+@import "~@ng-select/ng-select/themes/default.theme.css";
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~ag-grid-community/styles/ag-grid.css';
+@import '~ag-grid-community/styles/ag-theme-alpine.css';
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  overflow-x: hidden;
+}
+
+/* ::ng-deep.mat-mdc-dialog-container .mdc-dialog__surface {
+  display: block;
+  width: 91%;
+  height: 84%;
+  padding: 24px;
+  position: relative;
+  bottom: 155%;
+  left: 66%;
+} */
+::ng-deep.app-dashboarscreen[_ngcontent-rrw-c105] {
+  position: relative;
+  bottom: 81px !important;
+}
+
+
+.mat-dialog-container {
+  background: linear-gradient(90deg, #CED4DA 0%, #F8F9FA 100%);
+  border: 0.5px solid #000000;
+  border-radius: 15px !important;
+}
+
+.AddUsersSuccessPop {
+  position: absolute !important;
+  pointer-events: auto;
+  box-sizing: border-box;
+  z-index: 1000;
+  display: flex;
+  max-width: 100%;
+  max-height: 100%;
+ top: 69px;
+  left: 77%;
+
+}
+
+
+.backdropBackground {
+  filter: blur(20px);
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 1 !important;
+  width: 1819px;
+  height: 711px;
+  position: relative;
+  bottom: 827px;
+}
+.ratebackdropBackground {
+  filter: blur(20px);
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 1 !important;
+  bottom: 827px;
+  display: block;
+  width: 548px;
+  height: 216px !important;
+  padding: 7px;
+  position: relative;
+  bottom: 155%;
+  left: -652px;
+  overflow-y: hidden;
+}
+.backdropBackgrounds {
+  filter: blur(20px);
+  background: rgba(0, 0, 0, 0.3);
+  opacity: -1 !important;
+  width: 1819px;
+  height: 711px;
+  position: relative;
+  bottom: 827px;
+}
+.cdk-overlay-container{
+  height: 0px;
+}
+::ng-deep.mat-mdc-tab-body-content {
+  height: 100%;
+  overflow: unset;
+  width: 97%;
+  position: relative;
+  left: 19px;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Roboto'; }
+
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(179, 177, 177);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(136, 136, 136);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(100, 100, 100);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: rgb(68, 68, 68);
+  border-radius: 10px;
+}

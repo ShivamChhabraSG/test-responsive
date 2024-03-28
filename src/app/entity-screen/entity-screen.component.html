@@ -1,0 +1,328 @@
+<div class="entityScreen">
+    <div class="entityL">
+        <hr>
+        <div class="container-fluid gridRow">
+            <div class="row">
+                    <div class="row mt-2 d-flex  align-items-center gridStyle"
+                        style="background-color: rgba(43, 190, 95, 0.1);" *ngIf="roleCode== 1">
+                        <!-- HO -->
+
+                        <div class=" col-lg-3 col-md-6 col-sm-6 d-flex">
+                            <div class="col-lg-4 col-md-3 col-sm-4">
+                                <label class="unitLabel"><strong>Head Office</strong></label>
+                            </div>
+                            <div class="col-lg-8 col-md-9 col-sm-8 drpdown phoviewHo">
+                                <ng-select [clearable]="false" [(ngModel)]="bankHOCode" id="Bank"
+                                    name="unitName" placeholder="Select Bank" (ngModelChange)="getHOStatus($event)"
+                                    required>
+                                    <ng-option [value]="bankHOCode" *ngFor="let item of hoData">{{ bankHOCode }}</ng-option>
+                                </ng-select>
+                            </div>
+                        </div>
+    
+                        <!-- RO -->
+
+                        <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
+                            <div class="col-lg-5 col-md-3 col-sm-4">
+                                <label class="unitLabel"><strong>Regional Office</strong></label>
+                            </div>
+                            <div class="col-lg-7 col-md-9 col-sm-8 drpdown phoviewRo">
+                                <ng-select [clearable]="false" placeholder="select RO" [(ngModel)]="bankROCode"
+                                    (ngModelChange)="getROStatus($event)" id="startYear" [attr.title]="isRegionOpen ? null : showSelectedRegion" (open)="isRegionOpen = true"
+                                    (close)="isRegionOpen = false">
+                                    <ng-option *ngFor="let RO of roData" [value]="RO">{{ RO }}</ng-option>
+                                    <ng-template ng-option-tmp let-item="item">
+                                        <span class="ng-option-label" [attr.title]="item">{{ item }}</span>
+                                    </ng-template>
+                                </ng-select>
+                            </div>
+                        </div>
+
+                        <!-- Bank -->
+    
+                        <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
+                            <div class="col-lg-4 col-md-3 col-sm-4">
+                                <label class="unitLabel"><strong>Banks</strong></label>
+                            </div>
+                            <div class="col-lg-8 col-md-9 col-sm-8 drpdown phoviewB">
+                                <ng-select [clearable]="false" placeholder="select bank" [(ngModel)]="bankCode"
+                                    (ngModelChange)="getBankStatus($event)" id="endYear" [attr.title]="isBankOpen ? null : showSelectedBank" (open)="isBankOpen = true"
+                                    (close)="isBankOpen = false">
+                                    <ng-option *ngFor="let bank of bankData" [value]="bank">{{ bank }}</ng-option>
+                                    <ng-template ng-option-tmp let-item="item">
+                                        <span class="ng-option-label" [attr.title]="item">{{ item }}</span>
+                                    </ng-template>
+                                </ng-select>
+                            </div>
+                        </div>
+
+                        <!--Branches-->
+    
+                        <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
+                            <div class="col-lg-4 col-md-3 col-sm-4">
+                                <label class="unitLabel"><strong>Branches</strong></label>
+                            </div>
+                            <div class="col-lg-8 col-md-9 col-sm-8 drpdown phoviewBr">
+                                <ng-select [clearable]="false" placeholder="select branch" [(ngModel)]="branchCode"
+                                    (ngModelChange)="getBranchStatus($event)" id="endYear" [attr.title]="isBranchOpen ? null : showSelectedBranch" (open)="isBranchOpen = true"
+                                    (close)="isBranchOpen = false">
+                                    <ng-container *ngIf="isBranchReady; else loading"></ng-container>
+                                    <ng-option *ngFor="let branches of branchData" [value]="branches">{{ branches
+                                        }}</ng-option>
+                                        <ng-template *ngIf="isBranchReady" ng-option-tmp let-item="item">
+                                            <span class="ng-option-label" [attr.title]="item">{{ item }}</span>
+                                        </ng-template>
+                                    <ng-template #loading>
+                                        <ng-option>Loading..(All)</ng-option>
+                                    </ng-template>
+                                </ng-select>
+                            </div>
+                        </div>
+                    </div>
+    
+                <!-- Level 2 -->
+                <div class="row">
+                    <div class="row ms-3 mt-2 align-items-center gridStyle"
+                        style="background-color: rgba(43, 190, 95, 0.1); right: 10px; position: relative; width: 99%;"
+                        *ngIf="roleCode== 2">
+                        <!-- ... your level 2 code ... -->
+                        <!-- RO -->
+
+                        <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
+                            <div class="col-lg-5 col-md-3 col-sm-4">
+                                <label class="unitLabel"><strong>Regional Office</strong></label>
+                            </div>
+                            <div class="col-lg-7 col-md-9 col-sm-8 drpdown">
+                                <ng-select [clearable]="false" placeholder="select RO" [(ngModel)]="bankROCode"
+                                    (ngModelChange)="getROStatus($event)" id="startYear" [attr.title]="isRegionOpen ? null : showSelectedRegion" (open)="isRegionOpen = true"
+                                    (close)="isRegionOpen = false">
+                                    <ng-option *ngFor="let RO of roData" [value]="RO">{{ RO }}</ng-option>
+                                    <ng-template ng-option-tmp let-item="item">
+                                        <span class="ng-option-label" [attr.title]="item">{{ item }}</span>
+                                    </ng-template>
+                                </ng-select>
+                            </div>
+                        </div>
+
+                        <!-- Bank -->
+    
+                        <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
+                            <div class="col-lg-4 col-md-3 col-sm-4">
+                                <label class="unitLabel"><strong>Banks</strong></label>
+                            </div>
+                            <div class="col-lg-8 col-md-9 col-sm-8 drpdown">
+                                <ng-select [clearable]="false" placeholder="select bank" [(ngModel)]="bankCode"
+                                    (ngModelChange)="getBankStatus($event)" id="endYear" [attr.title]="isBankOpen ? null : showSelectedBank" (open)="isBankOpen = true"
+                                    (close)="isBankOpen = false">
+                                    <ng-option *ngFor="let bank of bankData" [value]="bank">{{ bank }}</ng-option>
+                                    <ng-template ng-option-tmp let-item="item">
+                                        <span class="ng-option-label" [attr.title]="item">{{ item }}</span>
+                                    </ng-template>
+                                </ng-select>
+                            </div>
+                        </div>
+
+                        <!--Branches-->
+    
+                        <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
+                            <div class="col-lg-4 col-md-3 col-sm-4">
+                                <label class="unitLabel"><strong>Branches</strong></label>
+                            </div>
+                            <div class="col-lg-8 col-md-9 col-sm-8 drpdown">
+                                <ng-select [clearable]="false" placeholder="select branch" [(ngModel)]="branchCode"
+                                    (ngModelChange)="getBranchStatus($event)" id="endYear" [attr.title]="isBranchOpen ? null : showSelectedBranch" (open)="isBranchOpen = true"
+                                    (close)="isBranchOpen = false">
+                                    <ng-container *ngIf="isBranchReady; else loading"></ng-container>
+                                    <ng-option *ngFor="let branches of branchData" [value]="branches">{{ branches
+                                        }}</ng-option>
+                                    <ng-template #loading>
+                                        <ng-option>Loading..(All)</ng-option>
+                                    </ng-template>
+                                    <ng-template ng-option-tmp let-item="item" *ngIf="isBranchReady">
+                                        <span class="ng-option-label" [attr.title]="item">{{ item }}</span>
+                                    </ng-template>
+                                </ng-select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Level 3 -->
+                <div class="row">
+                    <div class="row ms-2 mt-2 align-items-center gridStyle"
+                        style="background-color: rgba(43, 190, 95, 0.1);" *ngIf="roleCode== 3">
+                        <!-- ... your level 3 code ... -->
+                        <!-- Bank -->
+    
+                        <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
+                            <div class="col-lg-4 col-md-3 col-sm-4">
+                                <label class="unitLabel"><strong>Banks</strong></label>
+                            </div>
+                            <div class="col-lg-8 col-md-9 col-sm-8 drpdown">
+                                <ng-select [clearable]="false" placeholder="select bank" [(ngModel)]="bankCode"
+                                    (ngModelChange)="getBankStatus($event)" id="endYear" [attr.title]="isBankOpen ? null : showSelectedBank" (open)="isBankOpen = true"
+                                    (close)="isBankOpen = false">
+                                    <ng-option *ngFor="let bank of bankData" [value]="bank">{{ bank }}</ng-option>
+                                    <ng-template ng-option-tmp let-item="item">
+                                        <span class="ng-option-label" [attr.title]="item">{{ item }}</span>
+                                    </ng-template>
+                                </ng-select>
+                            </div>
+                        </div>
+
+                        <!--Branches-->
+    
+                        <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
+                            <div class="col-lg-4 col-md-3 col-sm-4">
+                                <label class="unitLabel"><strong>Branches</strong></label>
+                            </div>
+                            <div class="col-lg-8 col-md-9 col-sm-8 drpdown">
+                                <ng-select [clearable]="false" placeholder="select branch" [(ngModel)]="branchCode"
+                                    (ngModelChange)="getBranchStatus($event)" id="endYear" [attr.title]="isBranchOpen ? null : showSelectedBranch" (open)="isBranchOpen = true"
+                                    (close)="isBranchOpen = false">
+                                    <ng-container *ngIf="isBranchReady; else loading"></ng-container>
+                                    <ng-option *ngFor="let branches of branchData" [value]="branches">{{ branches
+                                        }}</ng-option>
+                                    <ng-template #loading>
+                                        <ng-option>Loading..(All)</ng-option>
+                                    </ng-template>
+                                    <ng-template ng-option-tmp let-item="item" *ngIf="isBranchReady">
+                                        <span class="ng-option-label" [attr.title]="item">{{ item }}</span>
+                                    </ng-template>
+                                </ng-select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<div class="row">
+                <!-- New code added till here -->
+                <div class="mt-2 align-items-center secondGrid">
+                    <div class="row">
+                        <div class="col-lg-1 col-sm-1 col-xs-1 colStyle ">
+                            <img (click)="generatePDF(gridOptions)" src="../../assets/image/pdf icon.svg"
+                                title="Download PDF">
+                        </div>
+                        <div class="col-lg-1 col-sm-1 col-xs-1 colStyle excelBtn">
+                            <img (click)="downloadExcel()" src="../../assets/image/excel icon.svg"
+                                title="Download Excel">
+                        </div>
+                        <div class="col-lg-3 col-sm-3 col-xs-8 colStyles">
+                            <form [formGroup]="myForms">
+                                <!-- Use different methods -->
+                                <ng-multiselect-dropdown class="gridHDrop" formControlName="name"
+                                    title="Select Columns" [settings]="dropdownSettings" [data]="toppingList"
+                                    (onSelect)="ColumnSelect($event)" (onDeSelect)="ColumnDeSelect($event)"
+                                    (onDeSelectAll)="ColumnDeSelectOrAll($event)"
+                                    (onSelectAll)="ColumnSelectOrAll($event)">
+                                </ng-multiselect-dropdown>
+                            </form>
+                        </div>
+                        <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2 colStyle">
+                            <label class="entityLabel">Entity</label>
+                        </div>
+    
+                        <div class="col-lg-2 col-sm-2 col-xs-3 colStyle" [ngClass]="uploadPermission ? 'search1' : 'search2'">
+                            <div class="d-flex searchBarstyle">
+                                <mat-icon class="searchIcon">search</mat-icon>
+                                <input class="searchbarInput" type="text" name=""
+                                    (keyup)="onFilterTextBoxChanged(gridOptions,$event)" placeholder="Search ">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6 col-xs-6 colStyleIcon">
+                            <div class="row">
+                                <div class="col-2 uploadImg uploadIcon" *ngIf="uploadPermission">
+                                    <span class="uploadIconSpan" title="Upload Entity" (click)="UploadEntity()"> Upload
+                                        View</span>
+                                </div>
+                                <div class="col-1" *ngIf="viewPermission && showhided">
+                                    <img src="../../assets/image/view.svg" (click)="viewEnity()" class="viewEn"
+                                        title="View Entity" [ngClass]="uploadPermission ? 'viewEn': 'viewEn1'">
+    
+                                </div>
+                                <div class="col-1" *ngIf="AddPermission">
+                                    <img src="../../assets/image/add new icon.svg" title="Add Entity"
+                                        class="addImgIcon" (click)="addEntity()"
+                                        >
+                                </div>
+                                <div class="col-1"
+                                    *ngIf="showEditImage && EditPermission && showhided && loginUserId !== makerId && (StatusName ==='R' || StatusName ==='A'|| StatusName ==='U' || StatusName ==='M')">
+                                    <img src="../../assets/image/edit.svg" (click)="EditEntityDialog()"
+                                        title="Edit Entity" [ngClass]="uploadPermission ? 'editImg1': 'editImg2'">
+    
+                                </div>
+                                <div class="col-1"
+                                    *ngIf="EditPermission && showhided && loginUserId === makerId && (StatusName ==='R' || StatusName ==='A'|| StatusName ==='U' || StatusName ==='M')">
+                                    <img src="../../assets/image/edit.svg" (click)="EditEntity()"
+                                        title="Edit Entity" [ngClass]="uploadPermission ? 'editImg3': 'editImg4'">
+                                </div>
+                                <div class="col-1"
+                                    *ngIf="authorizePermission && showhided && StatusName !=='R' && loginUserId !== makerId && entityStatus !== 'R' && entityStatus !== 'A'">
+                                    <img src="../../assets/image/Authorize-button.svg" (click)="AuthorizeEntity()"
+                                        title="Authorize Entity"
+                                        [ngClass]="uploadPermission ? 'authImg' : 'authImg1'">
+    
+                                </div>
+                                <div class="col-1" *ngIf="EditPermission && showhided && entityStatus === 'R'">
+                                    <img src="../../assets/image/Delete-button.svg" (click)="DeleteEntity()"
+                                        title="Delete Entity"
+                                        [ngClass]="uploadPermission ? 'deleteImg': 'deleteImg1'">
+    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <br> -->
+
+                </div>
+</div>
+<div class="row">
+    <div class="gridStyleMain">
+            <!-- <div class="col-12"> -->
+                <ag-grid-angular class="ag-theme-alpine gridUnit" [rowData]="selectedLevelData" (gridReady)="onGridReady($event)"
+                    (cellClicked)="onCellClicked($event)" [defaultColDef]="defaultColDef"
+                    [columnDefs]="columnDefs" [pagination]="true" [paginationAutoPageSize]="false"
+                    [paginationPageSize]="pageSize" [cacheBlockSize]="pageSize"
+                    [paginationNumberFormatter]="customNumberFormatter" [groupSelectsChildren]="true"
+                    [suppressExcelExport]="true">
+                </ag-grid-angular>
+            <!-- </div> -->
+    </div>
+</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 footer">
+            <app-nrlm-footer></app-nrlm-footer>
+        </div>
+    </div>
+
+    <!-- Not Maker Edit modal -->
+    <div class="modal fade" data-bs-backdrop="static" id="exampleModalToggle2" aria-hidden="true"
+        aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+        <!-- ... your modal code ... -->
+    </div>
+</div>
+<app-warning-log-dialog></app-warning-log-dialog>
+<app-error-dialog></app-error-dialog>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

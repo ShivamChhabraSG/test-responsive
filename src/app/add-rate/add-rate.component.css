@@ -1,0 +1,483 @@
+.app-dashboarscreen {
+    position: relative;
+    bottom: 70px;
+}
+
+.containerStyle {
+    border: 1px solid #E6E6E6;
+    border-radius: 10px;
+    /* height: 598px; */
+    margin-left: 16px;
+    width: 98%;
+}
+.form-select:disabled {
+    background-color: #fff;
+    height: 3rem;
+}
+.form-select {
+    height: 3rem;
+}
+::ng-deep.ng-select.ng-select-disabled>.ng-select-container {
+    background-color: #fff;
+}
+.addRateS{
+    margin-top: 10px;
+    height: 75vh;
+}
+.backButton {
+    width: 125px;
+    background: #00A2FF;
+    border-radius: 5px;
+}
+.backViewButton {
+    /* position: absolute; */
+    width: 160px;
+    height: 50px;
+    margin-left: 3rem;
+    background: #00A2FF;
+    border-radius: 5px;
+}
+.SaveButton {
+    width: 125px;
+    background: #7BB31A;
+    border-radius: 5px;
+}
+.resetButton {
+    width: 125px;
+    background: #00A2FF;
+    border-radius: 5px;
+}
+
+.entityLabel {
+    margin-top: 6px;
+    padding: 10px;
+    background: #E1F6E8;
+    text-align: center;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 26px;
+    color: #000000;
+}
+
+.modal-header {
+    background: #E1F6E8 !important;
+}
+
+/* .btn {
+    width: 125px !important
+} */
+
+.mdc-tab__text-label{
+    color: #EC8737 !important;
+}
+
+.horLine {
+    color: #EC8737;
+}
+
+::ng-deep.addUsertab .mat-mdc-tab-body-wrapper {
+    height: 555px;
+    overflow-x: hidden;
+}
+
+::ng-deep.addUsertab .mat-mdc-tab-labels {
+    display: none;
+    flex: 1 0 auto;
+    width: 12%;
+}
+
+:host ::ng-deep.addEntitytab .mat-mdc-tab-body-content {
+    height: 100%;
+    overflow: hidden;
+    width: 97%;
+    position: relative;
+    left: 19px;
+}
+
+::ng-deep.addEntitytab .mat-mdc-tab-labels {
+    display: flex;
+    flex: 1 0 auto;
+    width: 12%;
+}
+
+.form-select:disabled {
+    background-color: #fff;
+    height: 36px;
+    font-size: 12px !important;
+    font-family: 'Roboto';
+}
+.form-select {
+    height: 36px;
+    font-size: 12px !important;
+    font-family: 'Roboto';
+}
+
+
+
+.unitcodeLabel {
+    line-height: 42px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    color: #464A53;
+}
+
+.stateLabel {
+    line-height: 85px;
+}
+
+/* .levelDropdown .ng-select {
+    height: 36px;
+    position: relative;
+    right: 72px;
+    width: 274px;
+} */
+::ng-deep.levelDropdown .ng-select.ng-select-single .ng-select-container {
+    /* height: 30px !important; */
+    position: relative !important;
+    right: 22px !important;
+    width: 274px !important;
+    line-height: 1.5;
+}
+
+:host ::ng-deep.ng-select .ng-select-container {
+    color: #333;
+    background-color: #fff;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    min-height: 36px;
+    align-items: center;
+}
+
+.ng-select .ng-select-container .ng-value-container .ng-placeholder {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 54px;
+    display: flex;
+    align-items: center;
+    color: #C9C9C9;
+}
+
+.rowState {
+    margin-top: 34px;
+}
+
+.sLabel {
+    line-height: 35px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    color: #464A53;
+}
+
+.emailsInput {
+    border: 1px solid #B2B3B4;
+    border-radius: 5px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    color: #C9C9C9;
+    box-sizing: border-box;
+    position: absolute;
+    width: 923px;
+    height: 36px;
+    border: 1px solid #B2B3B4;
+    border-radius: 5px;
+    padding-left: 13px;
+}
+
+
+
+
+
+
+
+.deleteButton {
+    /* position: absolute; */
+    width: 160px;
+    height: 50px;
+    /* right: 179px; */
+    background: red;
+    border-radius: 5px;
+}
+
+::placeholder {
+    color: #C9C9C9;
+    opacity: 1;
+    /* Firefox */
+}
+
+::ng-deep.levelDropdown2 .ng-dropdown-panel.ng-select-bottom {
+    width: 434px !important;
+}
+
+:host ::ng-deep.levelDropdown .ng-dropdown-panel.ng-select-bottom {
+    width: 99%;
+    position: absolute;
+    left: 2px;
+    line-height: 1.5;
+}
+
+::after.ng-select .ng-has-value.ng-placeholder {
+    display: none;
+}
+
+body {
+    padding: 20px;
+}
+
+::ng-deep.select {
+    word-wrap: normal;
+    height: 48px;
+    width: 25%;
+    /* position: absolute; */
+    left: 940px;
+}
+
+::ng-deep.ng-value-container .ng-value {
+    white-space: normal;
+}
+
+.errMSggg {
+    color: red;
+    position: absolute;
+    /* top: 49px; */
+    margin-top: 46px;
+    width: 161px;
+}
+.errMSgggs {
+    color: red;
+    position: absolute;
+    /* top: 49px; */
+    margin-top: 46px;
+    width: 235px;
+}
+
+.errParentU {
+    color: red;
+    position: absolute;
+    margin-top: -4px;
+    width: 161px;
+}
+
+.rowDivsection {
+    margin-top: 6px;
+}
+
+/* ::ng-deep.ng-select{
+    display: flex;
+
+} */
+.errState {
+    color: red;
+    position: absolute;
+    width: 182px;
+}
+
+.unitnameInput {
+    border: 1px solid #B2B3B4;
+    border-radius: 5px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    color: #C9C9C9;
+    box-sizing: border-box;
+    position: absolute;
+    width: 433px;
+    height: 45px;
+    border: 1px solid #B2B3B4;
+    border-radius: 5px;
+    padding-left: 13px;
+}
+
+.givennameInput {
+    border: 1px solid #B2B3B4;
+    border-radius: 5px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    color: #C9C9C9;
+    box-sizing: border-box;
+    position: absolute;
+    width: 447px;
+    height: 45px;
+    border: 1px solid #B2B3B4;
+    border-radius: 5px;
+    padding-left: 13px;
+}
+
+.validations {
+    padding: 0px;
+    position: static;
+}
+.deprtCol{
+    margin-bottom: 20px;
+}
+
+::ng-deep.mat-mdc-tab-body-content {
+    height: 100%;
+    overflow: hidden !important;
+    overflow-x: hidden;
+}
+
+@supports (-moz-appearance:none) {
+    .ifscInput {
+        width: 579px;
+    }
+
+    .pinCodeInput {
+        width: 455px
+    }
+
+    .unitnameInput {
+        width: 825px;
+    }
+
+    .emailsInput {
+        width: 935px;
+        height: 48px;
+    }
+
+    .rowFirefox {
+        position: relative;
+        bottom: 22px;
+    }
+    .mat-mdc-tab-body-content {
+        height: 100%;
+        overflow: hidden !important;
+    }
+}
+
+.deleteWarning{
+     width: 450px;
+     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+.center-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+  }
+
+  #unitn,#date{
+    padding: 10px !important;
+  }
+.qtyrate {
+    display: block;
+    width: 100%;
+    height: 36px;
+    padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+    -moz-padding-start: calc(0.75rem - 3px);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.validation-errors{
+    max-height: 0px;
+}
+
+.form-select{
+    border-color: none;
+    box-shadow: none;
+}
+
+.isDisabledField ,:host ::ng-deep .isDisabledField.ng-select.ng-select-disabled>.ng-select-container {
+    font-weight: 700 !important;
+    color: #C9C9C9;
+    background-color: #EFEFEF4D !important;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+input{
+    font-size: 12px !important;
+    font-family: 'Roboto';
+}
+
+::ng-deep.ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+    font-family: 'Roboto' !important;
+    font-size: 12px !important;
+  }
+::ng-deep.ng-select .ng-select-container .ng-value-container .ng-placeholder {
+    font-family: 'Roboto' !important;
+    font-size: 12px !important;
+  }
+  ::ng-deep.ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value {
+    font-family: 'Roboto' !important;
+    font-size: 12px !important; 
+  }
+  .buttonsCol{
+    margin-top: 15%;
+  }
+.addRate{
+   overflow: hidden; 
+   /* height: 520px; */
+}
+  @media screen and (min-width :813px) and (max-width : 992px) {
+    .buttonsCol{
+        margin-top: 5%;
+      }
+  }
+  @media screen and (min-width :500px) and (max-width : 812px) {
+    .rowState , .addRateColumn ,.buttonsCol{
+        display: flex;
+        flex-direction: column;
+    }
+    .form-select{
+        width: 250px;
+    }
+    .qtyrate{
+        width: 250px;
+    }
+    .addRate{
+        overflow: hidden;
+        height: 925px;
+    }
+    .addRate1{
+        overflow: auto;
+        height: 80vh;
+    }
+     .ng-select{
+        width: 250px;
+     }
+     .resetButton ,.SaveButton ,.rejectBtn ,.authBtn {
+        margin-top: 5px;
+     }
+      .buttonsCol{
+        margin-top: 5%;
+      }
+  }

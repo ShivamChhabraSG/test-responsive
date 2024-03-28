@@ -1,0 +1,299 @@
+<!-- Add Screen Data -->
+
+<div class="main">
+    <!-- <div class="row">
+        <div class="col-2" style="padding-left: 6%;">
+            <app-sidenav-bar></app-sidenav-bar>
+            <app-dashboard-header class="app-dashboarscreen"></app-dashboard-header>
+        </div>
+    </div> -->
+    <div class="addEnS">
+    <hr>
+    <div class="container-fluid containerStyle">
+        <div class="row entityLabel">
+            <div class="col-12">
+                <label style="font-size: 15px !important;">{{mode}} Entity</label>
+            </div>
+        </div>
+        <mat-tab-group class="addEntitytab">
+            <mat-tab >
+                <br>
+                <div class="row">
+                    <div class="col-3">
+                        <label class="unitcodeLabel">Unit Code *</label>
+                        <input [disabled]="entityData == 'editData' || dissbleBtn" (keyup)="unitCodeEntered($event)" placeholder="Enter Unit Code" id="ucode" name="ucode"
+                            [(ngModel)]="UnitCode" class="unitInput" pInputText required #ucode="ngModel" />
+                        <p style="padding:0px;position: static;" *ngIf="ucode.invalid && (ucode.dirty || ucode.touched)"
+                            class="alert">
+                            <span class="errMSggg" *ngIf="ucode.errors?.['required']">
+                                *Unit Code is required
+                            </span>
+                        </p>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="unitcodeLabels">Level *</label>
+                        <ng-select [disabled]="dissbleBtn || HOCheck" [items]="levelsData" [clearable]="false" class="levelDropdowns"
+                            (change)=changeLevel($event) id="levelSt" name="levelSt" placeholder="Select Level"
+                            bindLabel="levelName" bindValue="level" [(ngModel)]="Level" required #levelSt="ngModel" >
+                        </ng-select>
+                        <!-- <ng-select disabled="true" [(ngModel)]="Level" [clearable]="false" class="levelDropdown" placeholder="Select Level" required #levelSt="ngModel">
+                            <ng-option selected  [value]="4">{{'Branches'}}</ng-option>
+                         </ng-select>  -->
+                        <p style="padding:0px; position: static;"
+                            *ngIf="levelSt.invalid && (levelSt.dirty || levelSt.touched)" class="alert">
+                            <span class="errState" *ngIf="levelSt.errors?.['required']">
+                                *Level is required
+                            </span>
+                        </p>
+                    </div>
+                    <div class="col-md-3" *ngIf="Level !== 1">
+                        <label class="unitcodeLabel">Parent Unit *</label>
+                        <ng-select [disabled]='parentUnit === 0 || dissbleBtn || HOCheck' [clearable]="false" (change)="getParentLevel($event)" class="levelDropdown"
+                            id="parentu" name="parentu" placeholder="Select Parent Unit" [items]="combinedArray"
+                            bindLabel="unit" bindValue="unitCode" [(ngModel)]="parentUnit" required #parentu="ngModel" >
+                        </ng-select>
+                        <p style="padding:0px;position: static;"
+                            *ngIf="parentu.invalid && (parentu.dirty || parentu.touched)" class="alert">
+                            <span class="errParentU" *ngIf="parentu.errors?.['required']">
+                                *Parent Unit is required
+                            </span>
+                        </p>
+                    </div>
+                </div>
+          
+                <div class="row section">
+                    <div class="col-7">
+                        <label class="unitcodeLabel">Unit Name *</label>
+                        <input [disabled]="dissbleBtn" (keyup)="unitNameEntered($event)" placeholder="Enter Unit Name" id="unitN" name="unitN"
+                            [(ngModel)]="unitName" class="unitnameInput" pInputText required #unitN="ngModel" />
+                        <p style="padding:0px; position: static;" *ngIf="unitN.invalid && (unitN.dirty || unitN.touched)"
+                            class="alert">
+                            <span class="errMSggg" *ngIf="unitN.errors?.['required']">
+                                *Unit Name is required
+                            </span>
+                    </div>
+                    <div class="col-4">
+                        <label class="ifscLabel">IFSC *</label>
+                        <input [disabled]="dissbleBtn" (keyup)="IFSCEntered($event)" maxlength="11" minlength="11" placeholder="Enter IFSC" id="ifdcIn" name="ifscIn"
+                            [(ngModel)]="IFSC" class="ifscInput"  pattern="(^[A-Za-z0-9]{11}$)" pInputText required #ifdcIn="ngModel" />
+                        <p style="padding:0px;position: static;"
+                            *ngIf="ifdcIn.invalid && (ifdcIn.dirty || ifdcIn.touched)" class="alert">
+                            <span class="errMSggg" *ngIf="ifdcIn.errors?.['required']">
+                                *IFSC is required
+                            </span>
+                            <span class="errMSgggss" *ngIf="ifdcIn.errors?.['pattern']">
+                                *IFSC should be alphanumeric and having 11 characters
+                               </span>
+                    </div>
+                </div>
+                <!-- <br> -->
+                <div class="row" style="margin-top: 50px;">
+                    <div class="col-md-3">
+                        <label class="sLabel">State *</label>
+                        <ng-select [disabled]="dissbleBtn" [clearable]="false" class="stateDropdown" id="stateDrp" name="stateDrp"
+                            (change)="selectedState($event)" placeholder="Select State" [items]="statesData"
+                            bindLabel="state_name" bindValue="state_code" [(ngModel)]="state" required
+                            #stateDrp="ngModel">
+                        </ng-select>
+                        <p style="padding:0px;position: static;"
+                            *ngIf="stateDrp.invalid && (stateDrp.dirty || stateDrp.touched)" class="alert">
+                            <span class="errState" *ngIf="stateDrp.errors?.['required']">
+                                *State is required
+                            </span>
+                        </p>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="sLabel">District *</label>
+                        <ng-select [disabled]="dissbleBtn" [items]="districtsData" [clearable]="false" (change)="selectedDistrict($event)"
+                            id="districtIn" name="districtIn" class="stateDropdown" placeholder="Select District"
+                            bindLabel="districtName" bindValue="districtCode" [(ngModel)]="district" required
+                            #districtIn="ngModel">
+                        </ng-select>
+                        <p style="padding:0px;position: static;"
+                            *ngIf="districtIn.invalid && (districtIn.dirty || districtIn.touched)" class="alert">
+                            <span class="errState" *ngIf="districtIn.errors?.['required']">
+                                *District is required
+                            </span>
+                        </p>
+                    </div>
+                    <div class="col-4">
+                        <label class="sLabel">Pincode *</label>
+                        <input [disabled]="dissbleBtn" (keyup)="pincodeEntered($event)" maxlength="6" placeholder="Enter Pincode" id="pinCode" name="pinCode" pattern="^\d{6}$"
+                            [(ngModel)]="pincode" class="pinCodeInput" pInputText required #pinCode="ngModel" />
+                        <p style="padding:0px;position: static;"
+                            *ngIf="pinCode.invalid && (pinCode.dirty || pinCode.touched)" class="alert">
+                            <span class="errMSggg" *ngIf="pinCode.errors?.['required']">
+                                *PinCode is required
+                            </span>
+                            <span class="errMSgggs" *ngIf="pinCode.errors?.['maxlength']">
+                                *Only 6 characters allowed.
+                            </span>
+                            <span class="errMSgggs" *ngIf="pinCode.errors?.['pattern']">
+                                *Pincode should be Numeric.
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-8">
+                        <label class="esLabel">Email *</label>
+                        <input [disabled]="dissbleBtn" (keyup)="emailEntered($event)" placeholder="Enter Email" id="emailIn" name="emailIn" [(ngModel)]="email" class="emailsInput" pInputText  #emailIn="ngModel" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$"  />
+                        <p  style="padding:0px; position: static;" *ngIf="emailIn.invalid && (emailIn.dirty || emailIn.touched)" class="alert">
+                            <span class="errMSggg" *ngIf="emailIn.errors?.['required']">
+                                   *Email is required
+                               </span>
+                               <span class="errMSggg" *ngIf="emailIn.errors&&emailIn.errors?.['pattern']">
+                                *Invalid Email address
+                               </span>
+                    </div> 
+                    <div class="col-md-3">
+                        <label class="rsLabel">Record Status *</label>
+                        <ng-select [disabled]="dissbleBtn" [clearable]="false"  class="stateDropdown" id="recordSt" name="recordSt"
+                            placeholder="Select Record Status" [items]="recordStatusData" bindLabel="statusName"
+                            bindValue="statusId" [(ngModel)]="recordStatus" required #recordSt="ngModel">
+                        </ng-select>
+                        <p style="padding:0px; position: static;"
+                            *ngIf="recordSt.invalid && (recordSt.dirty || recordSt.touched)" class="alert">
+                            <span class="errState" *ngIf="recordSt.errors?.['required']">
+                                *Record Status is required
+                            </span>
+                        </p>
+                    </div>
+                </div><br>
+                <br>
+                
+                <div class="row" *ngIf="entityData == 'addData' " style="margin-top: -20px;">
+                    <div  class="col-md-4"></div>
+                    <div  class="col-md-4"></div>
+
+                    <div class="col-md-1 btn-Width entity-checker">
+                        <button type="button" (click)="back()" class="btn btn-primary checker-backButton">Back</button>
+                    </div>
+                    <div class="col-md-1 btn-Width">
+                        <button type="button" (click)="reset()" class="btn btn-primary checker-authButton">Reset</button>
+                    </div>
+                    <div class="col-md-1 btn-Width">
+                        <button type="button"
+                            [disabled]="!recordStatus || !email || !pincode|| !district || !state || !IFSC || !unitName || !UnitCode || !Level || !parentUnit ||!ifdcIn.valid || !emailIn.valid"
+                            (click)="SaveData()" class="btn btn-primary SaveButton">Save</button>
+                    </div>
+                                       
+                </div>
+
+                <div class="row" *ngIf="entityData == 'editData' " [ngClass]="Status==='R' ? '' : 'editData1'">
+                    <!-- <div  class="col-1 col-sm-1 col-md-1 col-xl-4"></div>
+                    <div *ngIf="hideDelete" class="col-1 col-sm-1 col-md-1 col-xl-4"></div> -->
+                    <div  class="col-md-2"></div>
+                    <div  class="col-md-3"></div>
+                    <!-- <div  class="col-1"></div> -->
+                    <div class="col-md-1 btn-Width" [ngClass]="{'hide-Delete': hideDelete, 'back-margin': !hideDelete}">
+                        <button type="button" (click)="back()" class="btn btn-primary back-btn">Back</button>
+                    </div>
+                    <div class="col-md-1 btn-Width">
+                        <button type="button" (click)="reset()" class="btn btn-primary reset-btn">Reset</button>
+                    </div>
+                    <div class="col-md-1" *ngIf="Status==='R'">
+                        <button type="button" (click)="deleteEntityData()" class="btn btn-primary delete-btn">Delete</button>
+                    </div>
+                    
+                    <div class="col-md-1 btn-Width">
+                        <button type="button"
+                            [disabled]="!recordStatus || !email || !pincode|| !district || !state || !IFSC || !unitName || !UnitCode || !Level"
+                            (click)="SaveEditData()" class="btn btn-primary save-btn">Save</button>
+                    </div>               
+                </div>
+
+                <div class="row" *ngIf="entityData == 'deleteData' " style="margin-top: -20px;">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4"></div>
+
+                    <div class="col-md-2 btn-Width rejected-Maker">
+                        <button type="button" (click)="back()" class="btn btn-primary backButton">Back</button>
+                    </div>
+                     <div class="col-md-2 btn-Width">
+                        <button type="button" (click)="deletePopup()" class="btn btn-primary deleteButton">Delete</button>
+                    </div>
+                                       
+                </div>
+                
+                <div class="row" *ngIf="entityData == 'authorizeData' ">
+                    <div  class="col-md-4 col-sm-1"></div>
+                    <div  class="col-md-2"></div>
+
+                    <div class="col-sm-1 col-md-1 col-2  btn-Width checker-back-margin">
+                        <button type="button" (click)="back()" class="btn btn-primary  checker-backButton">Back</button>
+                    </div>
+                    <!-- <div class="col-2 btn-Width">
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary checker-authButton">Authorise</button>
+                    </div> -->
+                    <div class="col-sm-1 col-md-1 col-2 btn-Width">
+                        <button type="button" (click) = "authPopup()" class="btn btn-primary checker-authButton">Authorise</button>
+                    </div>
+                    <div class="col-sm-1 col-md-1 col-2 btn-Width" >
+                        <button type="button" (click)="rejectPopup()" class="btn btn-primary checker-rejectButton">Reject</button>
+                    </div>
+                                       
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 footer">
+        <app-nrlm-footer></app-nrlm-footer>
+    </div>
+</div>
+</div>
+<!-- Authorize Comment Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header d-flex justify-content-center">
+                <h1 class="modal-title text-center flex-grow-1 fs-5" id="exampleModalLabel">Comment</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h4>* Comment is mandatory for Reject</h4>
+                <div class="mb-3">
+                    <textarea [maxlength]="200" class="form-control" [(ngModel)]="remarks" id="exampleFormControlTextarea1"
+                        rows="3"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer" style="display: flex; justify-content: center;">
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModalToggle"
+                    (click)="Authorize()">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Reject comment modal -->
+<div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3"
+    tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header d-flex justify-content-center">
+                <h1 class="modal-title text-center flex-grow-1 fs-5" id="exampleModalLabel">Comment</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h4>* Comment is mandatory for Reject</h4>
+                <div class="mb-3">
+                    <textarea [maxlength]="200" class="form-control" [(ngModel)]="remarks" name="remarks" id="exampleFormControlTextarea1"
+                        rows="3" required></textarea>
+                </div>
+            </div>
+            <div class="modal-footer" style="display: flex; justify-content: center;">
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModalToggle"
+                    (click)="reject()" [disabled]="remarks.trim() === ''">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-warning-dialog></app-warning-dialog>
+<app-warning-auth-dialog></app-warning-auth-dialog>
+<app-error-dialog></app-error-dialog>
+    

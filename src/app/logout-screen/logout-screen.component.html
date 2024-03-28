@@ -1,0 +1,34 @@
+<!-- <div class="container "  (click)="preventClose($event)">
+    <img src="../../assets/image/close.png" alt="" class="close-icon" (click)="closepopup()">
+    <div class="actv-user text-center">
+        <p class="deleted11">Are you sure you want to Logout?</p><br>
+        <button class="undo"(click)="Logout()">Yes</button>
+        <button class="exit" (click)="closepopup()">No</button>
+    </div>
+</div> -->
+<div  class="dialog-content" (click)="$event.stopPropagation()">
+    <div class="row warnHeader">
+ 
+        <div class="col-12">
+            <h1 class="heading">Alert </h1>
+            <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">Are you sure you want to Logout?</p>
+        </div>
+        <br>
+        <hr><br>
+ 
+    </div>
+    <div class="button-container">
+        <div class="col-6">
+            <label class="delete-button" (click)="Logout()">Yes</label>
+        </div>
+        <div class="col-6">
+            <label class="cancel-button" (click)="closepopup()">No</label>
+        </div>
+    </div>
+</div>

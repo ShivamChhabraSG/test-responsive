@@ -1,0 +1,66 @@
+
+<div [ngClass]="EntityData === 'viewEntity' ? 'viewUpEntity' : 'viewUpEntity1'">
+<hr>
+<div class="container-fluid" *ngIf="EntityData === 'viewEntity'" >
+  <div class="row gridRow">
+    <div class="col-12">
+      <br>
+      <div style="padding: 4px; position: relative; top: -19px;">
+        <div class="row  gridStyle">
+          <div class="col-12 mt-2 colStyle">
+            <label class="entityLabel">View Bulk Entity Upload</label>
+          </div>
+        </div>
+          <div class="row">
+          <div class="col-12">
+            <ag-grid-angular
+              class="ag-theme-alpine gridUnit" [rowData]="viewGridData" (gridReady)="onGridReady($event)" (cellClicked)="onCellClicked($event)"
+               (gridReady)="onGridReady($event)" [defaultColDef]="defaultColDef"
+              [columnDefs]="columnDefs" [pagination]="true" [paginationAutoPageSize]="false"  [paginationPageSize]="defaultPage">
+            </ag-grid-angular>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 colStyleIconS">
+      <button (click)="goBack()" class="btn btn-primary SaveButton">Back</button>
+    </div>
+  </div>
+</div>
+<div class="container-fluid" *ngIf="EntityData === 'viewData'" >
+  <div class="row gridRow">
+    <div class="col-12">
+      <br>
+      <div style="padding: 4px; position: relative; top: -19px;">
+        <div class="row  gridStyle">
+          <div class="col-12 mt-2 colStyle">
+            <label class="entityLabel">View Bulk User Upload</label>
+          </div>
+        </div>
+          <div class="row">
+          <div class="col-12">
+            <ag-grid-angular
+            class="ag-theme-alpine gridUnit" [rowData]="userviewGridData" (gridReady)="onGridReady($event)"
+            style="font-size: 12px; height: 455px; position: relative; right: 4px;"
+            (cellClicked)="onCellClicked($event)" (gridReady)="onGridReady($event)" [defaultColDef]="defaultColDef"
+            [columnDefs]="columnDefss" [pagination]="true" [paginationAutoPageSize]="false"  [paginationPageSize]="defaultPage">
+          </ag-grid-angular>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 colStyleIconS">
+      <button (click)="goBackUserUpload()" class="btn btn-primary SaveButton">Back</button>
+    </div>
+  </div>
+</div>
+</div>
+<div class="row">
+  <div class="col-12 footer">
+    <app-nrlm-footer></app-nrlm-footer>
+  </div>
+</div>

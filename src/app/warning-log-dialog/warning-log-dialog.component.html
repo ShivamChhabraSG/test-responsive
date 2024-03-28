@@ -1,0 +1,137 @@
+<!--Edit PopUp From  Entity Screen-->
+<div *ngIf="show == true" class="dialog-overlay" (click)="closeDialog()">
+<div *ngIf="entityData == 'editData'" class="dialog-content" (click)="$event.stopPropagation()">
+    <div class="row warnHeader">
+  
+        <div class="col-12">
+            <h1 class="heading">Warning !</h1>
+            <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">You are not the maker, Do you still want to edit?</p>
+        </div>
+        <br>
+        <hr><br>
+
+    </div>
+    <div class="button-container">
+        <div class="col-6">
+            <label class="delete-button" (click)="EditEntity()">Yes</label>
+        </div>
+        <div class="col-6">
+            <label class="cancel-button" (click)="gobackUserScreen()">No</label>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="entityData == 'userData'" class="dialog-content" (click)="$event.stopPropagation()">
+    <div class="row warnHeader">
+  
+        <div class="col-12">
+            <h1 class="heading">Warning !</h1>
+            <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">You are not the maker, Do you still want to edit?</p>
+        </div>
+        <br>
+        <hr><br>
+
+    </div>
+    <div class="button-container">
+        <div class="col-6">
+            <label class="delete-button" (click)="EditUser()">Yes</label>
+        </div>
+        <div class="col-6">
+            <label class="cancel-button" (click)="gobackUserScreen()">No</label>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="entityData == 'deleteuserData'" class="dialog-content" (click)="$event.stopPropagation()">
+    <div class="row warnHeader">
+  
+        <div class="col-12">
+            <h1 class="heading">Warning !</h1>
+            <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">You are not the maker, Do you still want to delete?</p>
+        </div>
+        <br>
+        <hr><br>
+
+    </div>
+    <div class="button-container">
+        <div class="col-6">
+            <label class="delete-button" (click)="DeleteUser()">Yes</label>
+        </div>
+        <div class="col-6">
+            <label class="cancel-button" (click)="gobackUserScreen()">No</label>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="entityData == 'ratesData'" class="dialog-content" (click)="$event.stopPropagation()">
+    <div class="row warnHeader">
+  
+        <div class="col-12">
+            <h1 class="heading">Warning !</h1>
+            <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">You are not the maker, Do you still want to edit?</p>
+        </div>
+        <br>
+        <hr><br>
+
+    </div>
+    <div class="button-container">
+        <div class="col-6">
+            <label class="delete-button" (click)="EditRate()">Yes</label>
+        </div>
+        <div class="col-6">
+            <label class="cancel-button" (click)="gobackUserScreen()">No</label>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="entityData == 'claimsProcessing'" class="dialog-content" (click)="$event.stopPropagation()">
+    <div class="row warnHeader">
+  
+        <div class="col-12">
+            <h1 class="heading">Warning !</h1>
+            <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">You are not the maker, Do you still want to edit?</p>
+        </div>
+        <br>
+        <hr><br>
+
+    </div>
+    <div class="button-container">
+        <div class="col-6">
+            <label class="delete-button" (click)="EditClaimsProccesing()">Yes</label>
+        </div>
+        <div class="col-6">
+            <label class="cancel-button" (click)="gobackUserScreen()">No</label>
+        </div>
+    </div>
+</div>
+</div>

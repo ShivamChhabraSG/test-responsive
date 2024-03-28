@@ -1,0 +1,84 @@
+<!-- <div class="row">
+    <div class="col-2" style="padding-top: 2%;
+        padding-left: 6%;">
+        <app-sidenav-bar></app-sidenav-bar>
+        <app-dashboard-header class="app-dashboarscreen"></app-dashboard-header>
+
+    </div>
+</div> -->
+<hr>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-5"></div>
+        <div class="col-3">
+            <h2>View Closed Accounts</h2>
+        </div>
+        <div class="col-4"></div>
+    </div>
+ <div class=" gridRow">
+    <!-- <div class="row fRow">
+        <div class="col-1">
+            <label class="unitLabel">FY Ending</label>
+        </div>
+        <div class="col-1 inpBox">
+            <input class="viewBox" type="" disabled [(ngModel)]="selectedLevelData[0].yr">
+        </div>
+        <div class="col-1">
+            <label class="unitLabel">State Code</label> 
+        </div>
+        <div class="col-1 inpBox">
+            <input class="viewBox" type="" disabled  [(ngModel)]="selectedLevelData[0].state_id">
+        </div>
+        <div class="col-1">
+            <label class="unitLabel">Bank Code</label>
+        </div>
+        <div class="col-1 inpBox">
+            <input class="viewBox" type="" disabled  [(ngModel)]="selectedLevelData[0].bank_code">
+        </div>
+      
+        <div class="col-1 ">
+            <label class="unitLabel">State Name</label> 
+        </div>
+        <div class="col-1 inpBox">
+            <input class="viewBox" type="" disabled  [(ngModel)]="selectedLevelData[0].state_name">
+        </div>
+        <div class="col-1 sRow">
+            <label class="unitLabel">Bank Name</label>
+        </div>
+        <div class="col-1 inpBox">
+            <input class="viewBox" type="" disabled   [(ngModel)]="selectedLevelData[0].bank_name">
+        </div>
+    </div> -->
+    <div class="gridStyleMain" >
+        <div class="row"> 
+            <div class="col-12" style="overflow: scroll;">
+                <ag-grid-angular 
+                    class="ag-theme-alpine gridUnit" [rowData]="selectedLevelData" (gridReady)="onGridReady($event)"
+                    (cellClicked)="onCellClicked($event)" (gridReady)="onGridReady($event)"
+                    [defaultColDef]="defaultColDef" [columnDefs]="columnDefs" [pagination]="true"
+                    [paginationAutoPageSize]="false" [paginationPageSize]="pageSize">
+                </ag-grid-angular>
+                                  </div>
+        </div>
+    </div>
+
+ 
+ <div class="row">
+    <div class="col-9"></div>
+    <div class="col-3">
+        <button type="button" (click)="back()" class="btn btn-primary backButton">Back</button>
+    </div>
+ </div>
+
+ </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-12 footer" >
+      <app-nrlm-footer></app-nrlm-footer>
+    </div>
+  </div>
+
+<app-error-dialog></app-error-dialog>

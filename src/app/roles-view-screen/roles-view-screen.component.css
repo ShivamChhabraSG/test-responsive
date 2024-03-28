@@ -1,0 +1,449 @@
+.container,
+.container-fluid,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl,
+.container-xxl {
+    background: white;
+    /* margin-left: 4%; */
+    /* height: 1152px; */
+    padding-left: 29px;
+}
+
+::ng-deep.mat-mdc-tab-labels {
+    width: 38%;
+
+}
+.testClass {
+    margin-left: 91%;
+}
+::ng-deep.mat-mdc-tab .mdc-tab__text-label {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 17px;
+    color: #F2B585;
+}
+
+::ng-deep.mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label,
+.mat-mdc-tab-link:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label {
+    color: #EC8737;
+}
+
+.gridRow {
+    background: rgba(255, 255, 255, 0.78);
+    opacity: 0.78;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    width: 99%;
+    height: 575px;
+}
+
+.secondGrid {
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    height: 50px;
+    border-radius: 3px;
+    margin-left: 1px;
+    margin-right: 1px;
+    width: 100%;
+    margin-top: 8px;
+}
+
+:host ::ng-deep.mat-mdc-tab-body-content {
+    height: 100%;
+    overflow: unset;
+    width: 97%;
+    position: relative;
+    left: 19px;
+}
+
+
+.gridRow1 {
+    background: rgba(255, 255, 255, 0.78);
+    opacity: 0.78;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    /* height: 32%; */
+    /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
+    border-radius: 10px;
+}
+
+.editImg {
+    margin-left: 19px;
+    cursor: pointer;
+}
+
+.gridStyle {
+    background: rgba(255, 255, 255, 0.78);
+    /* opacity: 0.78; */
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    height: 50px;
+    /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
+    border-radius: 3px;
+}
+
+/*-- Dropdown --*/
+.custom-wrapper {
+    max-width: 460px;
+    margin: 0 auto 50px;
+}
+
+::ng-deep.multiselect-dropdown {
+    border: 1px solid rgba(0, 0, 0, 0.33);
+    border-radius: 7px;
+    position: relative;
+    width: 69%;
+    font-size: inherit;
+    font-family: 'Roboto';
+}
+
+::ng-deep.multiselect-dropdown .dropdown-btn {
+    height: 36px;
+    width: 66%;
+}
+::ng-deep.ag-theme-alpine {
+    --ag-grid-size: 3.6px;
+    --ag-list-item-height: 20px !important;
+}
+.entityLabel {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 34px;
+    /* margin-left: 171px; */
+    color: #000000;
+}
+::ng-deep.ag-center-cols-container {
+    width: auto !important;
+}
+.ag-center-cols-clipper {
+    width: auto !important;
+}
+.searchIcon {
+    position: absolute;
+    top: 6px;
+    left: 7px;
+    color: grey;
+}
+
+.ag-header-cell-text {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 30px;
+    color: rgba(0, 0, 0, 0.78);
+}
+
+::ng-deep.ag-header-cell-text {
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 30px;
+    color: rgba(0, 0, 0, 0.78) !important;
+}
+
+::ng-deep.ag-header {
+    background-color: rgba(43, 190, 95, 0.1);
+    ;
+}
+
+::ng-deep.ag-paging-panel {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.ag-theme-alpine {
+    --ag-header-column-separator-display: block;
+    --ag-header-column-separator-height: 50%;
+    --ag-header-column-separator-width: 1px;
+    --ag-header-column-separator-color: darkgrey;
+
+
+
+}
+
+.ag-theme-alpine {
+    /* disable all borders */
+    --ag-borders: display;
+    /* then add back a border between rows */
+    --ag-row-border-style: line;
+    --ag-row-border-width: 2px;
+    --ag-row-border-color: rgb(150, 150, 200);
+    /* background: rgba(255, 255, 255, 0.78);
+    opacity: 0.78;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px; */
+
+
+}
+
+::ng-deep.ag-header-cell {
+
+    border-right: 1px solid ag-param(secondary-border-color);
+}
+
+::ng-deep.ag-ltr .ag-cell {
+    cursor: pointer;
+    width: auto !important;
+    font-size: 12px;
+}
+
+/*  */
+.gridStyleMain {
+    background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      height: 475px;
+      border-radius: 3px;
+      padding-left: 19px;
+      padding-top: 10px;
+      margin-top: 8px;
+      width: 98%;
+      
+  }
+
+.dropdown-form {
+    position: relative;
+}
+
+.colStyle {
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.colStylee {
+    margin-left: -5%;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.colStyles {
+    margin-left: -3%;
+    margin-top: 10px;
+}
+
+.searchBarstyle {
+    cursor: pointer;
+    position: relative;
+    top: -3px;
+}
+
+.searchbarInput {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    width: 295px;
+    height: 35px;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 7px;
+    padding-left: 31px;
+}
+
+.colAdd {
+    position: relative;
+    margin-top: 10px;
+    margin-left: 102px;
+    cursor: pointer;
+}
+
+.gridUnit {
+    width: auto !important;
+    height: 350px;
+}
+
+.sidenavStyle {
+    padding-top: 2%;
+    padding-left: 6%;
+
+
+}
+
+/* ::ng-deep.wrapper{
+    z-index: 1;
+} */
+/* ::ng-deep.multiselect-dropdown  .dropdown-list
+   { display: none !important; }  */
+.app-dashboarscreen {
+    position: relative;
+    bottom: 71px;
+}
+
+.ag-theme-alpine {
+    --ag-header-column-separator-display: block;
+    --ag-header-column-separator-height: 30%;
+    --ag-header-column-separator-width: 2px;
+    --ag-header-column-separator-color: rgba(0, 0, 0, 0.34);
+
+}
+.newclass{
+    margin-bottom: 3%;
+}
+
+.class {
+    position: absolute;
+    left: 60%;
+    bottom: 22%;
+}
+
+::ng-deep.pinningdrp .multiselect-dropdown {
+    position: relative;
+    width: 41%;
+    font-size: inherit;
+    font-family: 'Roboto';
+}
+
+.overlayDiv {
+    position: relative;
+    height: 126px;
+    width: 477px;
+    border: 1px solid;
+    background: white;
+    padding-right: 16px;
+}
+
+.overlayCol1 {
+    position: relative;
+    top: 26px;
+    left: 10px;
+}
+
+.overlayCol2 {
+    position: relative;
+    top: 26px;
+}
+
+.viewEn {
+    cursor: pointer;
+}
+
+::ng-deep .mat-mdc-tab-group {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    height: 4%;
+}
+::ng-deep.ag-header-cell-label {
+    justify-content: center;
+    }
+    .footer{
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+    }
+    .entityL{
+        margin-top: -19px;
+    }
+
+    
+@media screen and (min-width: 1024px) {
+    .roles-View{
+        height: 630px;
+    }
+  }
+
+
+@media screen and (max-width: 628px){
+    .searchbarInput {
+       width: 165px;
+    }
+}
+@media screen and (max-width:1198px){
+    .unitLabel {
+        font-size: 10px;
+        margin-top: 8px;
+        padding-left: -2px;
+    }
+}
+@media screen and (max-width:576px){
+    .secondGrid {
+        left: 0%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        bottom: 10px;      
+    }
+    .gridStyle {
+        overflow-y: scroll;
+        overflow-x: hidden;
+        height: 192px !important;
+    }
+
+    .unitLabel {
+        font-size: 10px;
+    }
+    .secondGrid{
+        height: 150px;
+    }
+   ::ng-deep.secondGrid .row>* {
+        width: auto !important;
+    }
+    .search1{
+        margin-left: -5%;
+    }
+
+    .gridRow{
+        height: 628px;
+    }
+}
+
+@media screen and (min-width : 576px) and (max-width :990px){
+    .gridStyle{
+        overflow-y: scroll;
+        overflow-x: hidden;
+        height: 192px !important;
+    } 
+
+}
+
+@media screen and (max-width: 992px) {
+    .gridStyle {
+        height: 130px;
+    }
+    .secondGrid{
+        height: 95px;
+    }
+}
+@media screen and (min-width: 580px) and (max-width :1040px){
+.search1{
+    margin-left: 6%;
+}
+.addImgIcon{
+    left: 45px;
+}
+}
+@media screen and (min-width: 588px) and (max-width :748px){
+.search1{
+    margin-left: 16%;
+}
+.secondGrid {
+    height: 95px;
+}
+.searchbarInput {
+    width: 165px;
+}
+}
+
+@media screen and (max-width: 776px) {
+    .gridStyle {
+        height: 128px;
+    }
+}
+
+
+@media screen and (width: 1600px) and (resolution: 96dpi) {
+    .entityLabel{
+        margin-top: 8px;
+    }
+}

@@ -1,0 +1,25 @@
+<div class="container-fluid addRate">
+    <div class="row ratePopup">
+        <div class="col-12">
+            <h1 class="rateheading">Error !</h1>
+            <!-- <mat-icon class="ratecloseIcon" (click)="closepopup()">close</mat-icon> -->
+        </div>
+    </div>
+    <br>
+    <div class="row ratewarningRow">
+        <div class="col-12">
+            <p class="ratewarningMsg">{{addRatePopupData}}</p>
+        </div>
+        <br>
+        <hr class="ratehr"><br>
+
+    </div>
+    <div class="row ratewarngBtnDiv">
+        <div class="col-6" *ngIf="nrlmUpload!='NrlmUpload'">
+            <label class="warningBtn" (click)="gobackUploadUserScreen()">Ok</label>
+        </div>
+        <div class="col-6" *ngIf="nrlmUpload=='NrlmUpload'">
+            <label class="warningBtn" (click)="gobackNrlmUploadScreen()">Ok</label>
+        </div>
+    </div>
+</div>

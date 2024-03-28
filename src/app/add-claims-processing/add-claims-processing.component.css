@@ -1,0 +1,917 @@
+.app-dashboarscreen {
+    position: relative;
+    bottom: 71px;
+}
+::ng-deep.ag-header-cell-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 30px;
+    color: rgba(0, 0, 0, 0.78) !important;
+}
+
+::ng-deep.ag-header {
+    background-color: rgba(43, 190, 95, 0.1);
+    ;
+}
+
+::ng-deep.ag-ltr .ag-cell {
+    cursor: pointer;
+    font-size: 12px;
+}
+.containerStyle {
+    border: 1px solid #E6E6E6;
+    border-radius: 10px;
+    /* height: 598px; */
+    margin-left: 1%;
+    width: 98%;
+    /* height: 533px; */
+    overflow-x: hidden;
+    /* overflow-y: scroll; */
+}
+.tg  {border-collapse:collapse;border-spacing:0; font-size: 12px !important;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family: 'Roboto';font-size: 12px !important;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family: 'Roboto';font-size: 12px !important;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-lboi{border-color:inherit;text-align:left;vertical-align:middle}
+.tg .tg-9wq8{border-color:inherit;text-align:center;vertical-align:middle}
+.tg .tg-uzvj{border-color:inherit;font-weight:bold;text-align:center;vertical-align:middle}
+.tg .tg-g7sd{border-color:inherit;font-weight:bold;text-align:left;vertical-align:middle}
+.tg .tg-yz93{border-color:inherit;text-align:right;vertical-align:middle;width: 200px;}
+.heading {
+    text-align: center;
+    width: 200px;
+    align-items: center;
+    position: relative;
+    left: 270px;
+    bottom: 11px;
+}
+.subheading {
+    width: 35rem;
+    left: 11rem;
+    bottom: 1rem;
+    font-weight: 500;
+}
+.close-icon{
+    cursor: pointer;
+    position: absolute;
+    left: 97%;
+    top: 0.5%;
+    width: 15px;
+    height: 15px;
+}
+.heading {
+    text-align: center;
+    width: 39rem;
+    align-items: center;
+    position: relative;
+    left: 14rem;
+    bottom: -5px;
+}
+.tablecontainer {
+    width: 90rem !important;
+}
+.entityLabel {
+    background: #E1F6E8;
+    text-align: center;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 49px;
+    color: #000000;
+}
+
+.unitInput {
+    border: 1px solid #B2B3B4;
+    border-radius: 5px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    color: black;
+    box-sizing: border-box;
+    position: absolute;
+    width: 24%px;
+    height: 50px;
+    border: 1px solid #B2B3B4;
+    border-radius: 5px;
+    padding-left: 13px;
+}
+
+.pinCodeInput {
+    border: 1px solid #B2B3B4;
+    border-radius: 5px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    color: black;
+    box-sizing: border-box;
+    position: absolute;
+    width: 439px;
+    height: 48px;
+    border: 1px solid #B2B3B4;
+    border-radius: 5px;
+    padding-left: 13px;
+}
+
+.unitnameInput {
+    border: 1px solid #B2B3B4;
+    border-radius: 5px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    color: black;
+    box-sizing: border-box;
+    position: absolute;
+    /* width: 791px; */
+    width: 127%;
+    height: 43px;
+    border: 1px solid #B2B3B4;
+    border-radius: 5px;
+    padding-left: 13px;
+}
+
+.ifscInput {
+    border: 1px solid #B2B3B4;
+    border-radius: 5px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    color: black;
+    box-sizing: border-box;
+    position: absolute;
+    width: 40%;
+    height: 43px;
+    border: 1px solid #B2B3B4;
+    border-radius: 5px;
+    padding-left: 13px;
+}
+
+.entityDetail {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 69px;
+    color: #EC8737;
+    text-decoration-line: underline;
+}
+
+.horLine {
+    color: #EC8737;
+}
+
+::ng-deep.addEntitytab .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label,
+.mat-mdc-tab-link:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label {
+    color: black;
+    position: relative;
+    /* right: 650px; */
+}
+
+::ng-deep.addEntitytab .mat-mdc-tab-body-wrapper {
+    height: 524px;
+
+}
+
+:host ::ng-deep.addEntitytab .mat-mdc-tab-body-content {
+    height: 175%;
+    overflow: hidden;
+    width: 97%;
+    position: relative;
+    left: 19px;
+}
+
+::ng-deep.addEntitytab .mat-mdc-tab-labels {
+    display: flex;
+    flex: 1 0 auto;
+    width: 12%;
+}
+
+.unitcodeLabel {
+    line-height: 21px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    color: #464A53;
+}
+
+.stateLabel {
+    line-height: 85px;
+}
+
+::ng-deep.levelDropdown .ng-select.ng-select-single .ng-select-container {
+    height: 48px;
+}
+.down {
+    width: 220px;
+}
+.modal-header {
+    /* background: #E1F6E8 !important; */
+    height: 40px;
+    background-color: red;
+}
+
+.btn {
+    width: 125px !important
+}
+
+
+:host ::ng-deep.ng-select .ng-select-container {
+    color: #333;
+    background-color: #fff;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    min-height: 46px;
+    align-items: center;
+}
+
+.ng-select .ng-select-container .ng-value-container .ng-placeholder {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 54px;
+    display: flex;
+    align-items: center;
+    color: #C9C9C9;
+}
+
+.rowState {
+    margin-top: 34px;
+}
+
+.sLabel {
+    line-height: 35px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    color: #464A53;
+}
+
+.emailsInput {
+    border: 1px solid #B2B3B4;
+    border-radius: 5px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    color: black;
+    box-sizing: border-box;
+    position: absolute;
+    width: 902px;
+    height: 51px;
+    border: 1px solid #B2B3B4;
+    border-radius: 5px;
+    padding-left: 13px;
+}
+
+.backButton {
+    width: 125px !important;
+    background: #00A2FF;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.SaveButton {
+    background: #7BB31A;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.resetButton {
+    background: #00A2FF;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.deleteButton {
+    background: red;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+::placeholder {
+    color: #C9C9C9;
+    opacity: 1;
+    /* Firefox */
+}
+
+::ng-deep.levelDropdown .ng-dropdown-panel.ng-select-bottom {
+    width: 99%;
+    position: absolute;
+    left: 2px;
+}
+
+::after.ng-select .ng-has-value.ng-placeholder {
+    display: none;
+}
+
+body {
+    padding: 20px;
+}
+
+::ng-deep.select {
+    word-wrap: normal;
+    height: 48px;
+    width: 25%;
+    /* position: absolute; */
+    left: 940px;
+}
+
+::ng-deep.ng-value-container .ng-value {
+    white-space: normal;
+}
+
+.errMSggg {
+    color: red;
+    position: absolute;
+    /* top: 49px; */
+    margin-top: 46px;
+    width: 161px;
+}
+
+.errMSgggs {
+    color: red;
+    position: absolute;
+    /* top: 49px; */
+    margin-top: 46px;
+    width: 190px;
+}
+
+.errMSgggss {
+    color: red;
+    position: absolute;
+    /* top: 49px; */
+    margin-top: 46px;
+    width: 375px;
+}
+
+.errParentU {
+    color: red;
+    position: fixed;
+    margin-top: -4px;
+}
+
+.rowDivsection {
+    margin-top: 6px;
+}
+
+::ng-deep.ng-select {
+    display: flex;
+}
+
+.errState {
+    color: red;
+    position: fixed;
+}
+
+.errorEntity {
+    color: red;
+    font-size: 20px;
+}
+
+.checkLabel {
+    margin-left: 8px;
+}
+
+.notes-icon {
+    width: 18%;
+    cursor: pointer;
+    margin-top: 10px
+}
+.pdf-icon {
+    cursor: pointer;
+    margin-top: 10px
+}
+
+.unitLabels {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    padding-left: 59px;
+    margin-top: 7px;
+    color: black;
+}
+
+.unitLabelss {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    padding-left: 85px;
+    margin-top: 7px;
+    color: black;
+}
+
+.unitLabel {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    padding-left: 17px;
+    margin-top: 7px;
+    color: black;
+}
+
+.claimsunedit {
+    overflow-y: scroll;
+    /* width: 101%; */
+    margin: 0 0 0px;
+    height: 80px;
+    background: #f9f7f7;
+    margin-bottom: 10px;
+    font-size: 12px !important;
+    font-family: 'Roboto';
+    /* overflow-x: scroll; */
+}
+
+.claimsuneditt {
+    width: 100%;
+    height: 44px;
+
+}
+
+.claimsBtn {
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: -31px;
+}
+.rejectTextbox textarea:focus {
+    box-shadow: 0 0 0 2px red; 
+}
+.rejectTextbox textarea {
+    transition: box-shadow 0.15s ease-in-out;
+}
+.authTextbox textarea:focus {
+    box-shadow: 0 0 0 2px rgb(106, 106, 238); 
+}
+.authTextbox textarea {
+    transition: box-shadow 0.15s ease-in-out;
+}
+::ng-deep.mat-mdc-tab-body.mat-mdc-tab-body-active {
+    overflow-y: hidden;
+
+}
+
+.tableRow {
+    /* margin-left: 1%; */
+    display: flex;
+    flex-direction: row;
+    margin-top: -7px;
+    margin-left: 2px;
+    justify-content: space-between;
+}
+
+.flex-button{
+    display: flex;
+}
+.btnCol{
+    margin-bottom: 10px!important; 
+    margin-top: -60px
+}
+.slab2Table{
+    width: 96%;
+    margin-left: 2%;
+}
+.salbsTable{
+    width: auto;
+}
+.buttonsCol{
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+}
+.authButtonsCol{
+    margin-top: -60px;
+    display: flex;
+}
+.availedCol{
+    position: relative;
+    top: 25px;
+}
+
+@media (max-width: 920px) {
+    .tableRow{
+        flex-direction: column;
+        margin-left: 60px;
+        justify-content: space-between;
+    }
+    .unitnameInput{
+        width: 120px;
+    }
+    .unitcodeLabel{
+        width: 190px;
+        margin-right: 20px;
+    }
+    .flex-button{
+     flex-direction: column;
+    }
+    .form-check{
+        margin-left: -80px;
+    }
+    .refTable{
+        width: auto !important;
+        overflow-x: scroll;
+    }
+    .slab2Table{
+        width: auto !important;
+        overflow-x: scroll;
+    }
+    .inputsCol{
+        margin-left: 20px;
+    }
+    .availedCol{
+        left: 80px;
+        position: relative;
+        top: -22px;
+    }
+}
+
+@media screen and (min-width : 576px) and (max-width:1200px) {
+  .closeModalBtn{
+    display: none;
+  }
+}
+@media screen and (min-width : 710px) and (max-width:1200px) {
+    .slab2Table{
+        width: auto !important;
+        overflow-x: scroll;
+    }
+}
+@media screen and (min-width : 710px) and (max-width:1180px) {
+    .btnCol{
+        margin-top: 0px;
+        margin-bottom: 18px !important;
+    }
+    .buttonsCol{
+        display: flex;
+        flex-direction: column;
+        margin-top: 45px;
+        margin-left: -170px;
+        position: relative;
+    }
+    .btnAlign1{
+        margin-top: 55px;
+    }
+    .authButtonsCol{
+        display: flex;
+        flex-direction: column;
+        margin-left: 10px;
+    }
+}
+
+@media  screen and (min-width :500px) and (max-width :709px){
+    .buttonsCol{
+        display: flex;
+        flex-direction: column;
+        margin-top: 45px;
+        margin-left: -115px;
+        position: relative;
+    }
+    .btnAlign1{
+        margin-top: 55px;
+    }
+    .authButtonsCol{
+        display: flex;
+        flex-direction: column;
+        margin-left: 10px;
+    }
+    .slab2Table{
+        width: auto !important;
+        overflow-x: scroll;
+    }
+}
+.tableRowNew {
+    display: flex;
+    margin-top: -7px;
+    margin-left: 100px;
+}
+.buleredRow {
+    background: #cfcdcd;;
+}
+/*  */
+@supports (-moz-appearance:none) {
+    .ifscInput {
+        width: 577px;
+    }
+
+    .pinCodeInput {
+        width: 31%
+    }
+
+    .unitnameInput {
+        width: 825px;
+    }
+
+    .emailsInput {
+        width: 935px;
+        height: 48px;
+    }
+
+    .backButton {
+        left: 877px;
+        margin-top: 10px;
+    }
+
+    .rowFirefox {
+        position: relative;
+        bottom: 22px;
+    }
+
+    .unitInput {
+        width: 30%;
+        height: 46px;
+    }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    -chrome-:only .ifscInput {
+        width: 40%;
+    }
+
+    .pinCodeInput {
+        width: 31%;
+    }
+
+    .unitnameInput {
+        /* width: 127%; */
+        height: 36px;
+        margin-left: -91px;
+        position: relative;
+    }
+
+    .emailsInput {
+        width: 66%;
+        height: 47px;
+    }
+
+    .unitInput {
+        width: 24%;
+        height: 46px;
+    }
+}
+
+ body{
+    background: #eee;
+}
+
+.saf{
+    background-color: #eee !important;
+}
+
+.height{
+
+    height: 100vh;
+}
+.height1{
+
+    height:100vh;
+}
+
+label{
+
+    position: relative;
+    right:13px;
+}
+.errorMsg {
+    color: red;
+    display: flex;
+    width: 490px !important;
+    margin-left: -216px;
+}
+.data1{
+    width: 140%;
+    position: relative;
+    top: 10rem;
+    left: 8rem;
+    height:10rem;
+}
+
+
+
+#details1{
+    width:71%;
+}
+
+.up{
+
+    /* position: relative;
+    left: 15rem;
+    bottom: 2rem; */
+
+    position: relative;
+    left: 27px;
+    /* background-color: rgb(80, 80, 194); */
+    /* background-color: rgb(138, 138, 243); */
+    background-color: rgb(10, 122, 159);
+    width:100px;
+    height:34px;
+}
+
+
+
+.ca{
+
+    /* position: relative;
+    left: 23.2rem;
+    bottom: 4.4rem; */
+    position: relative;
+    left: 19rem;
+    bottom: 35px;
+    width:100px;
+    /* text-align: right; */
+    /* background-color: rgb(80, 80, 194); */
+    /* background-color: rgb(138, 138, 243); */
+    background-color: rgb(10, 122, 159);
+    height:34px;
+
+
+}
+
+.con{
+    /* position: relative;
+    right: 7rem;
+    bottom: 5px; */
+
+    position: relative;
+    right: 3rem;
+    bottom: 5px;
+}
+
+
+.fs{
+    width:81px;
+    height:34px;
+    /* background-color: rgb(80, 80, 194); */
+    background-color: rgb(10, 122, 159);
+    width:100px;
+    color:#fff;
+
+}
+
+.clo{
+    position: relative;
+    right: 5%;
+    bottom: 1px;
+    height: 21px;
+    width: 24px
+}
+
+#upi{
+    position: relative;
+    right: 0.4rem;
+    width: 15px;
+
+}
+
+#file-input{
+    width: 90px;
+    overflow: hidden;
+    display:none;
+
+}
+.btnwidth {
+    width: 155px;
+    position: relative;
+}
+#upl{
+    background-color: rgb(10, 122, 159);
+}
+
+#sub{
+    background-color: rgb(10, 122, 159);
+}
+.snoCol{
+    width:3%
+}
+.descCol{
+    width: 43%;
+}
+.briefCol{
+    width: 14%;
+}
+.slaboCol{
+    width: 10%;
+}
+.slabtCol{
+width: 12%;
+}
+.totalCol{
+    width:30%
+}
+.refTable{
+    padding: 10px;
+}
+.remarkRow{
+    margin-left: 1%;
+}
+.gridUnit {
+    width: 1373px;
+    height: 350px;
+}
+
+.btnAlign1{
+    /* left: 3% !important; */
+    position: relative !important;
+}
+.btnAlign2{
+    /* left: 12% !important; */
+    position: relative !important;
+}
+
+.table {
+    border-collapse: collapse;
+  }
+
+  .table, th, td {
+    border: 1px solid black;
+    font-size: 12px;
+  }
+
+.footer1 {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+.tablelayout{
+    width: 96%;
+    margin-left: 2%;
+}
+@media (min-resolution: 1.0dppx) {
+    .tablelayout{
+       margin-left: 3%;
+       width: 55vw !important
+    }
+}
+@media (min-resolution: 1.25dppx) {
+    .tablelayout{
+       margin-left: 3%;
+       width: 68vw !important
+    }
+}
+@media (min-resolution: 1.5dppx) {
+    .tablelayout{
+       margin-left: 4%;
+       width: 80vw !important
+    }
+}
+
+.save2{
+    position: relative; 
+    /* right: 5% */
+}
+/* .save1{
+    position: relative; 
+    right: 1%
+} */
+
+.submit2{
+    position: relative;
+     /* right: 1%; */
+}
+.submit1{
+    position: relative;
+     /* left: 3%; */
+}
+
+input{
+    font-family: 'Roboto' !important;
+    font-size: 12px !important;
+}
+
+::ng-deep.modal-backdrop {
+    position: relative;
+    
+  }
+
+  h2{
+    margin-top: 18px;
+    font-size: 15px !important;
+    font-family: 'Roboto' !important;
+  }

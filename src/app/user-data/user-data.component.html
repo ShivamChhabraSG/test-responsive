@@ -1,0 +1,182 @@
+<!-- <p>entity-screen works!</p> -->
+<div class="userScreen">
+<!-- <div class="row">
+    <div class="col-2" style="padding-left: 6%;">
+        <app-sidenav-bar></app-sidenav-bar>
+        <app-dashboard-header class="app-dashboarscreen"></app-dashboard-header>
+
+    </div>
+</div> -->
+<div class="entityL">
+<hr>
+<div class="container-fluid">
+    <div class="row gridRow">
+        <div class="col-12">
+            <mat-tab-group style="height: 35px;" (selectedTabChange)="tabChangedUser($event)" [selectedIndex]="tabEvent" animationDuration="0">
+                <mat-tab *ngFor="let tab of levelsData; let index = index" class="gridRow1">
+                    <ng-template class="w-100" mat-tab-label>
+                        {{ tab.levelName }}
+                        <!-- <mat-icon (click)="removeTab(index)" class="float-end">cancel</mat-icon> -->
+                    </ng-template>
+                    <ng-template #frame style="max-width: 100%;"></ng-template>
+
+                </mat-tab>
+            </mat-tab-group>
+            <div style="margin-top: 25px;padding: 4px;">
+                <div class="row  gridStyle">
+                    <div class="mt-2 align-items-center toprow">
+                        <div class="row">
+                    <div class="col-1  genStyle ">
+                        <img (click)="generatePDF(gridOptions)" src="../../assets/image/pdf icon.svg" title="Download PDF">
+                    </div>
+                    <div class="col-1 colStylee" >
+                        <img (click)="downloadExcel()" src="../../assets/image/excel icon.svg" title="Download Excel">
+                    </div>
+                    <div class="col-md-2 colStyles">
+                        <form [formGroup]="myForms" class="formstyle">
+                            <!-- Use different methods -->
+                            <ng-multiselect-dropdown class="promo statuses111" formControlName="name"
+                                [settings]="dropdownSettings" [data]="toppingList" (onSelect)="ColumnSelect($event)"
+                                (onDeSelect)="ColumnDeSelect($event)"
+                                (onDeSelectAll)="ColumnDeSelectOrAll($event)"
+                                (onSelectAll)="ColumnSelectOrAll($event)">
+                            </ng-multiselect-dropdown>
+                        </form>
+                    </div>
+                    <div class="col-md-3 colStyle">
+                        <label class="entityLabel">User</label>
+                    </div>
+                                    
+                    <div class="col-md-1 searchStyle">
+                        <div class="searchBox d-flex searchBarstyle">
+                            <mat-icon class="searchIcon">search</mat-icon>
+                            <input class="searchInput searchbarInput" type="text" name=""
+                                (keyup)="onFilterTextBoxChanged(gridOptions,$event)" placeholder="Search ">
+                        </div>
+                       
+                    </div>
+
+                    
+                    <!-- <div class="col-1 colAdd" routerLinkActive="active" >
+                        <img  (click)="addEntity()" src="../../assets/image/add new icon.svg" *ngIf="AddPermission" title="Add User">
+                        <img  style="margin-left: 11%;" src="../../assets/image/upload.svg" (click)="UploadEntity()" title="Upload User">
+                    </div> -->
+                    <div class="col-md-2 colStyleIcon" style="width: 14rem;">
+                        <!-- <img src="../../assets/image/view.svg" (click)="viewEnity()" class="viewEn"> -->
+                        <!-- <div *ngFor="let data of entitlements">
+                            {{data}}
+                        </div> -->
+                        <div class="row">
+                            <div class="col-md-2" routerLinkActive="active" *ngIf="fileUpload" style="width: 126px;margin-top: 0.1rem;">
+                                <!-- <img  style="margin-left: 11%;" src="../../assets/image/upload.svg" (click)="UploadEntity()" title="Upload User"> -->
+                                <span title="Upload User" class="uploadView"   (click)="UploadEntity()"> Upload View</span>
+                            </div>
+                            
+                            <div class="col-2" *ngIf="viewPermission && CellClicked" >
+                                <img src="../../assets/image/view.svg" (click)="viewEnity()"  title="View User" style="position: relative;right: 28px;">
+
+                            </div>
+                            <div class="col-1" routerLinkActive="active" *ngIf="AddPermission" >
+                                <img  (click)="addEntity()" src="../../assets/image/add new icon.svg" title="Add User" [ngClass]="CellClicked? 'isAdd':'addUser'">
+                            </div>
+                            <div class="col-1" *ngIf="EditPermission && CellClicked">
+                                <img src="../../assets/image/edit.svg" (click)="EditUser()" class="editImg" *ngIf="EditPermission && CellClicked && checker === maker" title="Edit User">
+                                <img src="../../assets/image/edit.svg"  class="editImg" *ngIf="EditPermission && CellClicked && checker !== maker" title="Edit User" (click)="EditUserDialog()">
+
+                            </div>
+                            <div class="col-2 addd"  *ngIf="AuthorizePermision && Rejected !== 'R' && Rejected !== 'A' && checker !== maker && CellClicked"  >
+                                <!-- <img src="../../assets/image/Authorize-button.svg" (click)="AuthorizeUser()"  title="Authorize User"> -->
+                                <img src="../../assets/image/Authorize-button.svg" (click)="AuthorizeUser()" class="authImg"  title="Authorize User">
+
+                            </div>
+                            <div class="col-1" *ngIf="deletePermision && Rejected == 'R' && CellClicked">
+                                <!-- <img src="../../assets/image/Delete-button.svg" (click)="DeleteEntity()"  title="Delete User"> -->
+                                <img src="../../assets/image/Delete-button.svg" (click)="DeleteUser()" class="editImgD" *ngIf="deletePermision && Rejected == 'R' && CellClicked && checker === maker" title="Delete User">
+                                <img src="../../assets/image/Delete-button.svg"  class="editImgD" *ngIf="deletePermision && Rejected == 'R' && CellClicked && checker !== maker" title="Delete User" (click)="DeleteUserDialog()">
+                            </div>
+
+                     
+                     
+                        <!-- <img src="../../assets/image/upload.svg" (click)="UploadEntity()" class="editImg" title="Upload User"> -->
+                    </div>
+                </div>
+                </div>
+                </div>
+                <br>
+              
+                <div class="row agRow" [ngClass]="deletePermision && Rejected == 'R' ? 'agRow' : 'agRow1'">
+                 <div class="col-12" style="margin-bottom: 1%; margin-top: 2%;">
+                        <ag-grid-angular 
+                            class="ag-theme-alpine"  [rowData]="selectedLevelData"
+                            style="width: 102%; height:423px ;" (cellClicked)="onCellClicked($event)" (gridReady)="onGridReady($event)"
+                            [defaultColDef]="defaultColDef" [columnDefs]="columnDefs" 
+                              [pagination]="true"
+                            [paginationPageSize]="pageSize"
+                            [cacheBlockSize]="pageSize"
+                            [paginationNumberFormatter]="customNumberFormatter"
+                            [groupSelectsChildren]="true">
+                        </ag-grid-angular>
+                        <!-- <div class="paginDiv">
+                            <label for="pageSize"></label>
+                            <select id="pageSize" [(ngModel)]="pageSize" (ngModelChange)="onPageSizeChanged()">
+                                <option value="8">8</option>
+                                <option value="15">15</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                              </select>
+                        </div> -->
+                        
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 footer" >
+      <app-nrlm-footer></app-nrlm-footer>
+    </div>
+  </div>
+</div>
+</div>
+   <!-- Not Maker Edit modal -->
+   <div class="modal fade" data-bs-backdrop="static" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header d-flex justify-content-center" style="background:#E1F6E8 !important">
+          <h1 class="modal-title text-center flex-grow-1" id="exampleModalLabel">Warning !</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center p-5">
+          <h4>You are not the maker, Do you still want to edit?</h4>
+        </div>
+        <div class="modal-footer justify-content-around m-3" >
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="EditUser()">Yes</button>
+          <button type="button" class="btn " data-bs-dismiss="modal" aria-label="Close">No</button>
+          </div>
+      </div>
+    </div>
+  </div>
+     <!-- Not Maker Delete modal -->
+     <div class="modal fade" data-bs-backdrop="static" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header d-flex justify-content-center" style="background:#E1F6E8 !important">
+              <h1 class="modal-title text-center flex-grow-1" id="exampleModalLabel">Warning !</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center p-5">
+              <h4>You are not the maker, Do you still want to delete?</h4>
+            </div>
+            <div class="modal-footer justify-content-around m-3" >
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="DeleteUser()">Yes</button>
+              <button type="button" class="btn " data-bs-dismiss="modal" aria-label="Close">No</button>
+              </div>
+          </div>
+        </div>
+      </div>
+
+<app-warning-log-dialog></app-warning-log-dialog>      
+<app-error-dialog></app-error-dialog>

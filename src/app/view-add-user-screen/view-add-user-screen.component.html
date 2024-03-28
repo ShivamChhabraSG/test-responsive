@@ -1,0 +1,171 @@
+
+
+<div class="viewScreen">
+    <!-- <div class="row">
+        <div class="col-2" style="padding-left: 6%;">
+            <app-sidenav-bar></app-sidenav-bar>
+            <app-dashboard-header class="app-dashboarscreen"></app-dashboard-header>
+        </div>
+    </div> -->
+    <!-- <hr style="margin-top: 0%;"> -->
+    <br>
+
+    <div class="container-fluid containerStyle">
+        <div class="row entityLabel">
+            <div class="col-12">
+                <label style="font-size: 15px !important;">View User</label>
+            </div>
+        </div>
+        <mat-tab-group class="addUsertab">
+            <mat-tab>
+                <br>
+                <div class="row">
+                    <div class="col-md-2">
+                        <label class="unitcodeLabel">User ID *</label>
+                        <input  placeholder="Enter User ID" id="uid" name="uid"
+                         disabled   [(ngModel)]="UnitCode" class="userInput" pInputText required #uid="ngModel" />
+                        <p class="validations" *ngIf="uid.invalid && (uid.dirty || uid.touched)"
+                        >
+                            <span class="errMSggg" *ngIf="uid.errors?.['required']">
+                                *User ID is required
+                            </span>
+                        </p>
+                    </div>
+            
+                    <div class="col-md-3">
+                        <label class="unittcodeLabels">Level *</label>
+                        <ng-select [clearable]="false" class="levelDropdown" 
+                             id="levelSt" name="Level" placeholder="Select Level"
+                           disabled [(ngModel)]="Level" required #levelSt="ngModel">
+                        </ng-select>
+                    
+                    </div>
+                    <div class="col-md-3">
+                        <label class="unitcodeLabel">Parent Unit *</label>
+                        <ng-select [clearable]="false" class="levelDropdown"
+                            id="parentu" name="parentu" placeholder="Select Parent Unit" 
+                         disabled [(ngModel)]="parentUnit" required #parentu="ngModel">
+                        </ng-select>
+                    
+                    </div>
+                    <div class="col-md-4">
+                        <label class="unitcodeLabel"> Unit Name *</label>
+                        <ng-select [clearable]="false" class="levelDropdown2"
+                            id="unitn" name="unitn" placeholder="Select Unit Name" 
+                          disabled [(ngModel)]="unitName" required #unitn="ngModel">
+                        </ng-select>
+                    
+                    </div>
+                </div>
+                <br>
+                <div class="row ">
+                    <div class="col-md-4" >
+                        <label class="unitcodeLabel">Role *</label>
+                        <input  placeholder="Enter Role" id="roleU" name="roleU"
+                        disabled  [(ngModel)]="roleName" class="unitnameInput" pInputText required #roleU="ngModel" />
+                       
+                    </div>
+                    <div class="col-md-4">
+                        <label class="usernameLabel">User Name *</label>
+                        <input placeholder="Enter User Name" id="uname" name="uname"
+                        disabled      [(ngModel)]="name" class="unitnameInput" pInputText required #uname="ngModel" />
+                    
+                    </div>
+                    <div class="col-md-4">
+                        <label class="givennameLabel">Given Name *</label>
+                        <input placeholder="Enter Given Name" id="givenN" name="givenN"
+                        disabled         [(ngModel)]="givenName" class="givennameInput" pInputText required #givenN="ngModel" />
+
+                    </div>
+                </div>
+                <br>
+                <div class="row rowState">
+                    <div class="col-md-2">
+                        <label class="mobilenumberLabel">Mobile No. *</label>
+                        <input placeholder="Enter Mobile Number" id="mobileN" name="mobileN"
+                        disabled    [(ngModel)]="mobile" class="mobileInput" pInputText required #mobileN="ngModel" />
+                      
+                    </div>
+                    <div class="col-md-3 eRow">
+                        <label class="sLabel">Email *</label>
+                        <input disabled placeholder="Enter Email" id="emailIn" name="emailIn" [(ngModel)]="email" class="emailsInput" pInputText  #emailIn="ngModel" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$"  />
+                   
+                    </div>  
+                    <div class="col-md-2 deprtCol " >
+                        <label class="unitcodeLabel">Department *</label>
+                        <input  placeholder="Enter Department" id="departm" name="departm"
+                        disabled     [(ngModel)]="department" class="deprtInput" pInputText required #departm="ngModel" />
+                        
+                    </div>
+                    <div class="col-md-2 deprtCol">
+                        <label class="unitcodeLabel">Designation *</label>
+                        <input placeholder="Enter Designation" id="designt" name="designt"
+                        disabled        [(ngModel)]="designation" class="designInput" pInputText required #designt="ngModel" />
+                   
+                    </div>
+                    <div class="col-md-2 deprtCol">
+                        <label class="unitcodeLabel">Grade *</label>
+                        <input placeholder="Enter Grade" 
+                        disabled      [(ngModel)]="grade" class="gradeInput" pInputText required />
+                        
+                          
+                    </div>
+                </div>
+                <br>
+                <!-- <div class="row rowState ">
+                    <div class="col-4 deprtCol" >
+                        <label class="unitcodeLabel">Department *</label>
+                        <input  placeholder="Enter Department" id="departm" name="departm"
+                        disabled     [(ngModel)]="department" class="unitnameInput" pInputText required #departm="ngModel" />
+                        
+                    </div>
+                    <div class="col-4">
+                        <label class="unitcodeLabel">Designation *</label>
+                        <input placeholder="Enter Designation" id="designt" name="designt"
+                        disabled        [(ngModel)]="designation" class="unitnameInput" pInputText required #designt="ngModel" />
+                   
+                    </div>
+                    <div class="col-4">
+                        <label class="unitcodeLabel">Grade *</label>
+                        <input placeholder="Enter Grade" 
+                        disabled      [(ngModel)]="grade" class="givennameInput" pInputText required />
+                        
+                          
+                    </div>
+                </div> -->
+                <br>
+                <div class="row rowState">
+                        <div class="col-md-4">
+                        <label class="sLabel">Record Status *</label>
+                        <ng-select  [clearable]="false" class="recordDropdown" id="recordSt" name="recordSt"
+                    disabled        placeholder="Select Record Status"  [(ngModel)]="status" required #recordSt="ngModel">
+                        </ng-select>
+                        
+                    </div>
+                </div><br>
+                <br>
+       
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+    <div class="row">
+        <div class="col-md-6"></div>
+        <div class="col-md-4"></div>
+        <div class="col-md-2">
+            <button (click)="goBack()" type="button"
+                class="btn btn-primary backButton">Back</button>
+        </div>
+        <div class="col-2">
+        </div>
+        <div class="col-2">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 footer">
+            <app-nrlm-footer></app-nrlm-footer>
+        </div>
+    </div>
+</div>
+
+<app-error-dialog></app-error-dialog>

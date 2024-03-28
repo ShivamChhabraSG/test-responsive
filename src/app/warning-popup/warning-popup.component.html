@@ -1,0 +1,321 @@
+<!--Delete Record Div-->
+<div class="container-fluid deletePopup" *ngIf="PopupShown == 'deleted'">
+    <div class="row warnHeader">
+        <div class="col-12">
+            <h1 class="heading">Warning !</h1>
+            <mat-icon class="closeIcon" (click)="closepopup()">close</mat-icon>
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">Do you Really want to delete this Record?</p>
+        </div>
+        <br>
+        <hr><br>
+
+    </div>
+    <div class="row warngBtnDiv">
+        <div class="col-6">
+            <label class="warningBtn" (click)="deleteEntityData()">Yes</label>
+        </div>
+        <div class="col-6">
+            <label class="warningBtn" (click)="gobackMain()">No</label>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Upload recordS -->
+
+<div class="container-fluid deletePopup" *ngIf="PopupShown == 'UploadDeleted'">
+    <div class="row warnHeader">
+        <div class="col-12">
+            <h1 class="heading">Warning !</h1>
+            <mat-icon class="closeIcon" (click)="closepopup()">close</mat-icon>
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">Do you Really want to delete this Record?</p>
+        </div>
+        <br>
+        <hr><br>
+
+    </div>
+    <div class="row warngBtnDiv">
+        <div class="col-6">
+            <label class="warningBtn" (click)="DeleteEntityUpload()">Yes</label>
+        </div>
+        <div class="col-6">
+            <label class="warningBtn" (click)="gobackUploadScreen()">No</label>
+        </div>
+    </div>
+</div>
+
+<!-- Delete User Upload -->
+
+<div class="container-fluid deletePopup" *ngIf="PopupShown == 'UserUploadDeleted'">
+    <div class="row warnHeader">
+        <div class="col-12">
+            <h1 class="heading">Warning !</h1>
+            <mat-icon class="closeIcon" (click)="closepopup()">close</mat-icon>
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">Do you Really want to delete this Record?</p>
+        </div>
+        <br>
+        <hr><br>
+
+    </div>
+    <div class="row warngBtnDiv">
+        <div class="col-6">
+            <label class="warningBtn" (click)="DeleteUserUpload()">Yes</label>
+        </div>
+        <div class="col-6">
+            <label class="warningBtn" (click)="gobackUploadUserScreen()">No</label>
+        </div>
+    </div>
+</div>
+
+<!-- Deleted User Data -->
+<div class="container-fluid deletePopup" *ngIf="PopupShown == 'UserDataDeleted'">
+    <div class="row warnHeader">
+        <div class="col-12">
+            <h1 class="heading">Warning !</h1>
+            <mat-icon class="closeIcon" (click)="closepopup()">close</mat-icon>
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">Do you Really want to delete this Record?</p>
+        </div>
+        <br>
+        <hr><br>
+
+    </div>
+    <div class="row warngBtnDiv">
+        <div class="col-6">
+            <label class="warningBtn" (click)="deleteUserData()">Yes</label>
+        </div>
+        <div class="col-6">
+            <label class="warningBtn" (click)="gobackUserScreen()">No</label>
+        </div>
+    </div>
+</div>
+
+<!-- NRLMdelete -->
+
+<div class="container-fluid deletePopup" *ngIf="PopupShown == 'NRLMdelete'">
+    <div class="row warnHeader">
+        <div class="col-12">
+            <h1 class="heading">Warning !</h1>
+            <mat-icon class="closeIcon" (click)="closepopup()">close</mat-icon>
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">Do you Really want to delete this Record?</p>
+        </div>
+        <br>
+        <hr><br>
+
+    </div>
+    <div class="row warngBtnDiv">
+        <div class="col-6">
+            <label class="warningBtn" (click)="DeleteNRLMUpload()">Yes</label>
+        </div>
+        <div class="col-6">
+            <label class="warningBtn" (click)="gobackUploadUserScreen()">No</label>
+        </div>
+    </div>
+</div>
+
+<!-- AccountsDelete -->
+
+<div class="container-fluid deletePopup" *ngIf="PopupShown == 'Accountsdelete'">
+    <div class="row warnHeader">
+        <div class="col-12">
+            <h1 class="heading">Warning !</h1>
+            <mat-icon class="closeIcon" (click)="closepopup()">close</mat-icon>
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">Do you Really want to delete this Record?</p>
+        </div>
+        <br>
+        <hr><br>
+
+    </div>
+    <div class="row warngBtnDiv">
+        <div class="col-6">
+            <label class="warningBtn" (click)="DeleteAccountsUpload()">Yes</label>
+        </div>
+        <div class="col-6">
+            <label class="warningBtn" (click)="gobackUploadUserScreen()">No</label>
+        </div>
+    </div>
+</div>
+
+<!-- ClosedAccountsdelete -->
+<div class="container-fluid deletePopup" *ngIf="PopupShown == 'ClosedAccountsdelete'">
+    <div class="row warnHeader">
+        <div class="col-12">
+            <h1 class="heading">Warning !</h1>
+            <mat-icon class="closeIcon" (click)="closepopup()">close</mat-icon>
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">Do you Really want to delete this Record?</p>
+        </div>
+        <br>
+        <hr><br>
+
+    </div>
+    <div class="row warngBtnDiv">
+        <div class="col-6">
+            <label class="warningBtn" (click)="DeleteClosedAccountsUpload()">Yes</label>
+        </div>
+        <div class="col-6">
+            <label class="warningBtn" (click)="gobackClosedUploadScreen()">No</label>
+        </div>
+    </div>
+</div>
+
+
+<!-- ClaimsUploadDelete -->
+<div class="container-fluid deletePopup" *ngIf="PopupShown == 'ClaimsUploaddelete'">
+    <div class="row warnHeader">
+        <div class="col-12">
+            <h1 class="heading">Warning !</h1>
+            <mat-icon class="closeIcon" (click)="closepopup()">close</mat-icon>
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">Do you Really want to delete this Record?</p>
+        </div>
+        <br>
+        <hr><br>
+
+    </div>
+    <div class="row warngBtnDiv">
+        <div class="col-6">
+            <label class="warningBtn" (click)="DeleteClaimsUpload()">Yes</label>
+        </div>
+        <div class="col-6">
+            <label class="warningBtn" (click)="gobackClosedUploadScreen()">No</label>
+        </div>
+    </div>
+</div>
+<!--Edit Warning Popup-->
+<!-- <div class="container-fluid deletePopup">
+    <div class="row warnHeader">
+        <div class="col-12">
+            <h1 class="heading">Warning !</h1>
+            <mat-icon class="closeIcon" (click)="closepopup()">close</mat-icon>
+        </div>
+            </div>
+            <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">You are not the maker, Do you want to still edit?</p>
+        </div>
+<br>
+<hr><br>
+
+    </div>
+    <div class="row warngBtnDiv">
+        <div class="col-6">
+        <label class="warningBtn" (click)="deleteEntityData()">Yes</label>
+        </div>
+        <div class="col-6">
+            <label class="warningBtn" (click)="gobackMain()">No</label>
+        </div>
+        </div>
+</div> -->
+
+<!--Authorize Warning-->
+<!-- <div class="container-fluid deletePopup">
+    <div class="row warnHeader">
+        <div class="col-12">
+            <h1 class="heading">Warning !</h1>
+            <mat-icon class="closeIcon" (click)="closepopup()">close</mat-icon>
+        </div>
+            </div>
+            <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">Since you are the maker (Maker and Checker can't be the same)</p>
+        </div>
+<br>
+<hr><br>
+
+    </div>
+    <div class="row warngBtnDiv">
+        <div class="col-12">
+        <label class="warningBtn" (click)="gobackMain()">OK</label>
+        </div>
+               </div>
+</div> -->
+
+<!--Authorize Entity Comment-->
+<div class="authCommentBox" *ngIf="PopupShown === 'authorized' || PopupShown === 'rateauthorized' || PopupShown === 'raterejected'">
+    <div class="row warnHeader">
+        <div class="col-12">
+            <h1 class="heading">Comment</h1>
+            <mat-icon class="closeIcon" *ngIf="PopupShown === 'authorized' || PopupShown === 'rateauthorized' || PopupShown === 'raterejected'" (click)="closepopup()">close</mat-icon>        
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <input type="text" *ngIf="PopupShown === 'authorized' || PopupShown === 'rateauthorized' || PopupShown === 'raterejected'" (keyup)="commentText($event)" class="commentBox">        
+        </div>
+        <br>
+        <hr style="display: block; width: 484px; margin-left: 53px; border: 1px solid; position: absolute; bottom: 112px;"><br>
+    </div>
+    <div class="row warngBtnDiv">
+        <div class="col-12">
+            <button type="button" *ngIf="PopupShown === 'authorized' || PopupShown === 'rateauthorized' || PopupShown === 'raterejected'" (click)="SaveauthorizeEntity()" class="btn btn-primary submitButton">Submit</button>        
+        </div>
+    </div>
+</div>
+<!--Authorize User Comment-->
+<div class="authCommentBox" style="margin-right: 20px;" *ngIf="PopupShown == 'AuthorizedUser'">
+    <div class="row warnHeader">
+        <div class="col-12">
+            <h1 class="heading">Comment</h1>
+            <mat-icon class="closeIcon" (click)="closepopup()">close</mat-icon>
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <input type="text" (keyup)="commentTextWarning($event)" class="commentBox">
+        </div>
+        <br>
+        <hr style="display: block;
+width: 484px;
+margin-left: 53px;
+border: 1px solid;
+position: absolute;
+bottom: 112px;"><br>
+
+    </div>
+    <div class="row warngBtnDiv">
+        <div class="col-12">
+            <button type="button" (click)="SaveauthorizeUser()" class="btn btn-primary submitButton">Submit</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+.container-fluid{
+    background: #707881;
+    height: 45px;
+    color: white;
+    width: 104%;
+    margin-left: -13px;
+}
+.firstCol{
+    padding-left: 0%;
+    padding-top: 1%;
+}
+.img{
+    height: 24px;
+    margin-bottom: 7px;
+}
+::ng-deep .mat-icon.cll {
+bottom: 0px;
+}
+.thirdCol{
+    /* padding-left: 105px; */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    font-family: 'Roboto';
+}
+
+
+.fCol{
+    /* padding-left: 100px; */
+    font-family: 'Roboto';
+}
+.fColl{
+    /* padding-left: 12%; */
+    font-family: 'Roboto';
+}
+
+.username{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    padding-left: 1rem;
+    font-family: 'Roboto';
+}

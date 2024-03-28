@@ -1,0 +1,206 @@
+<!--Auth PopUp From Edit Entity-->
+<div *ngIf="show == true" class="dialog-overlay" (click)="closeDialog()">
+    <div *ngIf="auth == 'Authorise' " class="dialog-content" (click)="$event.stopPropagation()">
+            <div class="row warnHeader">
+                <div class="col-12">
+                    <h1 class="heading">Authorise </h1>
+                    <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+                </div>
+            </div>
+            <br>
+            <div class="row warningRow">
+                <div class="col-12">
+                    <p class="warningMsg">Please comment to Authorise</p>
+                    <textarea autofocus id="w3review"  rows="4" cols="50" [(ngModel)]="remarks"> </textarea>
+                </div>
+                <br>
+                <hr><br>
+        
+            </div>
+            <div class="button-container">
+                <div class="col-6">
+                    <label class="delete-button" (click)="Authorize()">Submit</label>
+                </div>
+            </div>
+    </div>
+
+    <div *ngIf="auth == 'Reject' " class="dialog-content-reject" (click)="$event.stopPropagation()">
+        <div class="row warnHeader">
+            <div class="col-12">
+                <h1 class="heading">Reject </h1>
+                <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+            </div>
+        </div>
+        <br>
+        <div class="row warningRow">
+            <div class="col-12">
+                <p class="warningMsg">Comment is mandatory to Reject</p>
+                <textarea id="w3review"  rows="4" cols="50" [(ngModel)]="remarks" > </textarea>
+            </div>
+            <br>
+            <hr><br>
+    
+        </div>
+        <div class="button-container">
+            <div class="col-6">
+                <button class="closed-button" [disabled]="remarks.trim() === ''" (click)="onReject()">Reject</button>
+            </div>
+        </div>
+</div>
+
+<div *ngIf="auth == 'authorizeData' " class="dialog-content" (click)="$event.stopPropagation()">
+    <div class="row warnHeader">
+        <div class="col-12">
+            <h1 class="heading">Reject </h1>
+            <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">Comment is mandatory to Reject.</p>
+            <textarea id="w3review"  rows="4" cols="50"> </textarea>
+        </div>
+        <br>
+        <hr><br>
+
+    </div>
+    <div class="button-container">
+        <div class="col-6">
+            <label class="delete-button" (click)="onReject()">Reject</label>
+        </div>
+    </div>
+    <div class="button-container">
+        <div class="col-6">
+            <label class="cancel-button" >Authorise</label>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="auth == 'userAuthorise' " class="dialog-content" (click)="$event.stopPropagation()">
+    <div class="row warnHeader">
+        <div class="col-12">
+            <h1 class="heading">Authorise </h1>
+            <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">Please comment to Authorise</p>
+            <textarea autofocus id="w3review"  rows="4" cols="50" [(ngModel)]="remark"> </textarea>
+        </div>
+        <br>
+        <hr><br>
+
+    </div>
+    <div class="button-container">
+        <div class="col-6">
+            <label class="delete-button" (click)="sendRateUpdate(false)">Submit</label>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="auth == 'UserReject' " class="dialog-content-reject" (click)="$event.stopPropagation()">
+    <div class="row warnHeader">
+        <div class="col-12">
+            <h1 class="heading">Reject </h1>
+            <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">Comment is mandatory to Reject</p>
+            <textarea id="w3review"  rows="4" cols="50" [(ngModel)]="remark" > </textarea>
+        </div>
+        <br>
+        <hr><br>
+
+    </div>
+    <div class="button-container">
+        <div class="col-6">
+            <button class="closed-button" [disabled]="remark.trim() === ''" (click)="sendRateUpdate(true)">Reject</button>
+        </div>
+    </div>
+</div>
+
+
+
+<div *ngIf="auth == 'rateAuthorise' " class="dialog-content" (click)="$event.stopPropagation()">
+    <div class="row warnHeader">
+        <div class="col-12">
+            <h1 class="heading">Authorise </h1>
+            <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">Please comment to Authorise</p>
+            <textarea autofocus id="w3review"  rows="4" cols="50" [(ngModel)]="Rateremarks"> </textarea>
+        </div>
+        <br>
+        <hr><br>
+
+    </div>
+    <div class="button-container">
+        <div class="col-6">
+            <label class="delete-button" (click)="sendRaUpdate(false)">Submit</label>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="auth == 'rateReject' " class="dialog-content-reject" (click)="$event.stopPropagation()">
+    <div class="row warnHeader">
+        <div class="col-12">
+            <h1 class="heading">Reject </h1>
+            <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">Comment is mandatory to Reject</p>
+            <textarea id="w3review"  rows="4" cols="50" [(ngModel)]="Rateremarks" > </textarea>
+        </div>
+        <br>
+        <hr><br>
+
+    </div>
+    <div class="button-container">
+        <div class="col-6">
+            <button class="closed-button" [disabled]="Rateremarks.trim() === ''" (click)="sendRaUpdate(true)">Reject</button>
+        </div>
+    </div>
+</div>
+<div *ngIf="auth == 'true' " class="dialog-content-password" (click)="$event.stopPropagation()">
+    <div class="row warnHeader">
+        <div class="col-12">
+            <h1>Success </h1>
+            <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="successMsg">Password reset Successfully</p>
+        </div>
+        <br>
+        <hr><br>
+
+    </div>
+
+    <div class="button-container">
+        <div class="col-6">
+            <label class="password-reset-button" (click)="closePasswordDialog()">ok</label>
+        </div>
+    </div>
+</div>
+</div>
+
+<app-error-dialog></app-error-dialog>
+<app-warning-dialog></app-warning-dialog>

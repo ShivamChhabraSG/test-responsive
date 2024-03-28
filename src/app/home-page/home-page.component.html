@@ -1,0 +1,103 @@
+<div class="container-fluid homepage">
+  <br>
+  <div class="row" style="height: 25px;position: relative;bottom: 14px;">
+    <div class="col-lg-3 col-md-3 col-sm-3 col-3">
+      <img src="../../assets/image/Ministry of Rural Development Government of India.svg" loading="lazy" alt=""
+        class="img1styl">
+    </div>
+    <!-- <div class="col-lg-3 col-md-3 ">
+      <img src="../../assets/image/logoImg1.png" alt="" style="width:80px;height: 50px;">
+    </div> -->
+    <div class="col-lg-3 col-md-3 col-sm-3 col-3">
+      <img src="../../assets/image/logoImg2.png" alt="" loading="lazy" class="img2styl">
+    </div>
+    <div class="col-lg-3 col-md-3  groupLogo col-sm-3 col-3">
+      <img src="../../assets/image/Group 1.svg" alt="" loading="lazy" class="img3styl">
+    </div>
+    <div class="col-lg-3 col-md-3  groupLogo col-sm-3 col-3">
+      <button type="button" class="loginBtn" data-bs-toggle="button" (click)="loginIn()">
+        <img src="../../assets/image/login.png" loading="lazy" class="img4styl" alt="" class="loginImg">
+        LOGIN</button>
+
+      <!-- <div class="horiLine2"></div> -->
+    </div>
+  </div>
+
+  <br>
+  <div class="horiLine"></div>
+  <!-- <div class="row"> -->
+  <div class="row mt-2">
+    <div class="col-lg-1 col-md-2 col-sm-8">
+      <button class="toggle-button chngTxtBtn" data-bs-toggle="button" (click)="toggleLanguage()">
+        {{ShowText}}
+      </button>
+    </div>
+
+
+    <div class="col-lg-7 col-md-8 col-sm-8 headingCol">
+      <h1 class="headingNRLM">दीनदयाल अंत्योदय योजना राष्ट्रीय ग्रामीण आजीविका मिशन ब्याज सहायता योजना</h1>
+      <p class="interestNRLM">DAY NRLM INTEREST SUBVENTION SCHEME</p>
+    </div>
+
+    <div class="dropdown-container template-container col-lg-2 col-sm-6">
+      <button class="btn download-btn" (click)="toggleDropdown()">Download Templates</button>
+      <div class="dropdown-menu" *ngIf="isDropdownOpen">
+        <button type="button" class="btn-close" (click)="toggleDropdown()"></button>
+        <a *ngFor="let option of downloadOptions" (click)="downloadCSV(option)" [title]="option.text">{{ option.text
+          }}</a>
+      </div>
+    </div>
+    <div class="dropdown-container pdf-container col-lg-2 col-sm-6">
+      <button class="btn download-btn" (click)="togglePdfDropdown()">Download Codes</button>
+      <div class="dropdown-menu pdf-menu" *ngIf="isPdfDropdownOpen">
+        <button type="button" class="btn-close close-icon" (click)="togglePdfDropdown()"></button>
+        <a *ngFor="let fileOption of downloadPdfOptions" [title]="fileOption.text" (click)="downloadFile(fileOption)">{{ fileOption.text}}</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12 textSize">
+      <ul class="primary-nav" style="display: grid;justify-content: left;">
+        <li id="item1" *ngFor="let point of jsonData?.title">
+          {{ point }}
+        </li>
+      </ul>
+    </div>
+    <div class="col-lg-6 col-md-6  col-sm-12">
+      <!-- <div class="row"> -->
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img class="imageWidth" src="../../assets/image/grpImg1_11zn.webp" loading="lazy" alt="First slide">
+            </div>
+            <div class="carousel-item">
+              <img class="imageWidth" src="../../assets/image/grpImg2_11zn.webp" loading="lazy"  alt="Second slide">
+            </div>
+            <div class="carousel-item">
+              <img class="imageWidth" src="../../assets/image/grpImg3_11zn.webp" loading="lazy" alt="Third slide">
+            </div>
+            <div class="carousel-item">
+              <img class="imageWidth" src="../../assets/image/grpImg4_11zn.webp" loading="lazy" alt="Third slide">
+            </div>
+            <div class="carousel-item">
+              <img class="imageWidth" src="../../assets/image/grpImg5_11zn.webp" loading="lazy" alt="Third slide">
+            </div>
+          </div>
+        </div>
+      <!-- </div> -->
+    </div>
+  </div>
+
+  <div class="text-center mt-1 w-100" style="top: 94%;left: 0;bottom: 0; position: fixed;background: #707881;">
+    <h3 class="blink-text">Powered by Finakon &#174;</h3>
+  </div>
+</div>

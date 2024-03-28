@@ -1,0 +1,283 @@
+<!-- Add Screen Data -->
+
+<div class="main">
+    <br>
+    <div class="container-fluid containerStyle">
+        <div class="row entityLabel">
+            <div class="col-12">
+                <label style="font-size: 15px !important;">{{userHeading}}</label>
+            </div>
+        </div>
+        <mat-tab-group class="addUsertab">
+            <mat-tab>
+                <br>
+                <div class="row">
+                    <div class="col-md-2">
+                        <label class="unitcodeLabel">User ID *</label>
+                        <input [disabled]="disabledUserId || authorziedUser" placeholder="Enter User ID" id="uid" name="uid" (change)="userIdEntered($event)"
+                            [(ngModel)]="userId" class="userInput" pInputText required #uid="ngModel" />
+                        <p class="validations" *ngIf="uid.invalid && (uid.dirty || uid.touched)">
+                            <span class="errMSggg" *ngIf="uid.errors?.['required']">
+                                *User ID is required
+                            </span>
+                        </p>
+                    </div>
+      <!--Lele-->
+                    <div class="col-md-3">
+                        <label class="unittcodeLabels">Level *</label>
+                        <ng-select [disabled]="authorziedUser" [items]="levelsData" (change)="changeLevel($event)" [clearable]="false"
+                            class="levelDropdown" id="levelSt" name="levelSt" placeholder="Select Level"
+                            bindLabel="levelName" bindValue="level" [(ngModel)]="Level" required #levelSt="ngModel">
+                        </ng-select>
+                        <!-- <ng-select disabled="true" bindLabel="levelName" bindValue="level"  [items]="levelsData" [(ngModel)]="Level" [clearable]="false" class="levelDropdown" placeholder="Select Level" required #levelSt="ngModel">
+                            <ng-option selected  [value]="4">{{'Branches'}}</ng-option>
+                         </ng-select>  -->
+                        <p class="validations" *ngIf="levelSt.invalid && (levelSt.dirty || levelSt.touched)">
+                            <span class="errState" *ngIf="levelSt.errors?.['required']">
+                                *Level is required
+                            </span>
+                        </p>
+                    </div>
+                    <div class="col-md-3" *ngIf="this.Level !== userLevel">
+                        <label class="unitcodeLabel">Parent Unit *</label>
+                        <ng-select [disabled]="authorziedUser" [clearable]="false" (change)="getParentLevel($event)" [items]="combinedArray"
+                            class="levelDropdown" id="parentu" name="parentu" placeholder="Select Parent Unit"
+                            bindLabel="unit" bindValue="unitCode" [(ngModel)]="parentUnit" required #parentu="ngModel">
+                        </ng-select>
+                        <p class="validations" *ngIf="parentu.invalid && (parentu.dirty || parentu.touched)">
+                            <span class="errParentU" *ngIf="parentu.errors?.['required']">
+                                *Parent Unit is required
+                            </span>
+                        </p>
+                    </div>
+                    <div class="col-md-4" *ngIf="Level !== userLevel">
+                        <label class="unitcodeLabel"> Unit Name *</label>
+                        <ng-select [disabled]="authorziedUser" [clearable]="false" class="levelDropdown" id="unitn" name="unitn"
+                            placeholder="Select Unit Name" (change)="getUnitName($event)" [items]="unitCodeData"
+                            bindLabel="unit_name" bindValue="unit" [(ngModel)]="unitCode" required #unitn="ngModel">
+                        </ng-select>
+                        <p class="validations" *ngIf="unitn.invalid && (unitn.dirty || unitn.touched)">
+                            <span class="errParentU" *ngIf="unitn.errors?.['required']">
+                                *Unit Name is required
+                            </span>
+                        </p>
+                    </div>
+                    <div class="col-md-4" *ngIf="Level === userLevel">
+                        <label class="unitcodeLabel"> Unit Names *</label>
+                        <ng-select  [disabled]="authorziedUser" [clearable]="false" class="levelDropdown" id="unitn" name="unitn"
+                            placeholder="Select Unit Name" (change)="getUnitNameFromLevel($event)" [items]="unitCodeData"
+                            bindLabel="unit_name" bindValue="unit" [(ngModel)]="unitCode" required #unitn="ngModel"  [compareWith]="compareFn" >
+                        </ng-select>
+                        <p class="validations" *ngIf="unitn.invalid && (unitn.dirty || unitn.touched)">
+                            <span class="errParentU" *ngIf="unitn.errors?.['required']">
+                                *Unit Name is required
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <!-- <br> -->
+                <div class="row ">
+                    <div class="col-md-4 col-sm-2">
+                        <label class="unitcodeLabel">Role *</label>
+                        <!-- <input pattern = "^[0-9]*$"  (change)="roleEntered($event)" placeholder="Enter Role" id="roleU" name="roleU"
+                            [(ngModel)]="roleName" class="unitnameInput" pInputText required #roleU="ngModel" /> -->
+                            <form [formGroup]="myForms">
+                            <ng-multiselect-dropdown class="dropRole" name="roleU" [placeholder]="'Select Role'"
+                            formControlName="roleU" [settings]="RoleSettings" [disabled]="disableEdit"
+                            [data]="rolesData" (onSelect)="SelectRole($event)" [(ngModel)]="roleModal"
+                            (onDeSelect)="DeselectRole($event)" (onDeSelectAll)="DeselectAllRole($event)"
+                            (onSelectAll)="SelectAllRole($event)" 
+                            >
+                        </ng-multiselect-dropdown>
+                        <!-- <small *ngIf="myForms.get('roleU')?.hasError('required') && myForms.get('roleU')?.touched" class="text-danger">*Role is required</small> -->
+                    </form>
+                    </div>
+                    <div class="col-md-4 col-sm-2">
+                        <label class="unitcodeLabel">User Name *</label>
+                        <input [disabled]="authorziedUser" (change)="userNameEntered($event)" placeholder="Enter User Name" id="uname" name="uname"
+                            [(ngModel)]="userName" class="unitnameInput" pInputText required #uname="ngModel" />
+                        <p class="validations" *ngIf="uname?.invalid && (uname?.dirty || uname?.touched)">
+                            <span class="errMSggg" *ngIf="uname?.errors?.['required']">
+                                *User Name is required
+                            </span>
+                    </div>
+                    <div class="col-md-4 col-sm-2">
+                        <label class="givennameLabel">Given Name *</label>
+                        <input [disabled]="authorziedUser" (change)="givenNameEntered($event)" placeholder="Enter Given Name" id="givenN"
+                            name="givenN" [(ngModel)]="nameEntered" class="givennameInput" pInputText required
+                            #givenN="ngModel" />
+                        <p class="validations" *ngIf="givenN.invalid && (givenN.dirty || givenN.touched)" class="lert">
+                            <span class="errMSggg" *ngIf="givenN.errors?.['required']">
+                                *Given Name is required
+                            </span>
+                    </div>
+                </div>
+                <!-- <br> -->
+                <div class="row ">
+                    <div class="col-md-2">
+                        <label class="mobilenumberLabel">Mobile No *</label>
+                        <input [disabled]="authorziedUser" pattern = "^[0-9]{10}$" (change)="mobileNumberEntered($event)" placeholder="Enter Mobile Number" id="mobileN"
+                            name="mobileN" [(ngModel)]="numberEntered" class="mobileInput" pInputText required
+                            #mobileN="ngModel" (input)="restrictToNumbers($event)" maxlength="10"/>
+                        <p class="validations" *ngIf="mobileN.invalid && (mobileN.dirty || mobileN.touched)">
+                            <span class="errMSggg" *ngIf="mobileN.errors?.['required']">
+                                *Mobile No is required
+                            </span>
+                            <!-- <span class="errMSgggs" *ngIf="mobileN.errors&&mobileN.errors?.['pattern']">
+                                *Enter a valid Mobile No
+                            </span> -->
+                    </div>
+                    <div class="col-md-3 emailDept">
+                        <label class="sLabel">Email *</label>
+                        <input [disabled]="authorziedUser" (change)="emailEntered($event)" placeholder="Enter Email" id="emailIn" name="emailIn"
+                            [(ngModel)]="email" class="emailsInput" pInputText #emailIn="ngModel" required
+                            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$" />
+                        <p class="validations" *ngIf="emailIn.invalid && (emailIn.dirty || emailIn.touched)">
+                            <span class="errMSggg" *ngIf="emailIn.errors?.['required']">
+                                *Email is required
+                            </span>
+                            <span class="errMSggg" *ngIf="emailIn.errors&&emailIn.errors?.['pattern']">
+                                *Invalid Email address
+                            </span>
+                    </div>
+                    <div class="col-md-2 deprtCol">
+                        <label class="givennameLabel">Department *</label>
+                        <input [disabled]="authorziedUser" (change)="departmentEntered($event)" placeholder="Enter Department" id="departm"
+                            name="departm" [(ngModel)]="departmentName" class="departInput" pInputText required
+                            #departm="ngModel" />
+                        <p class="validations" *ngIf="departm.invalid && (departm.dirty || departm.touched)">
+                            <span class="errMSggg" *ngIf="departm.errors?.['required']">
+                                * Department is required
+                            </span>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="givennameLabel">Designation *</label>
+                        <input [disabled]="authorziedUser" (change)="designationEntered($event)" placeholder="Enter Designation" id="designt"
+                            name="designt" [(ngModel)]="designationName" class="designInput" pInputText required
+                            #designt="ngModel" />
+                        <p class="validations" *ngIf="designt.invalid && (designt.dirty || designt.touched)">
+                            <span class="errMSggg" *ngIf="designt.errors?.['required']">
+                                *Designation is required
+                            </span>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="givennameLabel">Grade *</label>
+                        <input [disabled]="authorziedUser" (change)="gradeEntered($event)" placeholder="Enter Grade" id="grade" name="grade"
+                            [(ngModel)]="Grade" class="gradeInput" pInputText required #grade="ngModel" />
+                        <p class="validations" *ngIf="grade.invalid && (grade.dirty || grade.touched)">
+                            <span class="errMSggg" *ngIf="grade.errors?.['required']">
+                                *Grade is required
+                            </span>
+                    </div>
+                </div>
+                <!-- <br> -->
+                <br>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="sLabel">Record Status *</label>
+                        <ng-select [disabled]="authorziedUser" [clearable]="false" class="levelDropdown" id="recordSt" name="recordSt"
+                            (change)="getRecordStatus($event)" [items]="recordStatusData"
+                            placeholder="Select Record Status" bindLabel="statusName" bindValue="statusId"
+                            [(ngModel)]="recordStatus" required #recordSt="ngModel">
+                        </ng-select>
+                        <p class="validations" *ngIf="recordSt.invalid && (recordSt.dirty || recordSt.touched)">
+                            <span class="errState" *ngIf="recordSt.errors?.['required']">
+                                *Record Status is required
+                            </span>
+                        </p>
+                    </div>
+                </div><br>
+                <!-- <br> -->
+                <div class="row">
+                    <!-- <div class="col-sm-1 col-4"></div>
+                    <div class="col-sm-1 col-1"></div> -->
+                    <div class="col-md-3">
+                        <button type="button" (click)="back()" class="btn btn-primary backButton">Back</button>
+                    </div>
+                    <div class="col-md-2" *ngIf="showUser == 'AddUser' || showUser == 'EditUser' || showUser == 'deleteData'">
+                        <button type="button" (click)="reset()" class="btn btn-primary resetButton">Reset</button>
+                    </div>
+                    <div class="col-md-2" *ngIf="showUser == 'deleteData'">
+                        <button type="button" (click)="deleteUser()" class="btn btn-primary deleteButtonn">Delete</button>
+                    </div>
+                    <div class="col-md-1" *ngIf="showUser == 'AddUser'  && this.Level !== userLevel">
+                        <button [disabled]="!recordStatus || !Grade || !designationName || !departmentName || !email || !nameEntered || !userName || !roleSelect || !unitCode || !parentUnit || !Level || !userId  ||!emailIn.valid" (click)="saveAddUserData()" type="button" class="btn btn-primary SaveButton">Save</button>
+                    </div>
+                    <div class="col-md-1" *ngIf="showUser == 'AddUser' && this.Level === userLevel">
+                        <button [disabled]="!recordStatus || !Grade || !designationName || !departmentName || !email || !nameEntered || !userName || !roleSelect || !unitCode || !Level || !userId ||!emailIn.valid" (click)="saveAddUserData()" type="button" class="btn btn-primary SaveButton">Save</button>
+                    </div>
+                    <div class="col-md-1" *ngIf="showUser == 'EditUser' && this.Level !== userLevel">
+                        <button [disabled]="!recordStatus && !Grade && !designationName && !departmentName && !email && !nameEntered && !userName && roleSelect.length>0 && !unitCode && !parentUnit && !Level && !userId  ||!emailIn.valid" (click)="saveEditUserData()" type="button" class="btn btn-primary SaveButton">Save</button>
+                    </div>
+                    <div class="col-md-1" *ngIf="showUser == 'EditUser' && this.Level === userLevel">
+                        <button [disabled]="!recordStatus || !Grade || !designationName || !departmentName || !email || !nameEntered || !userName || !unitCode || !Level || !userId  || !(roleSelect.length>0 == true)  ||!emailIn.valid" (click)="saveEditUserData()" type="button" class="btn btn-primary SaveButton">Save</button>
+                    </div>
+                    <div class="col-md-2" *ngIf="showUser == 'AuthorizedUser'">
+                        <button type="button" (click)="AuthDialog()"  class="btn btn-primary resetButton">Authorise</button>
+                    </div>
+                    <div class="col-md-2" *ngIf="showUser == 'AuthorizedUser'">
+                        <button type="button" (click)="rejectDialog()" class="btn btn-danger deleteButtonn">Reject</button>
+                    </div>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+
+    </div>
+    <div class="row">
+        <div class="col-12 footer">
+            <app-nrlm-footer></app-nrlm-footer>
+        </div>
+    </div>
+</div>
+
+<!-- Authorize comment Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+    <div class="modal-header d-flex justify-content-center">
+    <h1 class="modal-title text-center flex-grow-1 fs-5" id="exampleModalLabel">Comment</h1>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        <h4>* Comment is mandatory for Reject</h4>
+    <div class="mb-3">
+    <textarea [maxlength]="200" class="form-control" [(ngModel)]="remarks" id="exampleFormControlTextarea1"
+    rows="3"></textarea>
+    </div>
+    </div>
+    <div class="modal-footer" style="display: flex; justify-content: center;">
+    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModalToggle"
+    (click)="sendRateUpdate(false)">Submit</button>
+    </div>
+    </div>
+    </div>
+    </div>
+
+    <!-- Reject comment modal -->
+<div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3"
+  tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-center">
+        <h1 class="modal-title text-center flex-grow-1 fs-5" id="exampleModalLabel">Comment</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h4>* Comment is mandatory for Reject</h4>
+        <div class="mb-3">
+          <textarea [maxlength]="200" class="form-control" [(ngModel)]="remarks" name="remarks" id="exampleFormControlTextarea1"
+            rows="3" required></textarea>
+        </div>
+      </div>
+      <div class="modal-footer" style="display: flex; justify-content: center;">
+        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModalToggle"
+        (click)="sendRateUpdate(true)" [disabled]="remarks.trim() === ''">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-warning-dialog></app-warning-dialog>
+<app-warning-auth-dialog></app-warning-auth-dialog>
+<app-error-dialog></app-error-dialog>
+    

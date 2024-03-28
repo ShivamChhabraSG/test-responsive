@@ -1,0 +1,459 @@
+<!--Delete PopUp From Edit Entity-->
+<div *ngIf="show == true" class="dialog-overlay" (click)="closeDialog()">
+    <div *ngIf="nrlmUpload=='NrlmUpload'"  class="dialog-content" (click)="$event.stopPropagation()">
+            <div class="row warnHeader">
+         
+                <div class="col-12">
+                    <h1 class="heading">Alert ! </h1>
+                    <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+                </div>
+            </div>
+            <br>
+            <div class="row warningRow">
+                <div class="col-12">
+                    <p class="warningMsg">{{addRatePopupData}}</p>
+                </div>
+                <br>
+                <hr><br>
+       
+            </div>
+            <div class="button-container">
+                <div class="col-6">
+                    <label class="delete-button" (click)="closeErrorDialog()" >Close</label>
+                </div>
+            </div>
+    </div>
+ 
+    <div *ngIf="nrlmUpload=='NrlmUploadSuccess'"  class="dialog-content-success" (click)="$event.stopPropagation()">
+        <div class="row warnHeader">
+     
+            <div class="col-12">
+                <h1 class="heading">Success ! </h1>
+                <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+            </div>
+        </div>
+        <br>
+        <div class="row warningRow">
+            <div class="col-12">
+                <p class="warningMsg text-center">{{addRatePopupData}}</p>
+            </div>
+            <br>
+            <hr><br>
+   
+        </div>
+        <div class="button-container">
+            <div class="col-6">
+                <label class="closed-button" (click)="closeDialog()" >Close</label>
+            </div>
+        </div>
+</div>
+
+
+<div *ngIf="deleteSuccess=='deleteSuccess'"  class="dialog-content-success" (click)="$event.stopPropagation()">
+    <div class="row warnHeader">
+ 
+        <div class="col-12">
+            <h1 class="heading">Success ! </h1>
+            <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg text-center">Deleted Successfully</p>
+        </div>
+        <br>
+        <hr><br>
+
+    </div>
+    <div class="button-container">
+        <div class="col-6">
+            <label class="closed-button" (click)="closeDialog()" >Close</label>
+        </div>
+    </div>
+</div>
+
+
+ 
+<div *ngIf="nrlmUpload=='EntityRA'"  class="dialog-content-success" (click)="$event.stopPropagation()">
+    <div class="row warnHeader">
+ 
+        <div class="col-12">
+            <h1 class="heading">Success ! </h1>
+            <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">{{addRatePopupData}}</p>
+        </div>
+        <br>
+        <hr><br>
+ 
+    </div>
+    <div class="button-container">
+        <div class="col-6">
+            <label class="closed-button" (click)="redirectEntity()" >Close</label>
+        </div>
+    </div>
+</div>
+ 
+<div *ngIf="nrlmUpload=='userRA'"  class="dialog-content-success" (click)="$event.stopPropagation()">
+    <div class="row warnHeader">
+ 
+        <div class="col-12">
+            <h1 class="heading">Success ! </h1>
+            <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">{{addRatePopupData}}</p>
+        </div>
+        <br>
+        <hr><br>
+ 
+    </div>
+    <div class="button-container">
+        <div class="col-6">
+            <label class="closed-button" (click)="redirectUser()" >Close</label>
+        </div>
+    </div>
+</div>
+<div *ngIf="nrlmUpload=='userRAError'"  class="dialog-content" (click)="$event.stopPropagation()">
+    <div class="row warnHeader">
+ 
+        <div class="col-12">
+            <h1 class="heading">Alert ! </h1>
+            <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">{{addRatePopupData}}</p>
+        </div>
+        <br>
+        <hr><br>
+ 
+    </div>
+    <div class="button-container">
+        <div class="col-6">
+            <label class="delete-button" (click)="redirectUser()" >Close</label>
+        </div>
+    </div>
+</div>
+ 
+<div *ngIf="nrlmUpload=='rateRA'"  class="dialog-content-success" (click)="$event.stopPropagation()">
+    <div class="row warnHeader">
+ 
+        <div class="col-12">
+            <h1 class="heading">Success ! </h1>
+            <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">{{addRatePopupData}}</p>
+        </div>
+        <br>
+        <hr><br>
+ 
+    </div>
+    <div class="button-container">
+        <div class="col-6">
+            <label class="closed-button" (click)="redirectRate()" >Close</label>
+        </div>
+    </div>
+</div>
+<div *ngIf="nrlmUpload=='rateRAError'"  class="dialog-content" (click)="$event.stopPropagation()">
+    <div class="row warnHeader">
+ 
+        <div class="col-12">
+            <h1 class="heading">Alert ! </h1>
+            <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">{{addRatePopupData}}</p>
+        </div>
+        <br>
+        <hr><br>
+ 
+    </div>
+    <div class="button-container">
+        <div class="col-6">
+            <label class="delete-button" (click)="redirectRate()" >Close</label>
+        </div>
+    </div>
+</div>
+<div *ngIf="AccountLocked==='AccountLocked'"  class="dialog-content" (click)="$event.stopPropagation()">
+    <div class="row warnHeader">
+ 
+        <div class="col-12">
+            <h1 class="heading">Alert ! </h1>
+            <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">{{AccountLockedMsg}}</p>
+        </div>
+        <br>
+        <hr><br>
+ 
+    </div>
+    <div class="button-container">
+        <div class="col-6">
+            <label class="delete-button" (click)="redirectDashboard()" >Close</label>
+        </div>
+    </div>
+</div>
+<div *ngIf="loginSamePasswordPopup==='LoginPassWord'"  class="dialog-content" (click)="$event.stopPropagation()">
+    <div class="row warnHeader">
+ 
+        <div class="col-12">
+            <h1 class="heading">Alert ! </h1>
+            <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">Please change the default password</p>
+        </div>
+        <br>
+        <hr><br>
+ 
+    </div>
+    <div class="button-container">
+        <div class="col-6">
+            <label class="delete-button" (click)="redirecttoResetPassword()" >Ok</label>
+        </div>
+    </div>
+</div>
+<div *ngIf="nrlmUpload=='CPRA'"  class="dialog-content-success" (click)="$event.stopPropagation()">
+    <div class="row warnHeader">
+ 
+        <div class="col-12">
+            <h1 class="heading">Success ! </h1>
+            <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">{{addRatePopupData}}</p>
+        </div>
+        <br>
+        <hr><br>
+ 
+    </div>
+    <div class="button-container">
+        <div class="col-6">
+            <label class="closed-button" (click)="redirectClaimsProccessing()" >Close</label>
+        </div>
+    </div>
+</div>
+<div *ngIf="nrlmUpload=='CPRAError'"  class="dialog-content" (click)="$event.stopPropagation()">
+    <div class="row warnHeader">
+ 
+        <div class="col-12">
+            <h1 class="heading">Alert ! </h1>
+            <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">{{addRatePopupData}}</p>
+        </div>
+        <br>
+        <hr><br>
+ 
+    </div>
+    <div class="button-container">
+        <div class="col-6">
+            <label class="delete-button" (click)="redirectClaimsProccessing()" >Close</label>
+        </div>
+    </div>
+</div>
+ 
+ 
+<div *ngIf="nrlmUpload==='LogoutErrorMessage'"  class="dialog-content" (click)="$event.stopPropagation()">
+    <div class="row warnHeader">
+ 
+        <div class="col-12">
+            <h1 class="heading">Alert ! </h1>
+            <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">{{addRatePopupData}}</p>
+        </div>
+        <br>
+        <hr><br>
+ 
+    </div>
+    <div class="button-container">
+        <div class="col-6">
+            <label class="delete-button" (click)="redirectHome()" >Close</label>
+        </div>
+    </div>
+</div>
+ 
+
+<div *ngIf="nrlmUpload==='LogoutWarning'"  class="dialog-content" (click)="$event.stopPropagation()">
+    <div class="row warnHeader">
+ 
+        <div class="col-12">
+            <h1 class="heading">Alert ! </h1>
+            <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">{{addRatePopupData}}</p>
+        </div>
+        <br>
+        <hr><br>
+ 
+    </div>
+    <div class="button-container">
+        <div class="col-6">
+            <label class="delete-button" (click)="closeWarningPopup()" >Close</label>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="nrlmUpload==='LogoutError'"  class="dialog-content" (click)="$event.stopPropagation()">
+    <div class="row warnHeader">
+ 
+        <div class="col-12">
+            <h1 class="heading">Alert ! </h1>
+            <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg text-center">{{addRatePopupData}}</p>
+        </div>
+        <br>
+        <hr><br>
+ 
+    </div>
+    <div class="button-container">
+        <div class="col-6">
+            <label class="delete-button" (click)="redirectHome()" >Close</label>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="claimSuccess=='claimSuccess'"  class="dialog-content-success" (click)="$event.stopPropagation()">
+    <div class="row warnHeader">
+ 
+        <div class="col-12">
+            <h1 class="heading">Success ! </h1>
+            <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg text-center">{{claimSaved}}</p>
+        </div>
+        <br>
+        <hr><br>
+ 
+    </div>
+    <div class="button-container">
+        <div class="col-6">
+            <label class="closed-button" (click)="redirectClaimsProccessing()" >Close</label>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="nrlmUpload=='deteleClaimSettlement'"  class="dialog-content-success" (click)="$event.stopPropagation()">
+    <div class="row warnHeader">
+ 
+        <div class="col-12">
+            <h1 class="heading">Success ! </h1>
+            <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg text-center">{{addRatePopupData}}</p>
+        </div>
+        <br>
+        <hr><br>
+
+    </div>
+    <div class="button-container">
+        <div class="col-6">
+            <label class="closed-button" (click)="redirectClaimsProccessing()" >Close</label>
+        </div>
+    </div>
+</div>
+ 
+<div *ngIf="nrlmUpload=='deleteEntity'"  class="dialog-content-success" (click)="$event.stopPropagation()">
+    <div class="row warnHeader">
+ 
+        <div class="col-12">
+            <h1 class="heading">Success ! </h1>
+            <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg text-center">{{addRatePopupData}}</p>
+        </div>
+        <br>
+        <hr><br>
+ 
+    </div>
+    <div class="button-container">
+        <div class="col-6">
+            <label class="closed-button" (click)="closeDeleteEntity()" >Close</label>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="nrlmUpload==='sameUnitCode'"  class="dialog-content" (click)="$event.stopPropagation()">
+    <div class="row warnHeader">
+ 
+        <div class="col-12">
+            <h1 class="heading">Alert ! </h1>
+            <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg text-center">{{addRatePopupData}}</p>
+        </div>
+        <br>
+        <hr><br>
+ 
+    </div>
+    <div class="button-container">
+        <div class="col-6">
+            <label class="delete-button" (click)="closeEntityDialog()" >Close</label>
+        </div>
+    </div>
+</div>
+
+</div>

@@ -1,0 +1,134 @@
+<div class="viewAccounts">
+    <div class="viewAccountSc">
+        <hr />
+        <div class="container-fluid">
+            <div class="row viewAcc">
+                <div class="col-lg-4 col-sm-12">
+                    <div class="col-4">
+                        <label class="unitLabel">Regional Office</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" class="regionalInput form-control" disabled [(ngModel)]="regionalOffice" />
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-12">
+                    <div class="col-4">
+                        <label class="unitLabel">FY End</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="" placeholder="" disabled class="form-control regionalInput" [(ngModel)]="fyEnd" />
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-12">
+                    <div class="col-4">
+                        <label class="unitLabel">Qtr End</label>
+                    </div>
+                    <div class="col-8">
+                        <select id="startYear" class="form-control regionalInput" (change)="qtrEnding($event)" disabled>
+                            <option selected hidden>{{ qtrEnd }}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <!-- <div class=" row"> -->
+            <div class="row mt-2 gridStyle">
+                <div class="col-12 colStyle">
+                    <label class="entityLabel">SHG Master Upload View</label>
+                </div>
+            </div>
+            <!-- </div> -->
+
+            <div class="gridStyleMainV mt-2">
+                <div style="height: auto">
+                    <mat-tab-group>
+                        <mat-tab label="Bank Details">
+                            <br />
+                            <div class="row">
+                                <div class="col-12" *ngIf="this.accountsView === 'dataView'">
+                                    <ag-grid-angular class="gridUnit" style="height: 405px; position: relative"
+                                        class="ag-theme-alpine" [rowData]="arrayLoop" (gridReady)="onGridReady($event)"
+                                        (cellClicked)="onCellClicked($event)" (gridReady)="onGridReady($event)"
+                                        [defaultColDef]="defaultColDef" [columnDefs]="columnDefs" [pagination]="true"
+                                        [paginationPageSize]="defaultPage">
+                                        <!--  [suppressPaginationPanel]="true" [paginationNumberFormatter]="paginationNumberFormatter" -->
+                                    </ag-grid-angular>
+                                </div>
+                                <div class="col-12" *ngIf="this.accountsView === 'uploadView'">
+                                    <ag-grid-angular class="gridUnit" style="height: 405px; position: relative"
+                                        class="ag-theme-alpine" [rowData]="arrayLoop" (gridReady)="onGridReady($event)"
+                                        (cellClicked)="onCellClicked($event)" (gridReady)="onGridReady($event)"
+                                        [defaultColDef]="defaultColDef" [columnDefs]="uploadcolumnDefs"
+                                        [pagination]="true" [paginationAutoPageSize]="false"
+                                        [paginationPageSize]="defaultPage">
+                                    </ag-grid-angular>
+                                </div>
+                            </div>
+                        </mat-tab>
+                        <mat-tab label="Customer Details">
+                            <br />
+                            <div class="row">
+                                <div class="col-12" *ngIf="this.accountsView === 'dataView'">
+                                    <ag-grid-angular class="gridUnit" style="height: 405px; position: relative"
+                                        class="ag-theme-alpine" [rowData]="arrayLoop" (gridReady)="onGridReady($event)"
+                                        (cellClicked)="onCellClicked($event)" (gridReady)="onGridReady($event)"
+                                        [defaultColDef]="defaultColDef" [columnDefs]="columnDefss" [pagination]="true"
+                                        [paginationAutoPageSize]="false" [paginationPageSize]="defaultPage">
+                                    </ag-grid-angular>
+                                </div>
+                                <div class="col-12" *ngIf="this.accountsView === 'uploadView'">
+                                    <ag-grid-angular class="gridUnit" style="height: 405px; position: relative"
+                                        class="ag-theme-alpine" [rowData]="arrayLoop" (gridReady)="onGridReady($event)"
+                                        (cellClicked)="onCellClicked($event)" (gridReady)="onGridReady($event)"
+                                        [defaultColDef]="defaultColDef" [columnDefs]="UploadcolumnDefss"
+                                        [pagination]="true" [paginationAutoPageSize]="false"
+                                        [paginationPageSize]="defaultPage">
+                                    </ag-grid-angular>
+                                </div>
+                            </div>
+                        </mat-tab>
+                        <mat-tab label="Account Details">
+                            <br />
+                            <div class="row">
+                                <div class="col-12" *ngIf="this.accountsView === 'dataView'">
+                                    <ag-grid-angular class="gridUnit" style="height: 405px; position: relative"
+                                        class="ag-theme-alpine" [rowData]="arrayLoop" (gridReady)="onGridReady($event)"
+                                        (cellClicked)="onCellClicked($event)" (gridReady)="onGridReady($event)"
+                                        [defaultColDef]="defaultColDef" [columnDefs]="columnDeffs" [pagination]="true"
+                                        [paginationAutoPageSize]="false" [paginationPageSize]="defaultPage">
+                                    </ag-grid-angular>
+                                </div>
+                                <div class="col-12" *ngIf="this.accountsView === 'uploadView'">
+                                    <ag-grid-angular class="gridUnit" style="height: 405px; position: relative"
+                                        class="ag-theme-alpine" [rowData]="arrayLoop" (gridReady)="onGridReady($event)"
+                                        (cellClicked)="onCellClicked($event)" (gridReady)="onGridReady($event)"
+                                        [defaultColDef]="defaultColDef" [columnDefs]="UploadcolumnDeffs"
+                                        [pagination]="true" [paginationAutoPageSize]="false"
+                                        [paginationPageSize]="defaultPage">
+                                    </ag-grid-angular>
+                                </div>
+                            </div>
+                            <br />
+                        </mat-tab>
+                    </mat-tab-group>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-10 col-sm-10"></div>
+                <div class="col-lg-2 col-sm-2">
+                    <button (click)="goBack()" type="button" class="btn btn-primary backButton">
+                        Back
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 footer">
+            <app-nrlm-footer></app-nrlm-footer>
+        </div>
+    </div>
+</div>
+
+<app-error-dialog></app-error-dialog>

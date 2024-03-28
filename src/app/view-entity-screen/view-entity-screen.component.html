@@ -1,0 +1,110 @@
+
+
+<div class="main" >
+    <!-- <div class="row">
+        <div class="col-2" style="padding-left: 6%;">
+            <app-sidenav-bar></app-sidenav-bar>
+            <app-dashboard-header class="app-dashboarscreen"></app-dashboard-header>
+        </div>
+    </div> -->
+    <div class="addEnView">
+    <hr>
+    <div class="container-fluid containerStyle">
+        <div class="row entityLabel">
+            <div class="col-12">
+                <label style="font-size: 15px !important;"> View Entity</label>
+            </div>
+        </div>
+
+        <mat-tab-group class="addEntitytab">
+            <mat-tab>
+                <br>
+                <div class="row">
+                    <div class="col-3">
+                        <label class="unitcodeLabel">Unit Code*</label>
+                        <input [(ngModel)]="UnitCode" readonly placeholder="Enter Unit Code" class="unitInput"
+                            pInputText required />
+                    </div>
+                    <div class="col-3">
+                        <label class="unitcodeLabels">Level*</label>
+                        <ng-select [disabled]="true" class="levelDropdowns" [clearable]="false"
+                            [searchable]="false" [items]="cars" bindLabel="Level" bindValue="Level"
+                            [(ngModel)]="Level">
+                        </ng-select>
+                    </div>
+                    <div class="col-6">
+                        <label class="unitcodeLabel">Parent Unit*</label>
+                        <ng-select [disabled]="true" class="parentlevelDropdown" [clearable]="false"
+                            [searchable]="false" [items]="cars" bindLabel="parentUnit" bindValue="parentUnit"
+                            [(ngModel)]="parentUnit">
+                        </ng-select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-7">
+                        <label class="unitcodeLabel">Unit Name*</label>
+                        <input [(ngModel)]="unitName" readonly placeholder="Enter Unit Name"
+                            class="unitnameInput" pInputText required />
+                    </div>
+                    <div class="col-4">
+                        <label class="ifscLabel">IFSC*</label>
+                        <input [(ngModel)]="IFSC" readonly placeholder="Enter IFSC" class="ifscInput" pInputText
+                            required />
+                    </div>
+                </div>
+                <br>
+                <div class="row rowState">
+                    <div class="col-4">
+                        <label class="sLabel">State*</label>
+                        <ng-select [disabled]="true" class="levelDropdown" [clearable]="false"
+                            [searchable]="false" [items]="cars" bindLabel="state" bindValue="state"
+                            [(ngModel)]="state">
+                        </ng-select>
+                    </div>
+                    <div class="col-4">
+                        <label class="sLabel">District*</label>
+                        <ng-select [disabled]="true" class="levelDropdown" [clearable]="false"
+                            [searchable]="false" [items]="cars" bindLabel="district" bindValue="district"
+                            [(ngModel)]="district">
+                        </ng-select>
+                    </div>
+                    <div class="col-4">
+                        <label class="sLabel">Pincode*</label>
+                        <input [(ngModel)]="pincode" readonly class="pinCodeInput" pInputText required />
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-8">
+                        <label class="esLabel">Email*</label>
+                        <input [(ngModel)]="email" readonly class="emailsInput" pInputText required />
+                    </div>
+                    <div class="col-4">
+                        <label class="rsLabel">Record Status*</label>
+                        <ng-select [disabled]="true" class="levelDropdown" [clearable]="false"
+                            [searchable]="false" [items]="cars" bindLabel="recordStatus"
+                            bindValue="recordStatus" [(ngModel)]="recordStatus">
+                        </ng-select>
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-10"></div>
+                    <div class="col-2" style="margin-left: -3%;">
+                        <button (click)="goBack()" type="button"
+                            class="btn btn-primary backButton">Back</button>
+                    </div>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 footer">
+        <app-nrlm-footer></app-nrlm-footer>
+    </div>
+</div>
+</div>
+
+<app-error-dialog></app-error-dialog>

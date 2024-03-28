@@ -1,0 +1,66 @@
+<div class="viewClaims">
+    <div class="claimsViewUp">
+        <hr>
+    <div class="container-fluid gridRow">
+        <div class="row">
+            <div class="row mt-2 align-items-center d-flex text-center gridStyle">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <label class="entityLabel">Claims Upload View</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="gridStyleMain">
+                <div class="col-12">
+                    <mat-tab-group>
+                        <mat-tab label="Bank Details">
+                            <br>
+                                    <ag-grid-angular class="gridUnit"   style="font-size: 12px; height: 455px; position: relative; right: 4px;"
+                                        class="ag-theme-alpine" [rowData]="arrayLoop" (gridReady)="onGridReady($event)"
+                                        (cellClicked)="onCellClicked($event)" (gridReady)="onGridReady($event)"
+                                        [defaultColDef]="defaultColDef" [columnDefs]="columnDefs" [pagination]="true"
+                                        [paginationAutoPageSize]="false" [paginationPageSize]="pageSize">
+                                    </ag-grid-angular>
+                        
+                        </mat-tab>
+                        <mat-tab label="Customer Details">
+                            <br>
+                                    <ag-grid-angular class="gridUnit"   style="font-size: 12px; height: 455px; position: relative; right: 4px;"
+                                        class="ag-theme-alpine" [rowData]="arrayLoop" (gridReady)="onGridReady($event)"
+                                        (cellClicked)="onCellClicked($event)" (gridReady)="onGridReady($event)"
+                                        [defaultColDef]="defaultColDef" [columnDefs]="uploadcolumnDefs" [pagination]="true"
+                                        [paginationAutoPageSize]="false" [paginationPageSize]="pageSize">
+                                    </ag-grid-angular>
+                        </mat-tab>
+                        <mat-tab label="Account Details">
+                            <br>
+                                    <ag-grid-angular class="gridUnit"   style="font-size: 12px; height: 455px; position: relative; right: 4px;"
+                                        class="ag-theme-alpine" [rowData]="arrayLoop" (gridReady)="onGridReady($event)"
+                                        (cellClicked)="onCellClicked($event)" (gridReady)="onGridReady($event)"
+                                        [defaultColDef]="defaultColDef" [columnDefs]="columnDefss" [pagination]="true"
+                                        [paginationAutoPageSize]="false" [paginationPageSize]="pageSize">
+                                    </ag-grid-angular>
+                    
+                        </mat-tab>
+                    </mat-tab-group>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 backBtn">
+                <button (click)="goBack()" type="button" class="btn backButton">Back</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+    
+    <div class="row">
+        <div class="col-12 footer">
+            <app-nrlm-footer></app-nrlm-footer>
+        </div>
+    </div>
+
+
+<app-error-dialog></app-error-dialog>

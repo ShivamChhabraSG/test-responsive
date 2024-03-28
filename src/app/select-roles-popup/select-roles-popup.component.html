@@ -1,0 +1,47 @@
+<div class="outercontainer">
+    <div class="logincontainer">
+        <!-- <mat-icon  mat-button class="close-icon" [mat-dialog-close]="true" (click)="closeconfirmorder()">close</mat-icon> -->
+        <div class="row">
+            <div class="col-12">
+                <img src="../../assets/image/close.png" alt="" class="close-icon" (click)="closepopup()">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <h5 class="loginhead">NRLM Interest Subvention</h5>
+            </div>
+        </div>
+        <div>
+            <div class="row">
+                <div class="col-12">
+                    <h5 class="selectRoles">Select Roles</h5>
+                </div>
+            </div>
+            <div class="row">
+                <ng-select [(ngModel)]="selectedRole" placeholder="Roles" class="roleDrp">
+                    <ng-option *ngFor="let roles of rolesFromLogin"
+                        [value]="roles.roleCode"><img>&nbsp;&nbsp;&nbsp;&nbsp;{{roles.role}} <mat-divider></mat-divider>
+                    </ng-option>
+
+
+                </ng-select>
+
+            </div>
+            <br><br>
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-5 btnR">
+                    <button type="button" class="btnselectRole btn-primary" data-toggle="button" aria-pressed="false"
+                        autocomplete="off" (click)="dashBoardScreen()">
+                        Select Role
+                    </button>
+
+                </div>
+                <div class="col-3"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-error-dialog (claimPEvent)="closepopup()"></app-error-dialog>

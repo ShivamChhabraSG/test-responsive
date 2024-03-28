@@ -1,0 +1,305 @@
+<!--Delete PopUp From Edit Entity-->
+<div *ngIf="show == true" class="dialog-overlay" (click)="closeDialog()">
+    <div *ngIf="PopupDelete=='deleted'"  class="dialog-content" (click)="$event.stopPropagation()">
+            <div class="row warnHeader">
+          
+                <div class="col-12">
+                    <h1 class="heading">Delete </h1>
+                    <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+                </div>
+            </div>
+            <br>
+            <div class="row warningRow">
+                <div class="col-12">
+                    <p class="warningMsg">Do you Really want to delete this Record?</p>
+                </div>
+                <br>
+                <hr><br>
+        
+            </div>
+            <div class="button-container">
+                <div class="col-6">
+                    <label class="delete-button" (click)="deleteEntityData()">Yes</label>
+                </div>
+                <div class="col-6">
+                    <label class="cancel-button" (click)="gobackUserScreen()">No</label>
+                </div>
+            </div>
+    </div>
+
+    <div *ngIf="PopupDelete=='UploadDeleted'"  class="dialog-content" (click)="$event.stopPropagation()">
+        <div class="row warnHeader">
+      
+            <div class="col-12">
+                <h1 class="heading">Delete </h1>
+                <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+            </div>
+        </div>
+        <br>
+        <div class="row warningRow">
+            <div class="col-12">
+                <p class="warningMsg">Do you Really want to delete this Record?</p>
+            </div>
+            <br>
+            <hr><br>
+    
+        </div>
+        <div class="button-container">
+            <div class="col-6">
+                <label class="delete-button" (click)="DeleteEntityUpload()">Yes</label>
+            </div>
+            <div class="col-6">
+                <label class="cancel-button" (click)="closeDialog()">No</label>
+            </div>
+        </div>
+</div>
+
+<!-- <div *ngIf="PopupDelete=='UploadDeleted'"  class="dialog-content" (click)="$event.stopPropagation()">
+    <div class="row warnHeader">
+  
+        <div class="col-12">
+            <h1 class="heading">Delete </h1>
+          
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">Do you Really want to delete this Record?</p>
+        </div>
+        <br>
+        <hr><br>
+
+    </div>
+    <div class="button-container">
+        <div class="col-6">
+            <label class="delete-button" (click)="DeleteEntityUpload()">Yes</label>
+        </div>
+        <div class="col-6">
+            <label class="cancel-button" (click)="closeDialog()">No</label>
+        </div>
+    </div>
+</div> -->
+
+<div *ngIf="PopupDelete=='UserDataDeleted'"  class="dialog-content" (click)="$event.stopPropagation()">
+    <div class="row warnHeader">
+  
+        <div class="col-12">
+            <h1 class="heading">Delete </h1>
+            <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">Do you Really want to delete this Rejected Record?</p>
+        </div>
+        <br>
+        <hr><br>
+
+    </div>
+    <div class="button-container">
+        <div class="col-6">
+            <label class="delete-button" (click)="deleteUserData()">Yes</label>
+        </div>
+        <div class="col-6">
+            <label class="cancel-button" (click)="closeDialog()">No</label>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="PopupDelete=='UserUploadDeleted'"  class="dialog-content" (click)="$event.stopPropagation()">
+    <div class="row warnHeader">
+  
+        <div class="col-12">
+            <h1 class="heading">Delete </h1>
+            <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">Do you Really want to delete this Record?</p>
+        </div>
+        <br>
+        <hr><br>
+
+    </div>
+    <div class="button-container">
+        <div class="col-6">
+            <label class="delete-button" (click)="DeleteUserUpload()">Yes</label>
+        </div>
+        <div class="col-6">
+            <label class="cancel-button" (click)="closeDialog()">No</label>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="PopupDelete=='NRLMdelete'"  class="dialog-content" (click)="$event.stopPropagation()">
+    <div class="row warnHeader">
+  
+        <div class="col-12">
+            <h1 class="heading">Delete </h1>
+            <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">Do you Really want to delete this Record?</p>
+        </div>
+        <br>
+        <hr><br>
+
+    </div>
+    <div class="button-container">
+        <div class="col-6">
+            <label class="delete-button" (click)="DeleteNRLMUpload()">Yes</label>
+        </div>
+        <div class="col-6">
+            <label class="cancel-button" (click)="closeDialog()">No</label>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="PopupDelete=='ClaimsUploaddelete'"  class="dialog-content" (click)="$event.stopPropagation()">
+    <div class="row warnHeader">
+  
+        <div class="col-12">
+            <h1 class="heading">Delete </h1>
+            <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">Do you Really want to delete this Record?</p>
+        </div>
+        <br>
+        <hr><br>
+
+    </div>
+    <div class="button-container">
+        <div class="col-6">
+            <label class="delete-button" (click)="DeleteClaimsUpload()">Yes</label>
+        </div>
+        <div class="col-6">
+            <label class="cancel-button" (click)="closeDialog()">No</label>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="PopupDelete=='Accountsdelete'"  class="dialog-content" (click)="$event.stopPropagation()">
+    <div class="row warnHeader">
+  
+        <div class="col-12">
+            <h1 class="heading">Delete </h1>
+            <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">Do you Really want to delete this Record?</p>
+        </div>
+        <br>
+        <hr><br>
+
+    </div>
+    <div class="button-container">
+        <div class="col-6">
+            <label class="delete-button" (click)="DeleteAccountsUpload()">Yes</label>
+        </div>
+        <div class="col-6">
+            <label class="cancel-button" (click)="closeDialog()">No</label>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="PopupDelete=='ClosedAccountsdelete'"  class="dialog-content" (click)="$event.stopPropagation()">
+    <div class="row warnHeader">
+  
+        <div class="col-12">
+            <h1 class="heading">Delete </h1>
+            <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">Do you Really want to delete this Record?</p>
+        </div>
+        <br>
+        <hr><br>
+
+    </div>
+    <div class="button-container">
+        <div class="col-6">
+            <label class="delete-button" (click)="DeleteClosedAccountsUpload()">Yes</label>
+        </div>
+        <div class="col-6">
+            <label class="cancel-button" (click)="closeDialog()">No</label>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="PopupDelete=='claimsProcessingDelete'"  class="dialog-content" (click)="$event.stopPropagation()">
+    <div class="row warnHeader">
+  
+        <div class="col-12">
+            <h1 class="heading">Delete </h1>
+            <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">Do you Really want to delete this Record?</p>
+        </div>
+        <br>
+        <hr><br>
+
+    </div>
+    <div class="button-container">
+        <div class="col-6">
+            <label class="delete-button" (click)="deleteClaimsProccessingData()">Yes</label>
+        </div>
+        <div class="col-6">
+            <label class="cancel-button" (click)="gobackUserScreen()">No</label>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="PopupDelete=='rejectEntity'"  class="dialog-content" (click)="$event.stopPropagation()">
+    <div class="row warnHeader">
+  
+        <div class="col-12">
+            <h1 class="heading">Reject</h1>
+            <!-- <button class="closeIcon" (click)="closeDialog()">close</button> -->
+        </div>
+    </div>
+    <br>
+    <div class="row warningRow">
+        <div class="col-12">
+            <p class="warningMsg">Do you Really want to reject this Record?</p>
+        </div>
+        <br>
+        <hr><br>
+
+    </div>
+    <div class="button-container">
+        <div class="col-6">
+            <label class="delete-button" (click)="rejectEntity()">Yes</label>
+        </div>
+        <div class="col-6">
+            <label class="cancel-button" (click)="closeEntityDialog()">No</label>
+        </div>
+    </div>
+</div>
+</div>
+
+<app-error-dialog></app-error-dialog>
+

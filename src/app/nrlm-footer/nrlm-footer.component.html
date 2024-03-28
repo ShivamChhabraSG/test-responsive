@@ -1,0 +1,13 @@
+<!-- <p>nrlm-footer works!</p> -->
+<div class="container-fluid">
+<div class="row firstCol" *ngFor="let val of tokendetails">
+   <div class="col-3  username" [title]="val.userName">Welcome :&nbsp;{{val.userName}}</div>
+    <!-- <div class="col-1"></div> -->
+    <div class="col-3" style="font-family: 'Roboto';">Role Name : &nbsp;{{val.roleName}}</div>
+    <div class="col-3 thirdCol" [title]="val.unitName">Unit Name : &nbsp;{{val.unitName}}</div>
+    <div class="col-2 fCol">&nbsp;{{val.loginTime |date:'dd-MMM-yy h:mm a' }}</div>
+    <div class="col-1 fColl"><mat-icon aria-hidden="false" aria-label="Example person icon" fontIcon="person"  class="cll" (click)="selectRole()"></mat-icon></div>
+
+  </div>
+</div>
+<app-error-dialog></app-error-dialog>

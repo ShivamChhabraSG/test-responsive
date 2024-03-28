@@ -1,0 +1,251 @@
+::ng-deep.mat-mdc-dialog-container .mdc-dialog__surface {
+  display: block;
+  width: 417px;
+  height: 421px;
+  padding: 7px;
+  position: relative;
+  bottom: 155%;
+  left: -553px;
+  overflow: hidden;
+}
+
+.logincontainers {
+  border-style: solid;
+  border-image: linear-gradient(to right, rgba(43, 189, 95, 1), rgba(43, 189, 95, 1), rgba(43, 189, 95, 1), rgba(236, 135, 55, 1), rgba(236, 135, 55, 1), rgba(236, 135, 55, 1)) 1;
+  border-width: 7px;
+  height: 100%;
+  box-sizing: border-box;
+  
+}
+
+.nrlmLogoL {
+  width: 111px;
+  height: 98px;
+  margin-right: 24px;
+}
+
+
+.labelID {
+  font-weight: 700;
+  color: #464A53;
+  padding-bottom: 10px;
+}
+
+.userInput {
+  width: 316px;
+  height: 47px;
+  background: rgba(106, 112, 126, 0.0001);
+  border: 1px solid #B2B3B4;
+  padding-left: 32px;
+}
+
+.btnselectRole {
+ background-color: #EC8737;
+    width: 245px;
+    height: 50px;
+    border-radius: 31px;
+    border: 1px solid #EC8737;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 14px;
+    margin-left: 18%;
+}
+
+.forgotPasswrd {
+  color: #ABAFB3;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-left: 5px;
+  /* margin-left: 4px; */
+  position: absolute;
+  right: 46px;
+  bottom: 139px;
+}
+
+.outercontainer {
+  height: 525px;
+  padding: 2px;
+}
+
+.createpassrd {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 54px;
+  display: flex;
+  color: #464A53;
+  margin-left: 91px;
+}
+
+.paswordsection {
+  margin-top: 13px;
+}
+
+.close-icon {
+  left: 92%;
+  position: absolute;
+  width: 12px;
+  cursor: pointer;
+  top: 18px;
+}
+
+.loginhead {
+  position: absolute;
+  width: 265px;
+  height: 54px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 54px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #464A53;
+  margin-left: 55px;
+  margin-top: -24px;
+}
+.loginSubhead {
+  position: absolute;
+  width: 240px;
+  height: 54px;
+  font-family: 'Roboto';
+  font-style: normal;
+  /* font-weight: 600; */
+  font-size: 22px;
+  line-height: 54px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  /* color: #464A53; */
+  margin-left: 62px;
+  margin-top: 23px;
+}
+.mat-icon {
+  position: relative;
+  bottom: 36px;
+  left: 6px;
+}
+
+/*---Password Input--*/
+.example-container mat-form-field+mat-form-field {
+  margin-left: 8px;
+}
+
+.example-right-align {
+  text-align: right;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+
+.hidePaswrd {
+  position: relative;
+  left: 112%;
+}
+
+.hidePaswrdP {
+  position: relative;
+  left: 115%;
+}
+
+.errMSggg {
+  color: red;
+  position: absolute;
+  bottom: 5px;
+}
+.errMSgg {
+  color: red;
+  position: absolute;
+  /* bottom: 5px; */
+}
+.errMSgggChar {
+  color: red;
+  position: absolute;
+  width: 21rem;
+  top: -2rem;
+}
+.errMSgggnew {
+  color: red;
+  position: absolute;
+  bottom: -7px;
+  width: 158%;
+}
+
+.userIddd {
+  position: relative;
+  top: 15%;
+}
+
+.userPadding {
+  padding-left: 13px
+}
+
+.userPaddingpasrd {
+  padding-left: 35px
+}
+
+.btnEnter {
+  margin-top: 222px;
+}
+.loginBtn{
+  background-color: #EC8737;
+  width: 245px;
+  height: 50px;
+  border-radius: 31px;
+  border: 1px solid #EC8737;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 14px;
+  margin-left: 16%;
+}
+
+.errText {
+  text-align: center;
+  position: absolute;
+  bottom: 105px;
+  color: red;
+}
+
+.sucessMsg {
+  position: absolute;
+    color: red;
+    top: 298px;
+    left: 42px;
+   width: 350px;
+
+}
+.sucessMsg1 {
+  position: absolute;
+    color: red;
+    top: 285px;
+    left: 42px;
+   width: 350px;
+
+}
+
+@media screen and (min-width: 320px) and (max-width: 380px) {
+  ::ng-deep.mat-mdc-dialog-container .mdc-dialog__surface {
+    left: -215px !important;
+  }
+
+}
+
+
+@media screen and (max-width : 425px){
+  ::ng-deep.mat-mdc-dialog-container .mdc-dialog__surface {
+    left: -280px !important;
+  }
+}
+
+@media screen and (max-width : 776px){
+  ::ng-deep.mat-mdc-dialog-container .mdc-dialog__surface {
+    left: -340px;
+  }
+}

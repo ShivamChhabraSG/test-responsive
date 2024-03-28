@@ -1,0 +1,861 @@
+<div style="overflow-x: hidden;">
+  <br>
+  <div class="container-fluid containerStyle">
+    <div class="row entityLabel">
+      <div class="col-12">
+        <label style="font-size: 15px;">Claims Processing</label>
+      </div>
+    </div>
+    <br>
+    <div class="row tableRow" [ngClass]="tokenDetails.roleName === 'Bank Maker' ? 'tableRow' : 'tableRowNew'">
+     
+      <div *ngIf="tokenDetails.roleName === 'Bank Maker'" class="form-check form-switch col-3">
+        <label class="unitcodeLabel">Refinance Availed</label>
+        <input  style="width: 4rem;height: 1.5rem;" class="mt-4 mx-2 form-check-input" type="checkbox" [(ngModel)]="isChecked" id="flexSwitchCheckChecked"(click)="toggleSwitch()" [disabled]="!pending && (claimStatus != 'U'  && claimStatus !='E') ||  ComeFromView">
+        <span class="mx-1 availedCol"> {{showChecked}} </span>
+        <!-- <label class="form-check-label" for="flexSwitchCheckChecked"></label> -->
+        <label *ngIf="refCheck === true && disableSaveSubmit === true" class="unitcodeLabel" style="color: red; margin-top: 35px; font-size: 10px;">Loan Amount should be greater than 0 </label>
+      </div>
+      <div class="col-2">
+        <label class="unitcodeLabel" style="margin-left: -55px;">Sum Product for the quarter -Loan Amount</label>
+        <input type="text" [disabled]="showDisable ||authorizationClaim || PendingStatus !== '1' " pattern="\\d+"
+          placeholder="Enter Integer only" id="outBal" name="outBal" [(ngModel)]="outStandingBal"
+           (keyup)="validateInput($event)" style="margin-left: -73px;" class="unitnameInput"  required
+          #outBal="ngModel" />
+      </div>
+      <div class="col-2 inputsCol">
+        <label class="unitcodeLabel"style="margin-left: -71px; width: 125px;">Outstanding Refinance Amount</label>
+        <input (keyup)=" validateRefinanceAmtInput($event)" [disabled]="showDisable ||authorizationClaim || PendingStatus !=='1'" pattern="\\d+" 
+          placeholder="Enter Integer only" id="refAmt" name="refAmt" [(ngModel)]="RefAmt"
+          class="unitnameInput" pInputText required #refAmt="ngModel" />
+      </div>
+      <div class="col-2 inputsCol">
+        <label class="unitcodeLabel" style="margin-left: -70px;">Sum Product for the quarter -Refinance Amount</label>
+        <input [disabled]="showDisable || authorizationClaim || PendingStatus !=='1'" pattern="\\d+"
+          placeholder="Enter Integer only" id="eligRef" name="eligRef" [(ngModel)]="EligibleRef"
+          (keyup)="validateEligibleRefInput($event)" class="unitnameInput" pInputText required #eligRef="ngModel" />
+          <label *ngIf="greatertThenRefinanceAmt === true && disableSaveSubmit === true" class="unitcodeLabel" style="margin-left: -70px; color: red; font-size: 10px;">Can't be greater than Sum Product for the quarter -Loan Amount</label>
+      </div>
+    </div>
+    <br>
+    <div class="row refTable">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col" class="snoCol">SNo.</th>
+            <th scope="col" class="descCol">Description</th>
+            <th scope="col" class="briefCol">Brief Description</th>
+            <th scope="col" class="slaboCol">Slab 1</th>
+            <th scope="col" class="slabtCol">Slab 2</th>
+            <th scope="col" class="totalCol">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>1</th>
+            <td>Oustanding Amount at the end of the Quarter</td>
+            <td>Outstanding Amount</td>
+            <td>{{A1 | numberFormat}}</td>
+            <td>{{C1 | numberFormat}}</td>
+            <td> {{A1+C1 | numberFormat}}</td>
+          </tr>
+          <tr>
+            <th>2</th>
+            <td>Number of such Accounts at the end of the Quarter</td>
+            <td>Accounts</td>
+            <td>{{B1 }}</td>
+            <td>{{D1 }}</td>
+            <td></td>
+            <!-- <td>{{B1+D1 }}</td> -->
+          </tr>
+          <tr [ngClass]="this.isChecked === false?'buleredRow':''">
+            <th>3</th>
+
+            <td>Sum Product of outstanding balance for the Quarter</td>
+            <td>Product Outstanding</td>
+            <td>{{F1|numberFormat}}</td>
+            <td>{{G1|numberFormat}}</td>
+            <td>{{X1|numberFormat}}</td>
+          </tr>
+          <tr [ngClass]="this.isChecked === false?'buleredRow':''">
+            <th>4</th>
+            <td>Outstanding Refinance Amount</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>{{Y1 |numberFormat}}</td>
+          </tr>
+          <tr [ngClass]="this.isChecked === false?'buleredRow':''">
+            <th>5</th>
+            <td>Sum Product of refinance for the Quarter
+            </td>
+            <td>Refinance</td>
+            <td>{{H1 |numberFormat}}</td>
+            <td>{{I1 |numberFormat}}</td>
+            <td>{{Z1 |numberFormat}}</td>
+          </tr>
+          <tr [ngClass]="this.isChecked === false?'buleredRow':''">
+            <th>6</th>
+            <td>Net outstanding eligible for interest subvention for the Quarter</td>
+            <td>Eligible Amount for Interest Subvention</td>
+            <td>{{J1 |numberFormat}}</td>
+            <td>{{K1 |numberFormat}}</td>
+            <td>{{N1 |numberFormat}}</td>
+          </tr>
+          <tr>
+            <th>7</th>
+            <td>Interest Subvention Claimed</td>
+            <td>Claim Amount</td>
+            <td>{{L1 |numberFormat}}</td>
+            <td>{{M1 |numberFormat}}</td>
+            <td>{{O1 |numberFormat}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+    <div class="row remarkRow">
+      <div class="row">
+        <div class="col-12">
+          <label class="unitcodeLabel">Notes</label>
+          <div *ngIf="((authorizationClaim!==true) && ((claimsCellData?.status==='U'|| claimsCellData?.status==='R')))">
+            <input *ngIf="authorizationClaim!==true" placeholder="" (keyup)="claimsRemarkss($event)" class="claimsuneditt"
+              [(ngModel)]="claimsInput" maxlength="240" />
+          </div>
+          <div class="claimsunedit" disabled>
+            <div *ngFor=" let remarks of claimsRemarks">
+              <p style="margin: 0 0 0px;">{{remarks}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <br>
+        <div class="col-12">
+          <label class="unitcodeLabel">Remarks</label>
+          <div class="claimsunedit" disabled>
+            <div *ngFor=" let remarks of AuthRejRemarks">
+              <p style="margin: 0 0 0px;">{{remarks}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4"></div>
+          <div class="col-1">
+          </div>
+          <div class="col-2" *ngIf="entityData == 'addData' ">
+            <div class="col-2" *ngIf="entityData == 'addData' ">
+              <button type="button" (click)="back()" class="btn btn-primary backButton">Back</button>
+            </div>
+            <div class="col-2" *ngIf="entityData == 'addData' ">
+              <button type="button" (click)="reset()" class="btn btn-primary resetButton">Reset</button>
+            </div>
+            <div class="col-2">
+              <button type="button" (click)="SaveData()" class="btn btn-primary SaveButton">Save</button>
+            </div>
+      
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="d-flex">
+      <div class="col-lg-3 col-sm-4 d-flex" style="position: relative;">
+        <div>
+          <img title="Upload Documents" src="../../assets/image/notes-icon-gif.gif" class="pdf-icon mb-1" data-bs-toggle="modal"
+          data-bs-target="#exampleModalNotes" width="45px" height="45px">
+        </div>
+        
+        <div>
+          <!-- *ngIf="(claimsCellData.pending !== 1 || claimsCellData.pending !== 2)" -->
+          <img src="../../assets/image/download-pdf.gif" class="pdf-icon" data-bs-toggle="modal"
+            data-bs-target="#exampleModalDownload" title="Claims Summary"  width="45px" height="45px">
+        </div>
+        <div>
+          <img src="../../assets/image/download-pdf.gif" title="Slab1 Certificate" class="pdf-icon"  data-bs-toggle="modal" data-bs-target="#exampleModalslab1"  width="45px" height="45px">
+        </div>
+        <div>
+          <img src="../../assets/image/download-pdf.gif" title="Slab2 Certificate" class="pdf-icon" data-bs-toggle="modal" data-bs-target="#exampleModalslab2"  width="45px" height="45px">
+        </div>
+      </div>
+     
+        <div class="col-lg-8 col-sm-8 buttonsCol">
+          <div class="col-1 mt-2" *ngIf="!authorizationClaim" >
+            <button type="button" (click)="back()" class="btn btn-primary backButton">Back</button>
+          </div>
+          <div class="col-1 mt-2"
+            *ngIf="((authorizationClaim!==true) && ((claimsCellData?.status==='U'|| claimsCellData?.status==='R') && claimsCellData?.pending === 1)) || (authorizationClaim!==true && ((claimsCellData?.status==='R'|| claimsCellData?.status==='U')))">
+            <button type="button" (click)="reset()" class="btn btn-primary resetButton">Reset</button>
+          </div>
+          <div class="col-1 mt-2" [hidden]="hideDelete" *ngIf="deletePermission && !ComeFromView && showRejectOnly === true">
+            <button type="button" (click)="deleteDialog()"
+              class="btn btn-primary deleteButton">Delete</button>
+          </div>
+          <div class="col-1 mt-2" [ngClass]="deletePermission && !ComeFromView && showRejectOnly === true ? 'save1': 'save2'"
+            *ngIf="((authorizationClaim!==true) && ((claimsCellData?.status==='U'|| claimsCellData?.status==='R') && claimsCellData?.pending === 1)) || (authorizationClaim!==true && ((claimsCellData?.status==='R'|| claimsCellData?.status==='U')))">
+            <button type="button" [disabled]="disableSaveSubmit" (click)="SaveEditData()"
+              class="btn btn-primary SaveButton">Save</button>
+          </div>
+          <div class="col-1 mt-2" [ngClass]="deletePermission && !ComeFromView && showRejectOnly === true ? 'submit1': 'submit2'"
+            *ngIf="((authorizationClaim!==true) && ((claimsCellData?.status==='U'|| claimsCellData?.status==='R') && claimsCellData?.pending === 1)) || (authorizationClaim!==true && ((claimsCellData?.status==='R'|| claimsCellData?.status==='U')))">
+            <button [disabled]="disableSaveSubmit" type="button" (click)="SubmitEditData()"
+              class="btn btn-primary SaveButton">Submit</button>
+          </div>
+          <div class="col-1 mt-2"
+            *ngIf="((authorizationClaim!==true) && showRejectOnly === false && ((claimsCellData?.status==='U'|| claimsCellData?.status==='R') && claimsCellData?.pending === 1)) ||  showRejectOnly === false && (authorizationClaim!==true && ((claimsCellData?.status==='R'|| claimsCellData?.status==='U')))">
+            <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalToggle4"
+              class="btn btn-primary deleteButton">Reject</button>
+          </div>
+        </div>
+    
+    </div>
+    <div class="row" *ngIf="entityData == 'deleteData' ">
+      <div class="col-4"></div>
+      <div class="col-4"></div>
+
+      <div class="col-2">
+        <button type="button" (click)="back()" class="btn btn-primary backButton">Back</button>
+      </div>
+      <div class="col-2">
+        <button type="button" (click)="deletePopup()" class="btn btn-primary deleteButton">Delete</button>
+      </div>
+
+    </div>
+    <div class="authButtonsCol">
+      <div class="col-4"></div>
+      <div class="col-2"></div>
+      <div *ngIf="!viewClaim" class="col-4"></div>
+      <div class="col-2 btnwidth" *ngIf="!viewClaim || authorizationClaim" [ngClass]="{'btnAlign1' :!viewClaim || authorizationClaim , 'btnAlign2':viewClaim && authorizationClaim && claimsCellData?.status==='P'}">
+        <button type="button" (click)="back()" class="btn btn-primary backButton">Back</button>
+      </div>
+      <div class="col-2 btnwidth" *ngIf="viewClaim && authorizationClaim && claimsCellData?.status==='P'">
+        <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+          class="btn btn-primary resetButton">Authorise</button>
+      </div>
+      <div class="col-2 btnwidth" *ngIf="viewClaim && authorizationClaim && claimsCellData?.status==='P'">
+        <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalToggle3"
+          class="btn btn-primary deleteButton">Reject</button>
+      </div>
+
+    </div>
+
+
+  </div>
+</div>
+<div class="row" style="margin-top: 22px;">
+  <div class="col-12 footer1">
+      <app-nrlm-footer></app-nrlm-footer>
+  </div>
+</div>
+
+  <!-- Claims popup for u1,u2,u3 -->
+  <div class="modal fade" data-bs-backdrop="static" id="exampleModal9" aria-hidden="true"
+    aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header d-flex justify-content-center" style="background:#E1F6E8 !important">
+          <h1 class="modal-title text-center flex-grow-1" id="exampleModalLabel">Warning !</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center p-5">
+          <h4>Refinance relate Amount values are 0 still want to proceed ?</h4>
+        </div>
+        <div class="modal-footer justify-content-around m-3">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="SubmitEditData()">Yes</button>
+          <button type="button" class="btn " data-bs-dismiss="modal" aria-label="Close">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Claims Delete Popup-->
+  <div class="modal fade" data-bs-backdrop="static" id="exampleModal10" aria-hidden="true"
+    aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header d-flex justify-content-center" style="background:#E1F6E8 !important">
+          <h1 class="modal-title text-center flex-grow-1" id="exampleModalLabel">Warning !</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center p-5">
+          <h4> Are you still want to delete ?</h4>
+        </div>
+        <div class="modal-footer justify-content-around m-3">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+            (click)="deleteEntityData()">Yes</button>
+          <button type="button" class="btn " data-bs-dismiss="modal" aria-label="Close">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Authorize Comment Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header d-flex justify-content-center" style="background: rgb(10, 200, 121)">
+          <h1 class="modal-title text-center flex-grow-1 fs-5"  style="margin-top: 15px;" id="exampleModalLabel">Authorise</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h4>Please add Remarks to Authorise</h4>
+          <div class="mb-3 authTextbox">
+            <textarea [maxlength]="200" class="form-control" [(ngModel)]="claimsInput" id="exampleFormControlTextarea1"
+              rows="3"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer" style="display: flex; justify-content: center;">
+          <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModalToggle"
+            (click)="Authorize()">Authorise</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Checker Reject comment modal -->
+  <div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3"
+    tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header d-flex justify-content-center" style="background: red !important" >
+          <h1 class="modal-title text-center flex-grow-1 fs-5"  style="margin-top: 15px;" id="exampleModalLabel">Reject</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h4>* Remarks are mandatory for Reject</h4>
+          <div class="mb-3 rejectTextbox">
+            <textarea [maxlength]="200" class="form-control" [(ngModel)]="rejectClaimsInput" name="remarks"
+              id="exampleFormControlTextarea1" rows="3" required></textarea>
+          </div>
+        </div>
+        <div class="modal-footer" style="display: flex; justify-content: center;">
+          <button class="btn btn-success"  style="background: red !important" data-bs-toggle="modal" data-bs-target="#exampleModalReject" data-bs-dismiss="modal"
+            [disabled]="!rejectClaimsInput">Reject</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade"  id="exampleModalReject" aria-hidden="true" aria-labelledby="exampleModalRejectLabel"
+    tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header d-flex justify-content-center" style="background:red !important">
+                <h1 class="modal-title text-center flex-grow-1 mt-3" id="exampleModalLabel">Warning !</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="outline: none !important; box-shadow: none !important;"></button>
+            </div>
+            <div class="modal-body text-center p-5" style="margin-top: 10px; height: 110px;">
+                <h4>Are you sure want to Reject?</h4>
+            </div>
+            <div class="modal-footer justify-content-around m-3">
+                <a class="btn" data-bs-toggle="modal" data-bs-dismiss="modal"
+                    (click)="reject()" style="background-color: red;color: #fff; width: 50px !important;">Yes</a>
+                <a class="btn" data-bs-toggle="modal" data-bs-target="#exampleModalToggle" style="background-color: #ccc; color:#000000; width: 50px !important;">No</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <!-- Reject By Maker -->
+  <div class="modal fade" id="exampleModalToggle4" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3"
+    tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header d-flex justify-content-center">
+          <h1 class="modal-title text-center flex-grow-1 fs-5 mt-3" id="exampleModalLabel">Action Required</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h4>* Remarks are mandatory for Reject</h4>
+          <div class="mb-3 rejectTextbox">
+            <textarea [maxlength]="200" class="form-control" [(ngModel)]="rejectClaimsInput" name="remarks"
+              id="exampleFormControlTextarea1" rows="3" required style="height: 75px;"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer" style="display: flex; justify-content: center;">
+          <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModalMakerReject" [disabled]="!rejectClaimsInput"  style="background: red;color: white;" >Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade"  id="exampleModalMakerReject" aria-hidden="true" aria-labelledby="exampleModalMakerRejectLabel"
+  tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+          <div class="modal-header d-flex justify-content-center" style="background:red !important">
+              <h1 class="modal-title text-center flex-grow-1 mt-3" id="exampleModalLabel">Warning !</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="outline: none !important; box-shadow: none !important;"></button>
+          </div>
+          <div class="modal-body text-center p-5" style="margin-top: 10px; height: 110px;">
+              <h4>Are you sure want to Reject?</h4>
+          </div>
+          <div class="modal-footer justify-content-around m-3">
+              <a class="btn" data-bs-toggle="modal" data-bs-dismiss="modal"
+                  (click)="rejectByMaker()" style="background-color: red;color: #fff; width: 50px !important;">Yes</a>
+              <a class="btn" data-bs-toggle="modal" data-bs-target="#exampleModalToggle" style="background-color: #ccc; color:#000000; width: 50px !important;">No</a>
+          </div>
+      </div>
+  </div>
+</div>
+
+  <!--Notes Modal-->
+
+  <div class="modal fade" id="exampleModalNotes"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header saf">
+          <h2>Show All Files</h2>
+          <div class="text-right">
+            <img src="../assets/image/close.png" data-bs-dismiss="modal">
+          </div>
+        </div>
+        <div class="modal-body" style="width: 99%;">
+          <div class="row">
+            <div class="col-12">
+              <ag-grid-angular style=" height: 369px;" class="ag-theme-alpine"
+                [rowData]="documentGridData" (gridReady)="onGridReady($event)" (cellClicked)="onCellClicked($event)"
+                (gridReady)="onGridReady($event)" [defaultColDef]="defaultColDef" [columnDefs]="columnDefs"
+                [pagination]="true" [paginationAutoPageSize]="false" [paginationPageSize]="pageSize">
+              </ag-grid-angular>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit"
+          *ngIf="(ComeFromAuthorize || ComeFromEdit) && (claimsCellData?.status === 'U' || claimsCellData?.status === 'R' || claimsCellData?.status === 'P')"
+            class="btn btn-secondary " data-toggle="modal" data-target="#exampleModal1" id="upl">Upload</button>
+          <button type="submit" *ngIf="showIcons" class="btn btn-info " (click)="downLoadDocument()">Download</button>
+          <button type="submit" style="color:  #fff;"
+            *ngIf="( !ComeFromView && (cellData?.status==='U'|| cellData?.status==='R' || cellData?.status==='P' && showIcons))"
+            class="btn  btn-info" data-toggle="modal" data-target="#exampleModal4" id="upl">Delete</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+<!-- Upload Documnets -->
+  
+  <div *ngIf="messageSuccess" class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header saf">
+          <h2>Upload Documents</h2>
+          <div class="text-right">
+            <img src="../assets/image/close.png" data-dismiss="modal">
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-12" style="position: relative; bottom: 10px;">
+              <label>*Document Type</label>
+              <div class="down">
+                <ng-select [clearable]="false" [(ngModel)]="documentSelected" class="levelDropdown" id="documentType"
+                  name="documentType" [items]="documentTypeDrop" placeholder="Select" bindLabel="documentName"
+                  bindValue="documentType" (change)="changeDocumentType($event)" required>
+                </ng-select>
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="col-7">
+              <div>
+                <label>{{selectedFileName}}</label>
+              </div>
+              <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()"><button class="btn btn fs"  (click)="openFile()" formControlName="files" multiple>
+                  <input type="file"
+                    accept=".csv,.jpg,image/jpeg,image/png, application/pdf, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                    id="file-input" style="display: none" #fileInput (change)="onFileChange(fileInput)"  >
+                  <img src="../assets/image/plus_p.png"
+                    style="height: 15px; width: 18px; position: relative; right: 6px; bottom: 2px;">Choose
+                </button><button type="submit" [disabled]="!documentSelected || !selectedFile || disableUpload" class="btn btn-secondary up" (click)="upload()" data-dismiss="modal">
+                  <img src="../assets/image/upload_p.png" id="upi">Upload</button>
+              </form>
+              <button type="button" class="btn btn-secondary ca" (click)="cancelUpload()"><img
+                  src="../assets/image/close_p.png" class="clo">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Document Popup -->
+
+  <div *ngIf="closePopup" class="modal fade" data-bs-backdrop="static" id="exampleModal4" aria-hidden="true"
+    aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header d-flex justify-content-center" style="background:red !important">
+          <h1 class="modal-title text-center flex-grow-1 mt-3" id="exampleModalLabel">Delete</h1>
+          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center p-5">
+          <h4> Are you sure want to delete ?</h4>
+        </div>
+        <div class="modal-footer justify-content-around m-3">
+          <button type="button" class="btn" data-dismiss="modal" (click)="deleteDocument()"  style="background-color: red;color: #fff; width: 50px !important;">Yes</button>
+          <button type="button" class="btn" data-dismiss="modal" style="background-color: #ccc; color:#000000; width: 50px !important;">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Download Pdf -->
+  <div class="modal fade modal-xl" id="exampleModalDownload" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="row">
+          <div class="col-11">
+          </div>
+          <button type="button" class="btn-close closeModalBtn" data-bs-dismiss="modal" aria-label="Close" style="left: 50px;top: 15px;position: relative;"></button>
+        </div>
+        <div #pdfContent class="slab2Table">
+          <table class="tg tablelayout" style="table-layout: fixed;">
+            <colgroup>
+              <col style="width: 50px">
+              <col style="width: 100px">
+              <col style="width: 550px">
+              <col style="width: 150px">
+            </colgroup>
+            <thead>
+              <h2 *ngIf="claimsCellDataQtrEnding==='03'" class="heading">Claim for Interest Subvention on loans to NRLM SHGs {{extendedyr}}-{{claimsCellDataQtrEndingYear}} </h2>
+              <h2 *ngIf="claimsCellDataQtrEnding!=='03'" class="heading">Claim for Interest Subvention on loans to NRLM SHGs {{claimsCellDataQtrEndingYear}}-{{extendedyr}} </h2>
+              <!-- <h3 class="subheading">Claim for Interest Subvention on loans to NRLM SHGs</h3> -->
+              <p style="width: 300px;"><span style="font-weight:bold;position: relative;left: 24rem;"> Bank:
+                  {{claimsCellData.bank}} </span></p>
+              <p style="width: 300px;"><span style="font-weight:bold;position: relative;left: 29rem;"> Quarter:&nbsp;
+                  {{newBankdata}} </span></p>
+              <tr>
+                <th class="tg-uzvj">Sr.No.</th>
+                <th class="tg-g7sd"></th>
+                <th class="tg-g7sd">Particulars</th>
+                <th class="tg-uzvj">Amount &nbsp;(Rs.)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="tg-9wq8">1</td>
+                <td class="tg-lboi" rowspan="3">Slab 1</td>
+                <td class="tg-lboi">Outstanding Amount of NRLM SHG loans having outstanding at the end of the quater
+                  Upto ₹3 lakh with interest at 7% p.a.</td>
+                <td class="tg-yz93">{{A1 |numberFormat}}</td>
+              </tr>
+              <tr>
+                <td class="tg-9wq8">2</td>
+                <td class="tg-lboi">Number of such accounts</td>
+                <td class="tg-yz93"> {{B1}} </td>
+              </tr>
+              <tr>
+                <td class="tg-9wq8">3</td>
+                <!-- <td class="tg-9wq8"></td> -->
+                <td class="tg-lboi"> Sum of account level Interest subvention</td>
+                <td class="tg-yz93">{{((claimsCellData.intSub3Sum)-(claimsCellData.intSub3RevSum))| numberFormat}} </td>
+              </tr>
+              <tr>
+                <td class="tg-9wq8">4</td>
+                <td class="tg-lboi" rowspan="3">Slab 2</td>
+                <td class="tg-lboi">Outstanding Amount of NRLM SHG loans having outstanding at the end of the quarter ₹3 lakh to ₹5 lakh, with interest at 10 % p.a. <br> (as per one year MCLR/Benchmark rate)
+                </td>
+                <td class="tg-yz93">{{C1 | numberFormat}}</td>
+              </tr>
+              <tr>
+                <td class="tg-9wq8">5</td>
+                <td class="tg-lboi">Number of such accounts</td>
+                <td class="tg-yz93">{{D1}}</td>
+              </tr>
+              <tr>
+                <td class="tg-9wq8">6</td>
+                <!-- <td class="tg-9wq8"></td> -->
+                <td class="tg-lboi"> Sum of account level Interest subvention</td>
+                <td class="tg-yz93">{{((claimsCellData.intSub5Sum)-(claimsCellData.intSub5RevSum))| numberFormat}}</td>
+              </tr>
+              <tr>
+                <td class="tg-9wq8">7</td>
+                <td class="tg-lboi" colspan="2">Sum of Total Outstanding <span style="font-weight:bold">(Sr.No. 1 + Sr.No. 4)</span></td>
+                <td class="tg-yz93">{{A1+ C1 |numberFormat}}</td>
+              </tr>
+              <!-- <tr>
+                <td class="tg-9wq8">6</td>
+                <td class="tg-lboi" colspan="2">Refinance Amount for the above loans</td>
+                <td class="tg-yz93">{{Y1 | numberFormat}}</td>
+              </tr> -->
+                           <tr>
+                <td class="tg-9wq8">8</td>
+                <td class="tg-lboi" colspan="2">Sum of Interest subvention <span style="font-weight:bold">(Sr.No. 3 + Sr.No. 6)</span></td>
+                <td class="tg-yz93">{{sumOfS3NdS6 | numberFormat}}</td>
+              </tr>
+              <tr>
+                <td class="tg-9wq8">9</td>
+                <td class="tg-lboi" colspan="2">Whether Bank has availed Refinance</td>
+                <td class="tg-yz93">{{showChecked}}</td>
+              </tr>
+              <tr>
+                <td class="tg-9wq8">10</td>
+                <td class="tg-lboi" colspan="2">Sum product of total NRLM SHG loan outstanding for the period <br>
+                  (<span style="font-weight:bold">Product = Amount outstanding X No.of days outstanding</span>)
+                </td>
+                <td class="tg-yz93">{{X1 | numberFormat}}</td>
+              </tr>
+              <tr>
+                <td class="tg-9wq8">11</td>
+                <td class="tg-lboi">Slab 1</td>
+                <td class="tg-lboi">Sum product of total NRLM SHG loan outstanding for the period for credit upto ₹3
+                  lakh (pro rata basis)</td>
+                <td class="tg-yz93">{{F1 | numberFormat}}</td>
+              </tr>
+              <tr>
+                <td class="tg-9wq8">12</td>
+                <td class="tg-lboi">Slab 2</td>
+                <td class="tg-lboi">Sum product of total NRLM SHG loan outstanding for the period for credit ₹3 lakh
+                  to ₹5 lakh(pro rata basis)</td>
+                <td class="tg-yz93">{{G1 | numberFormat}}</td>
+              </tr>
+              <tr>
+                <td class="tg-9wq8">13</td>
+                <td class="tg-lboi" colspan="2">Refinance Amount for the above loans</td>
+                <td class="tg-yz93">{{(claimsCellData?.ui2)|numberFormat}}</td>
+              </tr>
+              <tr>
+                <td class="tg-9wq8">14</td>
+                <td class="tg-lboi" colspan="2">Sum product of concessional refinance availed from NABARD for
+                  the
+                  same period against the NRLM SHGloans</td>
+                <td class="tg-yz93">{{Z1 | numberFormat}}</td>
+              </tr>
+              <tr>
+                <td class="tg-9wq8">15</td>
+                <td class="tg-lboi">Slab 1</td>
+                <td class="tg-lboi">Sum product of concessional refinance for the credit upto ₹3 lakh (pro rata
+                  basis)</td>
+                <td class="tg-yz93">{{H1 | numberFormat}}</td>
+              </tr>
+              <tr>
+                <td class="tg-9wq8">16</td>
+                <td class="tg-lboi">Slab 2</td>
+                <td class="tg-lboi">Sum product of concessional refinance for the credit ₹3 lakh to ₹5 lakh (pro
+                  rata basis)</td>
+                <td class="tg-yz93">{{I1 | numberFormat}}</td>
+              </tr>
+              <tr>
+                <td class="tg-9wq8">17</td>
+                <td class="tg-lboi" rowspan="2">Slab 1</td>
+                <td class="tg-lboi">Total product of amount eligible for the period in respect of loans by the
+                  bank
+                  out of their own resources <span style="font-weight:bold">(Sr.No. 11 - Sr.No. 15)</span></td>
+                <td class="tg-yz93">{{J1 | numberFormat}}</td>
+              </tr>
+              <tr>
+                <td class="tg-9wq8">18</td>
+                <td class="tg-lboi">Eligible Interest Subvention Amount now claimed for the above period<br> <span style="font-weight:bold">(Sr.No. 17 X 4.5/36500-If refinance availed), (Sr.No. 3- if refinance not availed)</span></td>
+                <td class="tg-yz93">{{L1 | numberFormat}}</td>
+              </tr>
+              <tr>
+                <td class="tg-9wq8">19</td>
+                <td class="tg-lboi" rowspan="2">Slab 2</td>
+                <td class="tg-lboi">Total product of amount eligible for the period in respect of loans by the
+                  bank
+                  out of theirown resources (Sr.No. 12 - Sr.No. 16)</td>
+                <td class="tg-yz93">{{K1 | numberFormat}}</td>
+              </tr>
+              <tr>
+                <td class="tg-9wq8">20</td>
+                <td class="tg-lboi">Eligible Interest Subvention Amount now claimed for the above period. <br> <span style="font-weight:bold"> (Sr.No. 19 X 5.0/36500-If refinance availed), (Sr.No. 6- if refinance not availed)</span></td>
+                <td class="tg-yz93">{{M1 | numberFormat}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer justify-content-around m-1">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+            (click)="downloadPdf('claimsummary')">Download</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+    <!-- Slab1 Certificate -->
+    <div class="modal fade modal-xl" id="exampleModalslab1" tabindex="-1" aria-labelledby="exampleModalLabel"aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="row">
+            <div class="col-11"></div>
+            <button type="button" class="btn-close closeModalBtn" data-bs-dismiss="modal" aria-label="Close" style="left: 50px;top: 15px;position: relative;"></button>
+          </div>
+          <div #slab1pdf>
+            <h1 class="modal-title fs-6 text-center text-decoration-underline" id="exampleModalLabel">Claim for Interest Subvention on credit upto ₹3
+              lakh to women SHGs at 7% per annum, for the year <b *ngIf="slab1Data && slab1Data.length > 0" class="text-decoration-underline">{{slab1Data[0]?.FyYear}}</b></h1>
+            <div style="margin-left: 4%;">
+              <p class="fs-7">Name of Bank:&nbsp;&nbsp;<b *ngIf="slab1Data && slab1Data.length > 0">{{slab1Data[0]?.BankName }}</b></p>
+              <p class="fs-7">Statement for claims for the period <b *ngIf="slab1Data && slab1Data.length > 0">{{slab1Data[0]?.FromPeriod}}</b> to <b  *ngIf="slab1Data && slab1Data.length > 0">{{slab1Data[0]?.ToPeriod}}</b> credit disbursed/outstanding upto ₹3 lakh</p>
+            </div>
+            <div class="slab2Table">
+              <table class="table mt-4" style="width: 96%; margin-left: 2%;">
+                <tr>
+                  <th colspan="2" class="text-center w-25">New loan accounts opened during the period <b *ngIf="slab1Data && slab1Data.length > 0">{{slab1Data[0]?.FromPeriod}}</b>to<b *ngIf="slab1Data && slab1Data.length > 0">{{slab1Data[0]?.ToPeriod}}</b></th>
+                  <th colspan="2" class="text-center w-25">Outstanding as on<b *ngIf="slab1Data && slab1Data.length > 0">{{slab1Data[0]?.PrevQtr}}</b><br>(end of previous period)</th>
+                  <th colspan="2" class="text-center w-25">Total outstanding as on<b *ngIf="slab1Data && slab1Data.length > 0">{{slab1Data[0]?.ToPeriod}}</b></th>
+                  <th colspan="2" class="text-center w-25">Amount of interest Subvention  @4.5%</th>
+                </tr>
+                <tr>
+                  <th colspan="1" class="text-center">No.of Accounts</th>
+                  <th colspan="1" class="text-center">Amount</th>
+                  <th colspan="1" class="text-center">No.of Accounts</th>
+                  <th colspan="1" class="text-center">Amount</th>
+                  <th colspan="1" class="text-center">No.of Accounts</th>
+                  <th colspan="1" class="text-center">Amount</th>
+                  <th colspan="1" class="text-center">Amount</th>
+                </tr>
+                <tr *ngFor="let item of slab1Data">
+                  <td colspan="1" class="text-center">{{item.LsdCount.toLocaleString('en-IN')}}</td>
+                  <td colspan="1" class="text-center">{{item.DPAmnt | numberFormat}}</td>
+                  <td colspan="1" class="text-center">{{item.M1OBCount.toLocaleString('en-IN')}}</td>
+                  <td colspan="1" class="text-center">{{item.M1OBAmnt | numberFormat}}</td>
+                  <td colspan="1" class="text-center">{{item.M3S1Count.toLocaleString('en-IN')}}</td>
+                  <td colspan="1" class="text-center">{{item.M3S1Sum | numberFormat}}</td>
+                  <td colspan="2" class="text-center">{{item.SVAmnt | numberFormat}}</td>
+                </tr>
+              </table>
+            </div>
+            <br>
+            <table class="table" style="width: 50%; margin-left: 4%;">
+              <thead>
+                <tr>
+                  <th class="text-center">No of unique SHGs availed interest subvention</th>
+                  <th class="text-center">Amount of Interest subvention</th>
+                </tr>
+              </thead>
+              <tr  *ngFor="let item of slab1Data">
+                <td class="text-center">{{item.UniqueSHG.toLocaleString('en-IN')}}</td>
+                <td class="text-center">{{item.SVAmnt | numberFormat}}</td>
+              </tr>
+            </table>
+            <div class="ms-4">
+              <p class="fs-7" style="width: 94%; margin-left: 2%;">NB : Number (No.) and Amount in actual figures.<br>
+                We hereby certify that credit to women SHGs upto ₹3 lakh were charged
+                interest 7% per annum on the above disbursement/outstanding in the year <b *ngIf="slab1Data && slab1Data.length > 0">{{slab1Data[0]?.FyYear}}</b>. We certify that the accounts
+                are
+                eligible for interest subvention as per RBI guidelines and Bank has verified and flagged all these accounts as
+                'SHGs
+                under DAY-NRLM on CBS. We also certify that there is no duplication in the claims and minimal human intervention
+                while
+                submitting the interest subvention claim from the branch level onwards.</p>
+            </div>
+            <p class="fs-7 mb-1" style="margin-top: 8%; margin-left: 4%;">Dated</p>
+            <p class="fs-7" style="margin-left: 4%;">Authorised Signatory & Seal</p>
+            <p class="fs-7" style="width: 94%; margin-left: 4%;"><b><i>(This claim format, consolidated for the year, needs to be
+              duly certified by Statutory Auditors and submitted along with the claims for the quarter ending <b *ngIf="slab1Data && slab1Data.length > 0">{{slab1Data[0]?.SubmitFor}}</b> within <b *ngIf="slab1Data && slab1Data.length > 0">{{slab1Data[0]?.SubmitTo}}</b>)</i></b></p>
+          
+        </div>
+        <div class="modal-footer justify-content-around m-1">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+            (click)="downloadPdf('slab1')">Download</button>
+        </div>
+      </div>
+      </div>
+    </div>
+  
+    <!-- Slab2 Certificate -->
+  
+    <div class="modal fade modal-xl" id="exampleModalslab2" tabindex="-1" aria-labelledby="exampleModalLabel"aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="row">
+            <div class="col-11"></div>
+            <button type="button" class="btn-close closeModalBtn" data-bs-dismiss="modal" aria-label="Close" style="left: 50px;top: 15px;position: relative;"></button>
+          </div>
+          <div #slab2pdf>
+            <h1 class="modal-title fs-6 text-center text-decoration-underline" id="exampleModalLabel">Claim for Interest Subvention on credit above ₹3 lakh and upto ₹5 lakh to women SHGs , for the year <b *ngIf="slab2Data && slab2Data.length > 0" class="text-decoration-underline">{{slab2Data[0]?.FyYear}}</b></h1>
+            <div style="margin-left: 4%;">
+              <p class="fs-7">Name of Bank:&nbsp;&nbsp;<b *ngIf="slab2Data && slab2Data.length > 0">{{slab2Data[0]?.BankName}}</b></p>
+              <p class="fs-7">Statement for claims for the period <b *ngIf="slab2Data && slab2Data.length > 0">{{slab2Data[0]?.FromPeriod}}</b> to <b *ngIf="slab2Data && slab2Data.length > 0">{{slab2Data[0]?.ToPeriod}}</b> credit disbursed/outstanding above ₹3 lakh and upto ₹5 lakh</p>
+            </div>
+            <div class="slab2Table">
+              <table class="table mt-4" style="width: 96%; margin-left: 2%;">
+                <tr>
+                  <th colspan="3" class="text-center" style="width: 25%;">New loan accounts opened during the period<br><b *ngIf="slab2Data && slab2Data.length > 0">{{slab2Data[0]?.FromPeriod}}</b>to<b *ngIf="slab2Data && slab2Data.length > 0">{{slab2Data[0]?.ToPeriod}}</b></th>
+                  <th colspan="3" class="text-center" style="width: 25%;">Outstanding as on<b *ngIf="slab2Data && slab2Data.length > 0">{{slab2Data[0]?.PrevQtr}}</b><br>(end of previous period)</th>
+                  <th colspan="3" class="text-center" style="width: 25%;">Total outstanding as on<b *ngIf="slab2Data && slab2Data.length > 0">{{slab2Data[0]?.ToPeriod}}</b></th>
+                  <th colspan="2" class="text-center" style="width:10% !important;">Amount of interest <br>Subvention @5%</th>
+                </tr>
+                <tr>
+                  <th colspan="1" class="text-center" style="width: 55px;">No.of Accounts</th>
+                  <th colspan="1" class="text-center" style="width: 55px;">Applicable <br> Interest <br> rate <br>(1 yr MCLR / Benchmark rate)</th>
+                  <th colspan="1" class="text-center">Amount</th>
+                  <th colspan="1" class="text-center" style="width: 55px;">No.of Accounts</th>
+                  <th colspan="1" class="text-center" style="width: 55px;">Applicable <br> Interest <br> rate <br>(1 yr MCLR / Benchmark rate)</th>
+                  <th colspan="1" class="text-center">Amount</th>
+                  <th colspan="1" class="text-center" style="width: 55px;">No.of Accounts</th>
+                  <th colspan="1" class="text-center" style="width: 55px;">Applicable <br> Interest <br> rate <br>(1 yr MCLR / Benchmark rate)</th>
+                  <th colspan="1" class="text-center">Amount</th>
+                  <th colspan="1" class="text-center">Amount</th>
+                </tr>
+                <tr *ngFor="let itemData of slab2Data">
+                  <td colspan="1" class="text-center">{{itemData.C2AcctsCount.toLocaleString('en-IN')}}</td>
+                  <td colspan="1" class="text-center">{{itemData.MCLRRate1}}</td>
+                  <td colspan="1" class="text-center">{{itemData.C2AcctsSum | numberFormat}}</td>
+                  <td colspan="1" class="text-center">{{itemData.C2m1Accts.toLocaleString('en-IN')}}</td>
+                  <td colspan="1" class="text-center">{{itemData.MCLRRate2}}</td>
+                  <td colspan="1" class="text-center">{{itemData.C2m1AcctsSum | numberFormat}}</td>
+                  <td colspan="1" class="text-center">{{itemData.C2m3s1Count.toLocaleString('en-IN')}}</td>
+                  <td colspan="1" class="text-center">{{itemData.MCLRRate3}}</td>
+                  <td colspan="1" class="text-center">{{itemData.C2m3S1Sum | numberFormat}}</td>
+                  <td colspan="2" class="text-center">{{itemData.C2svAmnt | numberFormat}}</td>
+                </tr>
+              </table>
+            </div>
+            <br>
+            <table class="table" style="width: 50%; margin-left: 4%;">
+              <thead>
+                <tr>
+                  <th class="text-center">No of unique SHGs availed interest subvention</th>
+                  <th class="text-center">Amount of Interest subvention</th>
+                </tr>
+              </thead>
+              <tr *ngFor="let itemData of slab2Data">
+                <td class="text-center">{{itemData.C2shgCount.toLocaleString('en-IN')}}</td>
+                <td class="text-center">{{itemData.C2svAmnt  | numberFormat}}</td>
+              </tr>
+            </table>
+            <div class="ms-4">
+              <p class="fs-7" style="width: 94%; margin-left: 2%;">NB : Number (No.) and Amount in actual figures.<br>
+                We hereby certify that credit to women SHGs above ₹3 lakh and upto ₹5 lakh were charged interest as per Banks disclosed 1 year MCLR/Benchmark rate on the above disbursement/outstanding in the year <b *ngIf="slab2Data && slab2Data.length > 0">{{slab2Data[0]?.FyYear}}</b>. We certify that the accounts
+                are
+                eligible for interest subvention as per RBI guidelines and Bank has verified and flagged all those accounts as
+                'SHGs
+                under DAY-NRLM on CBS. We also certify that there is no duplication in the claims and minimal human intervention
+                while
+                submitting the interest subvention claim from the branch level onwards.</p>
+            </div>
+            <p class="fs-7 mb-1" style="margin-top: 8%; margin-left: 4%;">Dated</p>
+            <p class="fs-7" style="margin-left: 4%;">Authorised Signatory & Seal</p>
+            <p class="fs-7" style="width: 94%; margin-left: 4%;"><i>
+              <b>
+                (This claim format, consolidated for the year, needs to be
+                  duly certified by Statutory Auditors and submitted along with the claims for the quarter ending <b *ngIf="slab2Data && slab2Data.length > 0">{{slab2Data[0]?.SubmitFor}}</b> within <b *ngIf="slab2Data && slab2Data.length > 0">{{slab2Data[0]?.SubmitTo}}</b>)
+              </b>
+            </i></p>
+          
+        </div>
+        <div class="modal-footer justify-content-around m-1">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+            (click)="downloadPdf('slab2')">Download</button>
+        </div>
+      </div>
+      </div>
+    </div>
+
+  <app-warning-dialog (claimPEvent)="deleteEntityData()"></app-warning-dialog>
+  <app-error-dialog></app-error-dialog>

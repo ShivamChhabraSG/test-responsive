@@ -1,0 +1,155 @@
+<div class="logincontainers" *ngIf="loginscreen">
+  <div class="container-fluid">
+    <img src="../../assets/image/close.png" alt="" class="close-icon" (click)="close()">
+    <div class="row">
+      <div class="col-12 mt-4" style="text-align: center;">
+        <h5 class="loginhead">NRLM Interest Subvention</h5>
+      </div>
+    </div>
+    <div>
+      <div class="row">
+        <div class="col-12" style="text-align: center;">
+          <h5 class="loginSubhead">Login into Your Account</h5>
+        </div>
+      </div>
+      <div class="row" style="margin-left: -12px;margin-top: 70px;">
+        <div class="row">
+          <div class="col-1"></div>
+          <div class="col-8 userIddd">
+            <input type="text" required placeholder="User name" class="userInput" id="uname" name="uname"
+              [(ngModel)]="username" #uname="ngModel"><mat-icon class="userIdIcon">person</mat-icon>
+            <p style="padding:0px;" *ngIf="uname.invalid && (uname.dirty || uname.touched)" class="alert">
+              <span class="errMSggg" *ngIf="uname.errors?.['required']">
+                *User Name is required
+              </span>
+          </div>
+          <div class="col-1"></div>
+        </div>
+
+        <br><br><br><br><br>
+
+        <div class="row">
+          <div class="col-1"></div>
+          <div class="col-8">
+            <!-- <label class="labelID">Password*</label><br> -->
+            <input placeholder=" *********" maxlength="45" class="userInput" type="password"
+              [type]="showPassword ? 'text' : 'password'" name="password" required [(ngModel)]="password"
+              #pswrd="ngModel" pInputText required />
+            <mat-icon>lock</mat-icon>
+            <mat-icon class="hidePaswrd" matSuffix (click)="togglePasswordVisibility()">
+              {{showPassword?'visibility':'visibility_off'}}
+            </mat-icon>
+            <p style=" padding: 0px;" *ngIf="pswrd.invalid && (pswrd.dirty || pswrd.touched)" class="alert">
+              <span class="errMSggg" *ngIf="pswrd.errors?.['required']">
+                *Password is required
+              </span>
+          </div><br>
+          <div class="col-1">
+
+          </div>
+          <div class="row">
+            <div class="col-8"></div>
+            <div class="col-4" (click)="forgotPassword()">
+              <label class="forgotPasswrd">Forgot/Reset Password?</label>
+            </div>
+          </div>
+          <p class="errText">{{errorMessageloginFailed}}</p>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <!-- <div class="col-3"></div> -->
+        <div class="col-12">
+          <button type="button" class="loginBtn btn-primary" data-toggle="button" aria-pressed="false"
+            autocomplete="off" (click)="send()" [disabled]="!username || !password">
+            Login
+          </button>
+        </div>
+        <!-- <div class="col-3"></div> -->
+      </div>
+    </div>
+  </div>
+</div>
+<div class="logincontainers" *ngIf="getcreatepasswordscreen">
+  <div class="container-fluid">
+    <img src="../../assets/image/close.png" alt="" class="close-icon" (click)="close()">
+    <div class="row">
+      <div class="col-12 mt-4" style="text-align: center;">
+        <h5 class="loginhead">NRLM Interest Subvention</h5>
+      </div>
+    </div>
+    <div class="row">
+      <div class="row">
+        <div class="col-12">
+          <h5 class="createpassrd">Create Password</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="row">
+          <div class="col-1"></div>
+          <div class="col-8">
+            <label class="labelID">New Password*</label><br>
+            <input placeholder=" " minlength="8" maxlength="45" class="userInput userPaddingpasrd" id="uname"
+              name="uname" [type]="showPassword ? 'text' : 'password'" required [pattern]="passwordPattern"
+              [(ngModel)]="newpassword" #uname="ngModel" pInputText required />
+            <mat-icon>lock</mat-icon>
+            <mat-icon class="hidePaswrdP" matSuffix (click)="togglePasswordVisibility()">
+              {{showPassword?'visibility':'visibility_off'}}
+            </mat-icon>
+            <!-- <input type="text" required placeholder="" class="userInput userPadding" id="uname" name="uname"   [(ngModel)]="newpassword" #uname="ngModel"> -->
+            <p style="padding: 0px;" *ngIf="uname.invalid && (uname.dirty || uname.touched)" class="alert">
+              <span class="errMSggg" *ngIf="uname.errors?.['required']">
+                *New Password is required
+              </span>
+              <span class="errMSgggChar" *ngIf="uname.errors?.['minlength'] && !uname.errors?.['pattern'] ">
+                *Password length must Greater than 8 and less than 25 Characters
+              </span>
+              <span class="errMSgggnew" *ngIf="uname.errors?.['pattern']">
+                *One smallcase, one uppercase, one number and special character is required.
+              </span>
+
+          </div>
+          <div class="col-1"></div>
+        </div>
+
+        <br><br><br><br><br>
+
+        <div class="row">
+          <div class="col-1"></div>
+          <div class="col-8">
+            <label class="labelID">Re-Enter Password*</label><br>
+            <input minlength="8" maxlength="45" class="userInput userPaddingpasrd" id="pswrd" name="pswrd"
+              [type]="showConfirmPassword ? 'text' : 'password'" required [(ngModel)]="confirmpassword"
+              (keyup)="ReEnterPassword($event)" #pswrd="ngModel" pInputText required (input)="onInput($event)"/>
+            <mat-icon>lock</mat-icon>
+            <mat-icon class="hidePaswrdP" matSuffix (click)="toggleConfirmPasswordVisibility()">
+              {{showConfirmPassword?'visibility':'visibility_off'}}
+            </mat-icon>
+            <span class="errMSgg" *ngIf="showErrMg">
+              *Password not matched
+            </span>
+          </div><br>
+          <div class="col-1">
+
+          </div>
+        </div>
+      </div>
+      <br>
+      <p class="sucessMsg" *ngIf="errorMsg" [ngClass]="uname.errors?.['pattern'] ? 'sucessMsg' : 'sucessMsg1'">{{msgSuccess}}</p>
+      <div class="row">
+        <!-- <div class="col-3"></div> -->
+        <div class="col-12">
+          <button type="button" class="btnselectRole btn-primary" data-toggle="button" aria-pressed="false"
+            autocomplete="off" (click)="againloginscreen()"
+            [disabled]="(newpassword !== confirmpassword) || uname.errors?.['pattern'] || uname.errors?.['required'] || pswrd.errors?.['required'] || uname.errors?.['minlength']">
+            Enter
+          </button>
+        </div>
+        <!-- <div class="col-3"></div> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-error-dialog></app-error-dialog>
+<app-warning-auth-dialog></app-warning-auth-dialog>

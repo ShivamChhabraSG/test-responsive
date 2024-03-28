@@ -1,0 +1,134 @@
+<div [ngClass]="!authorizePermission && fileUploadpermission !== 'FileView' && uploadpermission ? 'nrlmDataScreen' : 'nrlmDataScreen1'">
+    <div class="userU">
+    <hr style="margin-top: 2%;">
+    <div class="container-fluid">
+        <div class="row gridRow">
+            <div class="col-12">
+                        <div class="row topRow" *ngIf="!authorizePermission && fileUploadpermission !== 'FileView' && uploadpermission">
+                            <div class="col-6 colFilepIcker">
+                              <label>Select File : </label>
+                              <input accept=".csv" type="file" name="inputFile" style="display: none" #fileInput
+                                (change)="changeListener(fileInput)" />
+                              <button mat-raised-button class="file-select-button" (click)="fileInput.click()">
+                                <img src="../../assets/image/attach icon.svg" title="Upload files">
+                              </button>
+                              <span  *ngIf="selectedFile">{{ selectedFile.name }}</span>
+                              <!-- Inline message next to file name -->
+                              <span *ngIf="checkCSV === false" class="csv-message" style="color: red; padding-left: 5px; font-size: 10px;">Please upload file in .csv format.</span>
+                            </div>
+                            <div class="col-2 colStyleIconS">
+                              <button class="btn btn-primary SaveButton"  [disabled]="!checkCSV" (click)="uploadFile()">Submit</button>
+                            </div>
+                        </div>    
+                <div class="main">
+                    <div class="row  gridStyle">
+                    
+                        <div class="col-1 colStyle ">
+                            <img (click)="generatePDF(gridOptions)" src="../../assets/image/pdf icon.svg" title="Download PDF">
+                        </div>
+                        <div class="col-1 colStylee">
+                            <img (click)="downloadExcel()" src="../../assets/image/excel icon.svg" title="Download Excel">
+                        </div>
+                        <div class="col-1 colStyles">
+                        </div>
+    
+                        <div class="col-md-5 colStyle">
+                            <label class="entityLabel">Bulk Users Data Upload</label>
+                        </div>
+    
+                        <div class="col-md-1 colSearch">
+                            <div class="searchBox d-flex searchBarstyle">
+                                <mat-icon class="searchIcon">search</mat-icon>
+                                <input class="searchInput searchbarInput" type="text" name=""
+                                    (keyup)="onFilterTextBoxChanged(gridOptions,$event)" placeholder="Search ">
+                            </div>
+                        </div>
+                        <div class="col-md-2 colStyleIcon" *ngIf="!authorizePermission && submitSuccessfully"  >
+                            <img src="../../assets/image/view.svg" *ngIf="usercellClicked" (click)="forVIewDownloadData()"class="viewEn" title="View User" >
+                            <img src="../../assets/image/Delete-button.svg"  (click)="deleteFile()" class="editImg" *ngIf="deleteVisible && cellClicked !== 'A'  && cellClicked !== 'S' && usercellClicked" title="Delete User">
+                            <img src="../../assets/image/download.png" *ngIf="usercellClicked" class="editImg" (click)="onBtnExport()" title="Download User">
+                        </div>
+                        <div class="col-md-2 colStyleIcon"  *ngIf="submitSuccessfully">
+                       
+                                <img src="../../assets/image/view.svg"  *ngIf="authorizePermission && cellClicked" (click)="forVIewDownloadData()"class="viewEn" title="View User" >
+                                <img src="../../assets/image/Authorize-button.svg" data-bs-toggle="modal" data-bs-target="#exampleModal" title="Authorize User"  class="editImg"
+                                *ngIf="authorizePermission && uploadStatus === 'S' && checker !== maker" (click)="authorise()">
+                            <img src="../../assets/image/download.png" class="editImg" (click)="onBtnExport()"
+                                *ngIf="authorizePermission && cellClicked" title="Download User">
+                        </div>
+                
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-12">
+                            <ag-grid-angular 
+                                class="ag-theme-alpine" [rowData]="selectedLevelData" (gridReady)="onGridReady($event)"
+                                (cellClicked)="onCellClicked($event)" (gridReady)="onGridReady($event)"
+                                [defaultColDef]="defaultColDef" [columnDefs]="columnDefs" [pagination]="true"
+                                [paginationAutoPageSize]="false"  [pagination]="true"
+                                [paginationPageSize]="pageSize"
+                                [cacheBlockSize]="pageSize"
+                                [paginationNumberFormatter]="customNumberFormatter"
+                                [groupSelectsChildren]="true">
+                            </ag-grid-angular>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <button class="btn back-btn" routerLink="/user-data">Back</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 footer">
+            <app-nrlm-footer></app-nrlm-footer>
+        </div>
+    </div>
+    </div>
+</div>
+ <!-- Modal -->
+ <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-center" style="background: red;">
+        <h1 class="modal-title text-center flex-grow-1" id="exampleModalLabel" style="margin-top: 15px;">Action Required</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h4>* Remarks is mandatory for Reject</h4>
+        <div class="mb-3">
+          <textarea [maxlength]="200" class="form-control" [(ngModel)]="remarks" id="exampleFormControlTextarea1" rows="3" required style="height: 75px;"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer justify-content-around">
+        <button style="background: #FF5B5B; color: white; width: 110px;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModalToggle3" data-bs-dismiss="modal" [disabled]="remarks.trim() === ''">Reject</button>
+        <button style="background: #00A2FF;color: white; width: 110px;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModalToggle2" (click)="Authorize()">Authorise</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Reject comment modal -->
+<div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-center" style="background:red !important">
+        <h1 class="modal-title text-center flex-grow-1" id="exampleModalLabel" style="margin-top: 15px;">Warning !</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center p-5" style="margin-top: 10px; height: 110px;">
+        <h4>Are you sure you want to Reject?</h4>
+      </div>
+      <div class="modal-footer justify-content-around m-3" >
+        <a class="btn" data-bs-toggle="modal" data-bs-target="#exampleModalToggle" (click)="reject()" style="background: red;color: white; width: 50px !important;">Yes</a>
+        <a class="btn" data-bs-toggle="modal" data-bs-target="#exampleModalToggle" style="background: #ccc; color: white; width:50px !important">No</a>
+        </div>
+    </div>
+  </div>
+</div>
+
+<app-error-dialog></app-error-dialog>
+<app-warning-dialog></app-warning-dialog>
+<app-upload-status-dialog></app-upload-status-dialog>
